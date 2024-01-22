@@ -31,15 +31,9 @@ public class GenreService implements DAOServiceInterface<Genre> {
         return optional.get();
     }
 
-    public Genre persist(GenreDTO dto, Long id) {
-        if (id != null && repository.findById(id).isEmpty()) {
-            throw new NotFoundEntityException(
-                    "Genre", "id", id
-            );
-        }
+    public Genre persist(GenreDTO dto) {
 
         Genre entity = new Genre();
-        entity.setId(id);
         entity.setName(dto.getName());
         return repository.saveAndFlush(entity);
     }
@@ -51,12 +45,5 @@ public class GenreService implements DAOServiceInterface<Genre> {
         } catch (NumberFormatException e) {
             return repository.findByName(field);
         }
-    }
-
-    public GenreDTO getDTOById(Long id) {
-        Genre entity = getObjectById(id);
-        GenreDTO dto = new GenreDTO();
-        dto.setName(entity.getName());
-        return dto;
     }
 }

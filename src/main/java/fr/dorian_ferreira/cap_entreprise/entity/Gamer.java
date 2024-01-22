@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 @Entity
 @DiscriminatorValue("GAMER")
-public class Player extends User {
+public class Gamer extends User {
 
     private LocalDate birthAt;
 

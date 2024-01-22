@@ -31,15 +31,9 @@ public class ClassificationService implements DAOServiceInterface<Classification
         return optional.get();
     }
 
-    public Classification persist(ClassificationDTO dto, Long id) {
-        if (id != null && repository.findById(id).isEmpty()) {
-            throw new NotFoundEntityException(
-                    "Classification", "id", id
-            );
-        }
+    public Classification persist(ClassificationDTO dto) {
 
         Classification entity = new Classification();
-        entity.setId(id);
         entity.setName(dto.getName());
         return repository.saveAndFlush(entity);
     }
@@ -51,12 +45,5 @@ public class ClassificationService implements DAOServiceInterface<Classification
         } catch (NumberFormatException e) {
             return repository.findByName(field);
         }
-    }
-
-    public ClassificationDTO getDTOById(Long id) {
-        Classification entity = getObjectById(id);
-        ClassificationDTO dto = new ClassificationDTO();
-        dto.setName(entity.getName());
-        return dto;
     }
 }

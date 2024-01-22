@@ -52,11 +52,4 @@ public class BusinessModelService implements DAOServiceInterface<BusinessModel> 
             return repository.findByName(field);
         }
     }
-
-    public BusinessModelDTO getDTOById(Long id) {
-        BusinessModel entity = getObjectById(id);
-        BusinessModelDTO dto = new BusinessModelDTO();
-        dto.setName(entity.getName());
-        return dto;
-    }
 }

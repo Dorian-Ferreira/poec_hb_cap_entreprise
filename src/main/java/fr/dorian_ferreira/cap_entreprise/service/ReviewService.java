@@ -11,6 +11,7 @@ import fr.dorian_ferreira.cap_entreprise.service.interfaces.DAOServiceInterface;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +20,8 @@ import java.util.Optional;
 public class ReviewService implements DAOServiceInterface<Review> {
 
     private ReviewRepository repository;
+
+    private UserService userService;
 
     @Override
     public List<Review> findAll() {
@@ -34,21 +37,15 @@ public class ReviewService implements DAOServiceInterface<Review> {
         return optional.get();
     }
 
-    public Review persist(ReviewDTO dto, Long id) {
-        if (id != null && repository.findById(id).isEmpty()) {
-            throw new NotFoundEntityException(
-                    "Review", "id", id
-            );
-        }
-
+    public Review persist(ReviewDTO dto, Principal principal) {
         Review entity = new Review();
-        entity.setId(id);
-        return repository.saveAndFlush(entity);
-    }
 
-    public ReviewDTO getDTOById(Long id) {
-        Review entity = getObjectById(id);
-        ReviewDTO dto = new ReviewDTO();
-        return dto;
+        entity.setGame(dto.getGame());
+        entity.setDescription(dto.getDescription());
+        entity.setRating(dto.getRating());
+
+        entity.setWriter(userService.getObjectByName(principal.getName()));
+
+        return repository.saveAndFlush(entity);
     }
 }

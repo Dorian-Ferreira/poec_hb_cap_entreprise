@@ -52,11 +52,4 @@ public class PublisherService implements DAOServiceInterface<Publisher> {
             return repository.findByName(field);
         }
     }
-
-    public PublisherDTO getDTOById(Long id) {
-        Publisher entity = getObjectById(id);
-        PublisherDTO dto = new PublisherDTO();
-        dto.setName(entity.getName());
-        return dto;
-    }
 }

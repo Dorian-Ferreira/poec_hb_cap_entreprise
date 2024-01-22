@@ -1,10 +1,14 @@
 package fr.dorian_ferreira.cap_entreprise.controler;
 
+import fr.dorian_ferreira.cap_entreprise.dto.UserDTO;
 import fr.dorian_ferreira.cap_entreprise.mapping.UrlRoute;
+import fr.dorian_ferreira.cap_entreprise.service.UserService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -12,18 +16,18 @@ import org.springframework.web.servlet.ModelAndView;
 @AllArgsConstructor
 public class SecurityController {
 
-//    private UserService userService;
+    private UserService userService;
 
     @GetMapping(UrlRoute.URL_REGISTER)
     public ModelAndView register(ModelAndView mav) {
         mav.setViewName("security/register");
-//        mav.addObject("userForm", new UserPostDTO());
+        mav.addObject("userForm", new UserDTO());
         return mav;
     }
 
     @PostMapping(UrlRoute.URL_REGISTER)
     public ModelAndView register(
-//            @ModelAttribute("userForm") UserPostDTO userForm,
+            @ModelAttribute("userForm") @Valid UserDTO userForm,
             BindingResult bindingResult,
             ModelAndView mav
     ) {
@@ -31,7 +35,7 @@ public class SecurityController {
             mav.setViewName("security/register");
             return mav;
         }
-//        userService.create(userForm);
+        userService.persist(userForm);
         mav.setViewName("redirect:" + UrlRoute.URL_LOGIN);
         return mav;
     }

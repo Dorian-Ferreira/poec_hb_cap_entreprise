@@ -29,4 +29,5 @@ public class Platform {
             inverseJoinColumns = @JoinColumn(name = "game_id")
     )
     private List<Game> games = new ArrayList<>();
+
 }

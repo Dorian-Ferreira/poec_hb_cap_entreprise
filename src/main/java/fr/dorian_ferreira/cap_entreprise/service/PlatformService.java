@@ -52,11 +52,4 @@ public class PlatformService implements DAOServiceInterface<Platform> {
             return repository.findByName(field);
         }
     }
-
-    public PlatformDTO getDTOById(Long id) {
-        Platform entity = getObjectById(id);
-        PlatformDTO dto = new PlatformDTO();
-        dto.setName(entity.getName());
-        return dto;
-    }
 }

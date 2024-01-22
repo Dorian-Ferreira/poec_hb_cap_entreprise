@@ -25,7 +25,7 @@ public class Game {
 
     private String description;
 
-    private LocalDate releaseDate;
+    private LocalDate publishedAt;
 
     private String image;
 
@@ -51,4 +51,16 @@ public class Game {
 
     @OneToMany(mappedBy = "game")
     private List<Review> reviews = new ArrayList<>();
+
+    @ManyToOne
+    private Moderator moderator;
+
+    public void addPlatform(Platform platform) {
+        platforms.add(platform);
+    }
+
+    public void addReview(Review review) {
+        reviews.add(review);
+        review.setGame(this);
+    }
 }

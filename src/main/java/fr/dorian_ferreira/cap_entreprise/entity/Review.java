@@ -9,6 +9,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -24,7 +26,7 @@ public class Review {
     private String description;
 
     @CreationTimestamp
-    private LocalDateTime publishedAt;
+    private LocalDateTime createdAt;
 
     private Float rating;
 
@@ -35,9 +37,13 @@ public class Review {
     private Game game;
 
     @ManyToOne
-    private Player writer;
+    private Gamer writer;
 
     @ManyToOne
     private Moderator moderator;
+
+    public Date getCreatedAt() {
+        return Date.from(createdAt.atZone(ZoneId.systemDefault()).toInstant());
+    }
 
 }

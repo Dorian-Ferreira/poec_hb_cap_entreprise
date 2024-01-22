@@ -40,7 +40,17 @@ public class GameService implements DAOServiceInterface<Game> {
 
         Game entity = new Game();
         entity.setId(id);
+
         entity.setName(dto.getName());
+        entity.setDescription(dto.getDescription());
+        entity.setPublishedAt(dto.getPublishedAt());
+        entity.setImage(dto.getImage());
+        entity.setPublisher(dto.getPublisher());
+        entity.setGenre(dto.getGenre());
+        entity.setPlatforms(dto.getPlatforms());
+        entity.setClassification(dto.getClassification());
+        entity.setBusinessModel(dto.getBusinessModel());
+
         return repository.saveAndFlush(entity);
     }
 
@@ -56,7 +66,17 @@ public class GameService implements DAOServiceInterface<Game> {
     public GameDTO getDTOById(Long id) {
         Game entity = getObjectById(id);
         GameDTO dto = new GameDTO();
+
         dto.setName(entity.getName());
+        dto.setDescription(entity.getDescription());
+        dto.setPublishedAt(entity.getPublishedAt());
+        dto.setImage(entity.getImage());
+        dto.setPublisher(entity.getPublisher());
+        dto.setGenre(entity.getGenre());
+        dto.setPlatforms(entity.getPlatforms());
+        dto.setClassification(entity.getClassification());
+        dto.setBusinessModel(entity.getBusinessModel());
+
         return dto;
     }
 }

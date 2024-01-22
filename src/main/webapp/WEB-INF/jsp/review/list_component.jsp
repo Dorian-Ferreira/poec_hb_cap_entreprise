@@ -1,0 +1,48 @@
+<table class="table table-dark table-striped table-hover align-middle">
+  <thead>
+  <tr>
+    <th>
+      Game
+    </th>
+    <th>
+      Publication Date
+    </th>
+    <th>
+      Rating
+    </th>
+    <th>
+      Writer
+    </th>
+    <th>
+      Status
+    </th>
+    <th>
+      Operations
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <c:forEach items="${reviews}" var="review">
+    <tr>
+      <th>
+        ${review.game.name}
+      </th>
+      <th>
+          ${review.createdAt}
+      </th>
+      <th>
+          ${review.rating}
+      </th>
+      <th>
+          ${review.writer.nickname}
+      </th>
+      <th>
+        Status
+      </th>
+      <th>
+        Operations
+      </th>
+    </tr>
+  </c:forEach>
+  </tbody>
+</table>

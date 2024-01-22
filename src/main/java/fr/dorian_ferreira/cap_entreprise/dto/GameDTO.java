@@ -25,7 +25,7 @@ public class GameDTO {
     private String description;
 
     @NotNull
-    private LocalDate releaseDate;
+    private LocalDate publishedAt;
 
     private String image;
 
