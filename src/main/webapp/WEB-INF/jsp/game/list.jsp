@@ -18,18 +18,6 @@
         Éditeur
       </th>
       <th>
-        Genre
-      </th>
-      <th>
-        Modèle économique
-      </th>
-      <th>
-        Classification
-      </th>
-      <th>
-        Platformes
-      </th>
-      <th>
         Opérations
       </th>
     </tr>
@@ -49,33 +37,16 @@
           </th>
           <th>
             <div>
-              ${game.publisher.name}
+                ${game.publisher.name}
             </div>
-          </th>
-          <th>
-            <div>
-              ${game.genre.name}
-            </div>
-          </th>
-          <th>
-            <div>
-              ${game.businessModel.name}
-            </div>
-          </th>
-          <th>
-            <div>
-              ${game.classification.name}
-            </div>
-          </th>
-          <th>
-            <c:forEach items="${game.platforms}" var="platform">
-              <div>
-                  ${platform.name}
-              </div>
-            </c:forEach>
           </th>
           <th>
             <a class="btn btn-light" href="${UrlRoute.URL_GAME}/${game.id}">Voir</a>
+            <security:authorize access="hasRole('MODERATOR')">
+              <a class="btn btn-success" href="${UrlRoute.URL_ADMIN_GAME_EDIT}/${game.id}">Modifier</a>
+              <a class="btn btn-success" href="${UrlRoute.URL_ADMIN_GAME_IMAGE}/${game.id}">Téléverser l'image</a>
+              <a class="btn btn-danger" href="${UrlRoute.URL_ADMIN_GAME_DELETE}/${game.id}">Supprimer</a>
+            </security:authorize>
           </th>
         </tr>
     </c:forEach>

@@ -10,6 +10,7 @@
         </div>
         <div class="col-6">
             <h1>${game.name}</h1>
+            <h3>Note moyenne : ${game.getAverageRating()}</h3>
             <h5 class="mt-4">Éditeur : </h5>
             <ul>
                 <li>${game.publisher.name}</li>
@@ -37,13 +38,21 @@
             </p>
         </div>
     </div>
-    <div class="row">
-
+    <div class="row container">
+        <h5 class="mt-4">Avis :</h5>
+        <c:forEach items="${game.reviews}" var="review">
+            <c:if test="${review.moderator != null}">
+                <div class="col-2 mx-4">
+                    <span>${review.writer.nickname} :</span>
+                    <span>${review.rating}</span>
+                </div>
+            </c:if>
+        </c:forEach>
     </div>
-    <div class="row">
+    <div class="col-2 row">
         <security:authorize access="hasRole('GAMER')">
             <a href="${UrlRoute.URL_REVIEW_NEW}/${game.id}" class="btn btn-light">
-                Juger un jeu
+                Juger le jeu
             </a>
         </security:authorize>
     </div>

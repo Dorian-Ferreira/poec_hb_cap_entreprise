@@ -26,10 +26,9 @@ public class AdminReviewController {
     ) {
         reviewService.validate(id, principal);
 
-        mav.setViewName("redirect:/review");
+        mav.setViewName("redirect:/");
         return mav;
     }
-
 
     @GetMapping(path = UrlRoute.URL_ADMIN_REVIEW + "/{id}" + "/refuse")
     public ModelAndView refuse(
@@ -38,7 +37,7 @@ public class AdminReviewController {
     ) {
         reviewService.refuse(id);
 
-        mav.setViewName("redirect:/review");
+        mav.setViewName("redirect:/");
         return mav;
     }
 }

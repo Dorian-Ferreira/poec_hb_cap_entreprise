@@ -63,4 +63,14 @@ public class Game {
         reviews.add(review);
         review.setGame(this);
     }
+
+    public float getAverageRating() {
+        float average = 0;
+        for (Review review : reviews) {
+            if(review.getModerator() != null){
+                average += review.getRating();
+            }
+        }
+        return average;
+    }
 }

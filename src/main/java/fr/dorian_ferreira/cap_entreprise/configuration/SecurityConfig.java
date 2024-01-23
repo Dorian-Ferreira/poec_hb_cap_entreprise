@@ -20,8 +20,6 @@ public class SecurityConfig {
                     .requestMatchers("/review/**").authenticated()
                     .requestMatchers("/game/**").authenticated()
                     .requestMatchers("/**").permitAll()
-                    .requestMatchers("/login").permitAll()
-                    .requestMatchers("/register").permitAll()
             )
             .formLogin(formLogin ->
                 formLogin

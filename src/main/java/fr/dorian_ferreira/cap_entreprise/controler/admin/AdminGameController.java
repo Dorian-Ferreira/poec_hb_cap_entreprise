@@ -53,6 +53,17 @@ public class AdminGameController {
         );
     }
 
+    @GetMapping(path = UrlRoute.URL_ADMIN_GAME_DELETE + "/{id}")
+    public ModelAndView delete(
+            @PathVariable Long id,
+            ModelAndView mav
+    ) {
+        gameService.delete(id);
+
+        mav.setViewName("redirect:/game");
+        return mav;
+    }
+
     @PostMapping(path = UrlRoute.URL_ADMIN_GAME_NEW, name = "newHandler")
     public ModelAndView formHandler(
         @Valid @ModelAttribute("game") GameDTO platformDTO,

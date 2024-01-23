@@ -1,6 +1,7 @@
 package fr.dorian_ferreira.cap_entreprise.controler;
 
 import fr.dorian_ferreira.cap_entreprise.dto.ReviewDTO;
+import fr.dorian_ferreira.cap_entreprise.entity.Review;
 import fr.dorian_ferreira.cap_entreprise.mapping.UrlRoute;
 import fr.dorian_ferreira.cap_entreprise.service.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,18 +23,6 @@ public class ReviewController {
 
     private GameService gameService;
 
-    private UserService userService;
-
-    @GetMapping(value = UrlRoute.URL_REVIEW, name = "list")
-    public ModelAndView index(
-            ModelAndView mav,
-            Principal principal
-    ) {
-        mav.setViewName("review/list");
-        mav.addObject("reviews", reviewService.findAllAvailable(userService.findByName(principal.getName())));
-        return mav;
-    }
-
     @GetMapping(path = UrlRoute.URL_REVIEW + "/{id}", name = "show")
     public ModelAndView show(
             @PathVariable Long id,
@@ -51,7 +40,11 @@ public class ReviewController {
             @PathVariable Long id
     ) {
         mav.setViewName("review/form");
-        return setUp(mav, reviewService.getDtoForGame(id), httpServletRequest.getRequestURI());
+
+        ReviewDTO r = new ReviewDTO();
+        r.setGame(gameService.getObjectById(id));
+
+        return setUp(mav, r, httpServletRequest.getRequestURI());
     }
 
     @GetMapping(value = UrlRoute.URL_REVIEW_NEW, name = "create")

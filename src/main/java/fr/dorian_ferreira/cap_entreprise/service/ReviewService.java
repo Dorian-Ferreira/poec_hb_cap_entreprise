@@ -1,17 +1,14 @@
 package fr.dorian_ferreira.cap_entreprise.service;
 
-import fr.dorian_ferreira.cap_entreprise.dto.GameDTO;
 import fr.dorian_ferreira.cap_entreprise.dto.ReviewDTO;
 import fr.dorian_ferreira.cap_entreprise.entity.Game;
 import fr.dorian_ferreira.cap_entreprise.entity.Moderator;
 import fr.dorian_ferreira.cap_entreprise.entity.Review;
 import fr.dorian_ferreira.cap_entreprise.entity.User;
 import fr.dorian_ferreira.cap_entreprise.exception.NotFoundEntityException;
-import fr.dorian_ferreira.cap_entreprise.repository.GameRepository;
 import fr.dorian_ferreira.cap_entreprise.repository.ReviewRepository;
 import fr.dorian_ferreira.cap_entreprise.service.interfaces.DAOServiceInterface;
 import lombok.AllArgsConstructor;
-import org.eclipse.tags.shaded.org.apache.xpath.operations.Mod;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
@@ -25,7 +22,6 @@ public class ReviewService implements DAOServiceInterface<Review> {
     private ReviewRepository repository;
 
     private UserService userService;
-    private GameService gameService;
 
     @Override
     public List<Review> findAll() {
@@ -36,6 +32,9 @@ public class ReviewService implements DAOServiceInterface<Review> {
             return findAll();
         }
         return repository.findAllByModeratorIsNotNullOrWriter(user);
+    }
+    public List<Review> findAllByGameId(Long id) {
+        return repository.findAllByGameId(id);
     }
 
     @Override
@@ -70,9 +69,7 @@ public class ReviewService implements DAOServiceInterface<Review> {
         repository.delete(r);
     }
 
-    public ReviewDTO getDtoForGame(Long id) {
-        ReviewDTO r = new ReviewDTO();
-        r.setGame(gameService.getObjectById(id));
-        return r;
+    public void deleteGame(Long id) {
+        repository.deleteAll(findAllByGameId(id));
     }
 }

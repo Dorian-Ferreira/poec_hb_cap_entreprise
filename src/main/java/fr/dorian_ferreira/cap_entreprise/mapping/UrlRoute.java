@@ -19,6 +19,8 @@ public class UrlRoute {
 
     public final static String URL_ADMIN_GAME_NEW = URL_ADMIN_GAME + URL_NEW;
     public final static String URL_ADMIN_GAME_EDIT = URL_ADMIN_GAME + URL_EDIT;
+    public final static String URL_ADMIN_GAME_DELETE = URL_ADMIN_GAME + "/delete";
+    public final static String URL_ADMIN_GAME_IMAGE = URL_ADMIN_GAME + "/image";
 
     public final static String URL_ADMIN_REVIEW = URL_ADMIN + URL_REVIEW;
 

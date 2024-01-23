@@ -21,6 +21,7 @@ public class GameService implements DAOServiceInterface<Game> {
 
     private GameRepository repository;
     private UserService userService;
+    private ReviewService reviewService;
 
     @Override
     public List<Game> findAll() {
@@ -82,5 +83,10 @@ public class GameService implements DAOServiceInterface<Game> {
         dto.setBusinessModel(entity.getBusinessModel());
 
         return dto;
+    }
+
+    public void delete(Long id) {
+        reviewService.deleteGame(id);
+        repository.deleteById(id);
     }
 }

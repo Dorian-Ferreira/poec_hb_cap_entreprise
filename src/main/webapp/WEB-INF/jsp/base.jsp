@@ -19,15 +19,10 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="row w-100">
-            <div class="col-1">
+            <div class="col-2">
                 <a class="navbar-brand ms-3" href="${contextPath}/">
                     <span>Home</span>
                 </a>
-            </div>
-            <div class="col-1">
-                <div class="navbar-nav">
-                    <a class="btn btn-secondary" href="${UrlRoute.URL_REVIEW}">Liste d'avis</a>
-                </div>
             </div>
             <div class="col-2">
                 <div class="navbar-nav">
