@@ -5,7 +5,7 @@
 
 
 <div class="container">
-  <%@ include file="list_component.jsp" %>
+  <%@ include file="../components/review_list.jsp" %>
 </div>
 
 <%@ include file="../footer.jsp" %>

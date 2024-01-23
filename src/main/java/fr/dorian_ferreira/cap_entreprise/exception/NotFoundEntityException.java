@@ -1,6 +1,7 @@
 package fr.dorian_ferreira.cap_entreprise.exception;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 public class NotFoundEntityException extends RuntimeException {

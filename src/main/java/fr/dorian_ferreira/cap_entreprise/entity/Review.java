@@ -45,5 +45,8 @@ public class Review {
     public Date getCreatedAt() {
         return Date.from(createdAt.atZone(ZoneId.systemDefault()).toInstant());
     }
+    public Date getModeratedAt() {
+        return Date.from(moderatedAt.atZone(ZoneId.systemDefault()).toInstant());
+    }
 
 }

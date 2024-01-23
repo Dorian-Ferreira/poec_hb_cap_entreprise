@@ -16,7 +16,7 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(auth ->
                 auth
-                    .requestMatchers("/admin/**").hasAuthority("MODERATOR")
+                    .requestMatchers("/admin/**").hasRole("MODERATOR")
                     .requestMatchers("/review/create").authenticated()
                     .requestMatchers("/**").permitAll()
             )

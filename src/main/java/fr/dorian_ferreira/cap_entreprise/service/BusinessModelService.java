@@ -43,13 +43,4 @@ public class BusinessModelService implements DAOServiceInterface<BusinessModel> 
         entity.setName(dto.getName());
         return repository.saveAndFlush(entity);
     }
-
-    public Optional<BusinessModel> findByField(String field) {
-        try {
-            Long id = Long.parseLong(field);
-            return repository.findById(id);
-        } catch (NumberFormatException e) {
-            return repository.findByName(field);
-        }
-    }
 }

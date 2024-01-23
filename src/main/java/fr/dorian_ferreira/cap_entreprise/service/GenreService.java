@@ -37,13 +37,4 @@ public class GenreService implements DAOServiceInterface<Genre> {
         entity.setName(dto.getName());
         return repository.saveAndFlush(entity);
     }
-
-    public Optional<Genre> findByField(String field) {
-        try {
-            Long id = Long.parseLong(field);
-            return repository.findById(id);
-        } catch (NumberFormatException e) {
-            return repository.findByName(field);
-        }
-    }
 }

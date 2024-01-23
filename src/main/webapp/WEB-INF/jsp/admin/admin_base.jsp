@@ -15,4 +15,4 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
         <script type="text/javascript" src="../../../js/page/multiple-select.js"></script>
     </head>
-    <body class="bg-dark text-white">
+    <body>

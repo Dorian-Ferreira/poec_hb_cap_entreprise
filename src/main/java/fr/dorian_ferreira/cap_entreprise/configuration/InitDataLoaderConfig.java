@@ -29,15 +29,15 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-//        createUsers();
-//
-//        createBusinessModels();
-//        createPlatforms();
-//        createClassifications();
-//        createGenres();
-//        createPublishers();
-//
-//        createGames();
+        createUsers();
+
+        createBusinessModels();
+        createPlatforms();
+        createClassifications();
+        createGenres();
+        createPublishers();
+
+        createGames();
     }
 
     private void createUsers() {
@@ -136,20 +136,22 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
         Review review = new Review();
 
+        review.setId(1L);
+        review.setCreatedAt(LocalDateTime.now());
         review.setWriter((Gamer)userRepository.findById(2L).get());
         review.setRating(0F);
         review.setDescription("Pas fou");
-
-        game.addReview(review);
+        review.setGame(game);
 
         Review review2 = new Review();
 
+        review2.setId(2L);
+        review2.setCreatedAt(LocalDateTime.now());
         review2.setWriter((Gamer)userRepository.findById(3L).get());
         review2.setRating(1F);
         review2.setDescription("Bof");
+        review2.setGame(game);
         review2.setModerator((Moderator) userRepository.findById(1L).get());
-
-        game.addReview(review2);
 
         gameRepository.save(game);
 
@@ -171,20 +173,22 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
         Review review3 = new Review();
 
+        review3.setId(3L);
+        review3.setCreatedAt(LocalDateTime.now());
         review3.setWriter((Gamer)userRepository.findById(2L).get());
         review3.setRating(10F);
         review3.setDescription("Peux mieux faire");
+        review3.setGame(game2);
         review3.setModerator((Moderator) userRepository.findById(1L).get());
-
-        game2.addReview(review3);
 
         Review review4 = new Review();
 
+        review4.setId(4L);
+        review4.setCreatedAt(LocalDateTime.now());
         review4.setWriter((Gamer)userRepository.findById(3L).get());
         review4.setRating(5F);
         review4.setDescription("Projet Titan aurait été mieux");
-
-        game2.addReview(review4);
+        review4.setGame(game2);
 
         gameRepository.saveAndFlush(game2);
 

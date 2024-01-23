@@ -81,4 +81,12 @@ public class UserService implements DAOServiceInterface<User>, UserDetailsServic
         }
         return (Gamer)optional.get();
     }
+
+    public User findByName(String name) {
+        Optional<User> optional = repository.findByNickname(name);
+        if (optional.isEmpty()) {
+            throw new NotFoundEntityException("User", "name", name);
+        }
+        return optional.get();
+    }
 }

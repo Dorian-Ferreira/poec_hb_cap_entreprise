@@ -14,6 +14,7 @@ public class UrlRoute {
     public final static String URL_REVIEW = "/review";
     public final static String URL_PUBLISHER = "/publisher";
     public final static String URL_BUSINESSMODEL = "/businessModel";
+    public final static String URL_USER = "/user";
 
     public final static String URL_NEW = "/new";
     public final static String URL_EDIT = "/edit";
@@ -22,6 +23,8 @@ public class UrlRoute {
 
     public final static String URL_ADMIN_GAME_NEW = URL_ADMIN + URL_GAME + URL_NEW;
     public final static String URL_ADMIN_GAME_EDIT = URL_ADMIN + URL_GAME + URL_EDIT;
+
+    public final static String URL_ADMIN_REVIEW = URL_ADMIN + URL_REVIEW;
 
     public final static String URL_ADMIN_CLASSIFICATION_NEW = URL_ADMIN + URL_CLASSIFICATION + URL_NEW;
     public final static String URL_ADMIN_GENRE_NEW = URL_ADMIN + URL_GENRE + URL_NEW;

@@ -43,13 +43,4 @@ public class PlatformService implements DAOServiceInterface<Platform> {
         entity.setName(platformDTO.getName());
         return repository.saveAndFlush(entity);
     }
-
-    public Optional<Platform> findByField(String field) {
-        try {
-            Long id = Long.parseLong(field);
-            return repository.findById(id);
-        } catch (NumberFormatException e) {
-            return repository.findByName(field);
-        }
-    }
 }

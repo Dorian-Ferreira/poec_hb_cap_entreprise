@@ -1,6 +1,7 @@
 package fr.dorian_ferreira.cap_entreprise.controler;
 
 import fr.dorian_ferreira.cap_entreprise.dto.ReviewDTO;
+import fr.dorian_ferreira.cap_entreprise.entity.Review;
 import fr.dorian_ferreira.cap_entreprise.mapping.UrlRoute;
 import fr.dorian_ferreira.cap_entreprise.service.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,10 +9,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
@@ -25,18 +23,31 @@ public class ReviewController {
 
     private GameService gameService;
 
+    private UserService userService;
+
     @GetMapping(value = UrlRoute.URL_REVIEW, name = "list")
     public ModelAndView index(
             ModelAndView mav,
-            HttpServletRequest httpServletRequest
+            HttpServletRequest httpServletRequest,
+            Principal principal
     ) {
         mav.setViewName("review/list");
-        mav.addObject("reviews", reviewService.findAll());
+        mav.addObject("reviews", reviewService.findAllAvailable(userService.findByName(principal.getName())));
         return setUp(mav, new ReviewDTO(), httpServletRequest.getRequestURI());
     }
 
-    @GetMapping(value = UrlRoute.URL_REVIEW_FORM, name = "create")
+    @GetMapping(path = UrlRoute.URL_REVIEW + "/{id}", name = "show")
     public ModelAndView show(
+            @PathVariable Long id,
+            ModelAndView mav
+    ) {
+        mav.setViewName("review/show");
+        mav.addObject("review", reviewService.getObjectById(id));
+        return mav;
+    }
+
+    @GetMapping(value = UrlRoute.URL_REVIEW_FORM, name = "create")
+    public ModelAndView createReview(
             ModelAndView mav,
             HttpServletRequest httpServletRequest
     ) {
