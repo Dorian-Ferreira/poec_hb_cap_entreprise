@@ -1,7 +1,6 @@
 package fr.dorian_ferreira.cap_entreprise.controler;
 
 import fr.dorian_ferreira.cap_entreprise.dto.ReviewDTO;
-import fr.dorian_ferreira.cap_entreprise.entity.Review;
 import fr.dorian_ferreira.cap_entreprise.mapping.UrlRoute;
 import fr.dorian_ferreira.cap_entreprise.service.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,12 +27,11 @@ public class ReviewController {
     @GetMapping(value = UrlRoute.URL_REVIEW, name = "list")
     public ModelAndView index(
             ModelAndView mav,
-            HttpServletRequest httpServletRequest,
             Principal principal
     ) {
         mav.setViewName("review/list");
         mav.addObject("reviews", reviewService.findAllAvailable(userService.findByName(principal.getName())));
-        return setUp(mav, new ReviewDTO(), httpServletRequest.getRequestURI());
+        return mav;
     }
 
     @GetMapping(path = UrlRoute.URL_REVIEW + "/{id}", name = "show")
@@ -46,7 +44,17 @@ public class ReviewController {
         return mav;
     }
 
-    @GetMapping(value = UrlRoute.URL_REVIEW_FORM, name = "create")
+    @GetMapping(value = UrlRoute.URL_REVIEW_NEW + "/{id}", name = "createForGame")
+    public ModelAndView createReviewForGame(
+            ModelAndView mav,
+            HttpServletRequest httpServletRequest,
+            @PathVariable Long id
+    ) {
+        mav.setViewName("review/form");
+        return setUp(mav, reviewService.getDtoForGame(id), httpServletRequest.getRequestURI());
+    }
+
+    @GetMapping(value = UrlRoute.URL_REVIEW_NEW, name = "create")
     public ModelAndView createReview(
             ModelAndView mav,
             HttpServletRequest httpServletRequest
@@ -55,7 +63,7 @@ public class ReviewController {
         return setUp(mav, new ReviewDTO(), httpServletRequest.getRequestURI());
     }
 
-    @PostMapping(value = UrlRoute.URL_REVIEW_FORM, name = "createHandler")
+    @PostMapping(value = UrlRoute.URL_REVIEW_NEW, name = "createHandler")
     public ModelAndView createReview(
             @ModelAttribute("reviewDto") @Valid ReviewDTO reviewDto,
             BindingResult result,

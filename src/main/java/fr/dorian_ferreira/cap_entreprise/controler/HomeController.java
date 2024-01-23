@@ -16,7 +16,7 @@ public class HomeController {
     @GetMapping(name = "index")
     public ModelAndView index(ModelAndView mav, Principal principal) {
         if(principal == null) {
-            mav.setViewName("security/login");
+            mav.setViewName("redirect:/login");
             return mav;
         }
         mav.setViewName("index");

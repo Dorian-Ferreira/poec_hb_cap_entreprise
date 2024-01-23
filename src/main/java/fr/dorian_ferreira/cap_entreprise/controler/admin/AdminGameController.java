@@ -11,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
+
 @Controller
 @AllArgsConstructor
 @RequestMapping(name = "AppAdminGame")
@@ -55,9 +57,10 @@ public class AdminGameController {
     public ModelAndView formHandler(
         @Valid @ModelAttribute("game") GameDTO platformDTO,
         BindingResult result,
-        ModelAndView mav
+        ModelAndView mav,
+        Principal principal
     ) {
-        return formHandle(result, mav, platformDTO, null);
+        return formHandle(result, mav, platformDTO, null, principal);
     }
 
     @PostMapping(path = UrlRoute.URL_ADMIN_GAME_EDIT + "/{id}", name = "editHandler")
@@ -65,9 +68,10 @@ public class AdminGameController {
         @Valid @ModelAttribute("game") GameDTO platformDTO,
         BindingResult result,
         ModelAndView mav,
-        @PathVariable Long id
+        @PathVariable Long id,
+        Principal principal
     ) {
-        return formHandle(result, mav, platformDTO, id);
+        return formHandle(result, mav, platformDTO, id, principal);
     }
 
     private ModelAndView getFormByDTO(
@@ -87,14 +91,15 @@ public class AdminGameController {
             BindingResult result,
             ModelAndView mav,
             GameDTO dto,
-            Long id
+            Long id,
+            Principal principal
     ) {
         if (result.hasErrors()) {
             mav.setViewName("admin/game/form");
             return setup(mav);
         }
-        gameService.persist(dto, id);
-        mav.setViewName("redirect:" + UrlRoute.URL_ADMIN);
+        gameService.persist(dto, id, principal);
+        mav.setViewName("redirect:" + UrlRoute.URL_GAME);
         return mav;
     }
 

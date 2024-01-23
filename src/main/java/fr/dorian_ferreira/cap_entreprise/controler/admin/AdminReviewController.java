@@ -2,17 +2,11 @@ package fr.dorian_ferreira.cap_entreprise.controler.admin;
 
 import fr.dorian_ferreira.cap_entreprise.dto.ReviewDTO;
 import fr.dorian_ferreira.cap_entreprise.mapping.UrlRoute;
-import fr.dorian_ferreira.cap_entreprise.service.GameService;
 import fr.dorian_ferreira.cap_entreprise.service.ReviewService;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
+import fr.dorian_ferreira.cap_entreprise.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
@@ -24,13 +18,27 @@ public class AdminReviewController {
 
     private ReviewService reviewService;
 
-    @GetMapping(value = UrlRoute.URL_ADMIN_REVIEW, name = "list")
-    public ModelAndView index(
-            ModelAndView mav
+    @GetMapping(path = UrlRoute.URL_ADMIN_REVIEW + "/{id}" + "/accept")
+    public ModelAndView accept(
+            @PathVariable Long id,
+            ModelAndView mav,
+            Principal principal
     ) {
-        mav.setViewName("admin/review/list");
-        mav.addObject("reviews", reviewService.findAll());
+        reviewService.validate(id, principal);
+
+        mav.setViewName("redirect:/review");
         return mav;
     }
 
+
+    @GetMapping(path = UrlRoute.URL_ADMIN_REVIEW + "/{id}" + "/refuse")
+    public ModelAndView refuse(
+            @PathVariable Long id,
+            ModelAndView mav
+    ) {
+        reviewService.refuse(id);
+
+        mav.setViewName("redirect:/review");
+        return mav;
+    }
 }

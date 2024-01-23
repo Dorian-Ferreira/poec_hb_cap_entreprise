@@ -4,7 +4,7 @@
 
 <div class="container">
   <f:form method="POST" modelAttribute="userForm" class="form-signin">
-    <h2 class="form-signin-heading">Create your account</h2>
+    <h2 class="form-signin-heading">Créer un compte</h2>
       <div class="form-group ${status.error ? 'has-error' : ''}">
         <f:input type="text" path="username" class="form-control" placeholder="Pseudo"
                     autofocus="true"/>

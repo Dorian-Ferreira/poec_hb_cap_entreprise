@@ -8,18 +8,18 @@
         <h1>Jugement de ${review.writer.nickname} sur ${review.game.name}</h1>
         <security:authorize access="hasRole('MODERATOR')">
             <c:if test="${review.moderator == null}">
-                <a class="col-1 btn btn-success" href="">Accepter</a>
-                <a class="col-1 btn btn-danger" href="">Refuser</a>
+                <a class="col-1 btn btn-success" href="${UrlRoute.URL_ADMIN_REVIEW}/${review.id}/accept">Accepter</a>
+                <a class="col-1 btn btn-danger" href="${UrlRoute.URL_ADMIN_REVIEW}/${review.id}/refuse">Refuser</a>
             </c:if>
         </security:authorize>
     </div>
 
     <div class="row">
         <div class="col-4">Posté le ${review.createdAt}</div>
-        <div class="col-4">Note: ${review.rating}/20</div>
+        <div class="col-4">Note : ${review.rating}/20</div>
     </div>
     <div class="row">
-        <h2 class="mt-5">Commentaire:</h2>
+        <h2 class="mt-5">Commentaire :</h2>
         <div>${review.description}</div>
     </div>
 </div>

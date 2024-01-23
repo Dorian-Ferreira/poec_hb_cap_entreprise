@@ -26,22 +26,15 @@
             </div>
             <div class="col-1">
                 <div class="navbar-nav">
-                    <security:authorize access="hasRole('MODERATOR')">
-                        <a class="btn btn-secondary" href="${UrlRoute.URL_ADMIN}">BO Admin</a>
-                    </security:authorize>
+                    <a class="btn btn-secondary" href="${UrlRoute.URL_REVIEW}">Liste d'avis</a>
                 </div>
             </div>
-            <div class="col-1">
+            <div class="col-2">
                 <div class="navbar-nav">
-                    <a class="btn btn-secondary" href="${UrlRoute.URL_REVIEW}">Review List</a>
+                    <a class="btn btn-secondary" href="${UrlRoute.URL_GAME}">Liste de jeu</a>
                 </div>
             </div>
-            <div class="col-1">
-                <div class="navbar-nav">
-                    <a class="btn btn-secondary" href="${UrlRoute.URL_GAME}">Game List</a>
-                </div>
-            </div>
-            <div class="col-5">
+            <div class="col-4">
                 <div class="main-container p-2">
                     <div class="d-flex">
                         <input type="text"
@@ -57,13 +50,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-4">
                 <security:authorize access="!isAuthenticated()">
                     <div class="d-flex justify-content-end">
-                        <a class="nav-link" href="${UrlRoute.URL_REGISTER}">Register</a>
+                        <a class="nav-link" href="${UrlRoute.URL_REGISTER}">S'inscrire</a>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <a class="nav-link" href="${UrlRoute.URL_LOGIN}">Login</a>
+                        <a class="nav-link" href="${UrlRoute.URL_LOGIN}">Se Connecter</a>
                     </div>
                 </security:authorize>
                 <security:authorize access="isAuthenticated()">

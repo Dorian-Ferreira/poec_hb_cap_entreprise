@@ -111,7 +111,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
     }
 
     private void createClassifications(){
-        List<String> list = List.of("PEGI7", "PEGI12", "PEGI8");
+        List<String> list = List.of("PEGI7", "PEGI12", "PEGI18");
         list.forEach((string) -> {
             Classification entity = new Classification();
             entity.setId((long) list.indexOf(string) + 1);
@@ -133,6 +133,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
         game.setPublisher(publisherRepository.findById(1L).get());
         game.setBusinessModel(businessModelRepository.findById(1L).get());
         game.addPlatform(platformRepository.findById(1L).get());
+        game.setModerator((Moderator)userRepository.findById(1L).get());
 
         Review review = new Review();
 
@@ -170,6 +171,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
         game2.setBusinessModel(businessModelRepository.findById(1L).get());
         game2.addPlatform(platformRepository.findById(1L).get());
         game2.addPlatform(platformRepository.findById(3L).get());
+        game2.setModerator((Moderator)userRepository.findById(1L).get());
 
         Review review3 = new Review();
 

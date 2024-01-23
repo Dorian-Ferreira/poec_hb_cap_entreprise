@@ -17,8 +17,11 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth ->
                 auth
                     .requestMatchers("/admin/**").hasRole("MODERATOR")
-                    .requestMatchers("/review/create").authenticated()
+                    .requestMatchers("/review/**").authenticated()
+                    .requestMatchers("/game/**").authenticated()
                     .requestMatchers("/**").permitAll()
+                    .requestMatchers("/login").permitAll()
+                    .requestMatchers("/register").permitAll()
             )
             .formLogin(formLogin ->
                 formLogin

@@ -1,26 +1,26 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="../../tag.jsp" %>
-<c:set var="title" scope="request" value="Form Game"/>
-<jsp:include flush="true" page="../admin_base.jsp"/>
+<c:set var="title" scope="request" value="Formulaire Jeu"/>
+<jsp:include flush="true" page="../../base.jsp"/>
 
-<div class="container col-9">
+<div class="container">
 
     <c:if test="${isEdit}">
-        <h1>Edit Game ${game.name}</h1>
+        <h1>Modifier le Jeu ${game.name}</h1>
     </c:if>
     <c:if test="${!isEdit}">
-        <h1>Create Game</h1>
+        <h1>Créer un Jeu</h1>
     </c:if>
     <f:form modelAttribute="game" method="post" action="${action}" cssClass="p-5">
         <div class="mb-3 row">
-            <f:label path="name" class="col-sm-2 col-form-label">Name : </f:label>
+            <f:label path="name" class="col-sm-2 col-form-label">Nom : </f:label>
             <div class="col-sm-10">
                 <f:input type="text" cssClass="form-control" path="name"/>
                 <f:errors path="name" cssClass="invalid-feedback"/>
             </div>
         </div>
         <div class="mb-3 row">
-            <f:label path="publishedAt" class="col-sm-2 col-form-label">Publication Date : </f:label>
+            <f:label path="publishedAt" class="col-sm-2 col-form-label">Date de sortie : </f:label>
             <div class="col-sm-10">
                 <f:input type="date" cssClass="form-control" path="publishedAt"/>
                 <f:errors path="publishedAt" cssClass="invalid-feedback"/>
@@ -44,7 +44,7 @@
         </div>
 
         <div class="mb-3 row">
-            <f:label path="publisher" class="col-sm-2 col-form-label">Publisher : </f:label>
+            <f:label path="publisher" class="col-sm-2 col-form-label">Éditeur : </f:label>
             <div class="col-sm-10">
                 <f:select path="publisher"
                           items="${publishers}"
@@ -56,7 +56,7 @@
         </div>
 
         <div class="mb-3 row">
-            <f:label path="platforms" class="col-sm-2 col-form-label">Platforms : </f:label>
+            <f:label path="platforms" class="col-sm-2 col-form-label">Platformes : </f:label>
             <div class="col-sm-10">
                 <input class="form-control" data-multiple-select-input="platform"/>
                 <f:select path="platforms"
@@ -84,7 +84,7 @@
         </div>
 
         <div class="mb-3 row">
-            <f:label path="businessModel" class="col-sm-2 col-form-label">Business Model : </f:label>
+            <f:label path="businessModel" class="col-sm-2 col-form-label">Modèle Économique : </f:label>
             <div class="col-sm-10">
                 <input class="form-control"/>
                 <f:select path="businessModel"
@@ -109,8 +109,8 @@
             </div>
         </div>
 
-        <f:button class="btn btn-secondary" type="reset">Reset</f:button>
-        <f:button class="btn btn-primary">Submit</f:button>
+        <f:button class="btn btn-secondary" type="reset">Recommencer</f:button>
+        <f:button class="btn btn-primary">Soumettre</f:button>
     </f:form>
 </div>
 

@@ -89,4 +89,12 @@ public class UserService implements DAOServiceInterface<User>, UserDetailsServic
         }
         return optional.get();
     }
+
+    public Moderator getModeratorByName(String name) {
+        Optional<User> optional = repository.findByNickname(name);
+        if (optional.isEmpty()) {
+            throw new NotFoundEntityException("User", "name", name);
+        }
+        return (Moderator)optional.get();
+    }
 }

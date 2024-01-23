@@ -25,6 +25,7 @@ public class ReviewService implements DAOServiceInterface<Review> {
     private ReviewRepository repository;
 
     private UserService userService;
+    private GameService gameService;
 
     @Override
     public List<Review> findAll() {
@@ -56,5 +57,22 @@ public class ReviewService implements DAOServiceInterface<Review> {
         entity.setWriter(userService.getObjectByName(principal.getName()));
 
         return repository.saveAndFlush(entity);
+    }
+
+    public void validate(Long id, Principal principal) {
+        Review r = getObjectById(id);
+        r.setModerator(userService.getModeratorByName(principal.getName()));
+        repository.saveAndFlush(r);
+    }
+
+    public void refuse(Long id) {
+        Review r = getObjectById(id);
+        repository.delete(r);
+    }
+
+    public ReviewDTO getDtoForGame(Long id) {
+        ReviewDTO r = new ReviewDTO();
+        r.setGame(gameService.getObjectById(id));
+        return r;
     }
 }
