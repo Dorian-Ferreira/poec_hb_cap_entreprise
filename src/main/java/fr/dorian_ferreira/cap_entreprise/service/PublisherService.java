@@ -23,7 +23,7 @@ public class PublisherService implements DAOServiceInterface<Publisher> {
     }
 
     @Override
-    public Publisher getObjectById(Long id) {
+    public Publisher findById(Long id) {
         Optional<Publisher> optional = repository.findById(id);
         if (optional.isEmpty()) {
             throw new NotFoundEntityException("Publisher", "id", id);

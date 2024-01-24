@@ -36,7 +36,7 @@ public class UserService implements DAOServiceInterface<User>, UserDetailsServic
     }
 
     @Override
-    public User getObjectById(Long id) {
+    public User findById(Long id) {
         Optional<User> optional = repository.findById(id);
         if (optional.isEmpty()) {
             throw new NotFoundEntityException("User", "id", id);

@@ -15,7 +15,7 @@
     </div>
 
     <div class="row">
-        <div class="col-4">Posté le ${review.createdAt}</div>
+        <div class="col-4">Posté le ${dateUtils.getDateFormat(review.createdAt, "dd/MM/yyyy à hh:mm")}</div>
         <div class="col-4">Note : ${review.rating}/20</div>
     </div>
     <div class="row">

@@ -35,9 +35,9 @@
                             ${review.game.name}
                     </th>
                     <th>
-                            ${review.createdAt}
+                            ${dateUtils.getDateFormat(review.createdAt, "dd/MM/yyyy hh:mm")}
                     </th>
-                    <th>
+                    <th class="${jspUtils.getCssClas(review.rating)}">
                             ${review.rating}
                     </th>
                     <th>

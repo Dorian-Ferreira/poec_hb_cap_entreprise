@@ -23,7 +23,7 @@ public class GenreService implements DAOServiceInterface<Genre> {
     }
 
     @Override
-    public Genre getObjectById(Long id) {
+    public Genre findById(Long id) {
         Optional<Genre> optional = repository.findById(id);
         if (optional.isEmpty()) {
             throw new NotFoundEntityException("Genre", "id", id);

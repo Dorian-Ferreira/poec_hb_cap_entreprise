@@ -1,7 +1,6 @@
 package fr.dorian_ferreira.cap_entreprise.controler;
 
 import fr.dorian_ferreira.cap_entreprise.dto.ReviewDTO;
-import fr.dorian_ferreira.cap_entreprise.entity.Review;
 import fr.dorian_ferreira.cap_entreprise.mapping.UrlRoute;
 import fr.dorian_ferreira.cap_entreprise.service.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,7 +28,7 @@ public class ReviewController {
             ModelAndView mav
     ) {
         mav.setViewName("review/show");
-        mav.addObject("review", reviewService.getObjectById(id));
+        mav.addObject("review", reviewService.findById(id));
         return mav;
     }
 
@@ -42,7 +41,7 @@ public class ReviewController {
         mav.setViewName("review/form");
 
         ReviewDTO r = new ReviewDTO();
-        r.setGame(gameService.getObjectById(id));
+        r.setGame(gameService.findById(id));
 
         return setUp(mav, r, httpServletRequest.getRequestURI());
     }

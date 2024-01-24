@@ -23,30 +23,30 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, columnDefinition = "Text")
     private String description;
 
     @CreationTimestamp
+    @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    @Column(nullable = false)
     private Float rating;
 
     @UpdateTimestamp
+    @Column(nullable = false)
     private LocalDateTime moderatedAt;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Game game;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Gamer writer;
 
     @ManyToOne
     private Moderator moderator;
 
-    public Date getCreatedAt() {
-        return Date.from(createdAt.atZone(ZoneId.systemDefault()).toInstant());
-    }
-    public Date getModeratedAt() {
-        return Date.from(moderatedAt.atZone(ZoneId.systemDefault()).toInstant());
-    }
 
 }

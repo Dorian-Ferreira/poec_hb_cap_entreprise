@@ -25,13 +25,22 @@ public class GameDTO {
     private String description;
 
     @NotNull
-    private LocalDate publishedAt;
+    private String publishedAt;
 
     private String image;
 
+    @NotNull
     private Publisher publisher;
+
+    @NotNull
     private Classification classification;
+
+    @NotNull
     private Genre genre;
+
+    @NotNull
     private BusinessModel businessModel;
+
+    @NotNull
     private List<Platform> platforms = new ArrayList<>();
 }

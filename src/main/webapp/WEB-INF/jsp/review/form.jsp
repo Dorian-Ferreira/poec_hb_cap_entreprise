@@ -27,7 +27,7 @@
     <div class="mb-3 row">
       <f:label path="rating" class="col-sm-2 col-form-label">Note :</f:label>
       <div class="col-sm-10">
-        <f:input type="number" min="0" max="20" step="1" cssClass="form-control" path="rating"/>
+        <f:input type="number" min="0" max="20" step="0.5" cssClass="form-control" path="rating"/>
         <f:errors path="rating" cssClass="invalid-feedback"/>
       </div>
     </div>

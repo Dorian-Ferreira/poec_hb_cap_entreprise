@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
@@ -19,6 +20,8 @@ import java.security.Principal;
 public class AdminGameController {
 
     private final GameService gameService;
+
+    private final ImageUploadService imageUploadService;
 
     private final PlatformService platformService;
     private final PublisherService publisherService;
@@ -59,6 +62,29 @@ public class AdminGameController {
             ModelAndView mav
     ) {
         gameService.delete(id);
+
+        mav.setViewName("redirect:/game");
+        return mav;
+    }
+
+    @GetMapping(path = UrlRoute.URL_ADMIN_GAME_IMAGE + "/{id}")
+    public ModelAndView imageHandler(
+            ModelAndView mav,
+            @PathVariable Long id
+    ) {
+        mav.setViewName("admin/game/image_upload");
+        mav.addObject("game", gameService.findById(id));
+        return mav;
+    }
+
+    @PostMapping(path = UrlRoute.URL_ADMIN_GAME_IMAGE + "/{id}")
+    public ModelAndView fileUpload(
+            @RequestParam("file") MultipartFile file,
+            ModelAndView mav,
+            @PathVariable Long id) {
+        String imagePath = imageUploadService.uploadImage("jeu/", file);
+
+        gameService.addImage(id, imagePath);
 
         mav.setViewName("redirect:/game");
         return mav;

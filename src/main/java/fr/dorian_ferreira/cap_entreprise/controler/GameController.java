@@ -1,15 +1,10 @@
 package fr.dorian_ferreira.cap_entreprise.controler;
 
-import fr.dorian_ferreira.cap_entreprise.dto.ReviewDTO;
 import fr.dorian_ferreira.cap_entreprise.mapping.UrlRoute;
 import fr.dorian_ferreira.cap_entreprise.service.GameService;
-import fr.dorian_ferreira.cap_entreprise.service.ReviewService;
 import fr.dorian_ferreira.cap_entreprise.service.UserService;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -39,7 +34,7 @@ public class GameController {
             ModelAndView mav
     ) {
         mav.setViewName("game/show");
-        mav.addObject("game", gameService.getObjectById(id));
+        mav.addObject("game", gameService.findById(id));
         return mav;
     }
 

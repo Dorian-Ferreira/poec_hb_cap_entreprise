@@ -1,5 +1,6 @@
 package fr.dorian_ferreira.cap_entreprise.entity;
 
+import fr.dorian_ferreira.cap_entreprise.entity.interfaces.NomenclatureInterface;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,27 +16,33 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Game {
+public class Game implements NomenclatureInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
+    @Column(nullable = false)
     private LocalDate publishedAt;
 
     private String image;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Genre genre;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Publisher publisher;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Classification classification;
 
     @ManyToMany
@@ -47,12 +54,14 @@ public class Game {
     private List<Platform> platforms = new ArrayList<>();
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private BusinessModel businessModel;
 
-    @OneToMany(mappedBy = "game")
+    @OneToMany(mappedBy = "game", cascade = CascadeType.REMOVE)
     private List<Review> reviews = new ArrayList<>();
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Moderator moderator;
 
     public void addPlatform(Platform platform) {

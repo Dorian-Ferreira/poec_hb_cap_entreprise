@@ -14,10 +14,10 @@
         <link href="${contextPath}/css/main.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
         <script type="text/javascript" src="../../js/page/search-bar.js"></script>
+        <script type="text/javascript" src="../../js/page/multiple-select.js"></script>
     </head>
     <body>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="row w-100">
             <div class="col-2">
                 <a class="navbar-brand ms-3" href="${contextPath}/">

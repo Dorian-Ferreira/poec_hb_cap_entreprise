@@ -28,14 +28,6 @@
         </div>
 
         <div class="mb-3 row">
-            <f:label path="image" class="col-sm-2 col-form-label">Image : </f:label>
-            <div class="col-sm-10">
-                <f:input type="text" cssClass="form-control" path="image"/>
-                <f:errors path="image" cssClass="invalid-feedback"/>
-            </div>
-        </div>
-
-        <div class="mb-3 row">
             <f:label path="description" class="col-sm-2 col-form-label">Description : </f:label>
             <div class="col-sm-10">
                 <f:textarea cssClass="form-control review-content" path="description"/>
@@ -52,6 +44,7 @@
                           itemLabel="name"
                 >
                 </f:select>
+                <f:errors path="publisher" cssClass="invalid-feedback"/>
             </div>
         </div>
 
@@ -67,45 +60,47 @@
                           data-multiple-select="platform"
                 >
                 </f:select>
+                <f:errors path="platforms" cssClass="invalid-feedback"/>
             </div>
         </div>
 
         <div class="mb-3 row">
             <f:label path="genre" class="col-sm-2 col-form-label">Genre : </f:label>
             <div class="col-sm-10">
-                <input class="form-control"/>
                 <f:select path="genre"
                           items="${genres}"
                           cssClass="form-select"
                           itemLabel="name"
                 >
+
                 </f:select>
+                <f:errors path="genre" cssClass="invalid-feedback"/>
             </div>
         </div>
 
         <div class="mb-3 row">
             <f:label path="businessModel" class="col-sm-2 col-form-label">Modèle Économique : </f:label>
             <div class="col-sm-10">
-                <input class="form-control"/>
                 <f:select path="businessModel"
                           items="${businessModels}"
                           cssClass="form-select"
                           itemLabel="name"
                 >
                 </f:select>
+                <f:errors path="businessModel" cssClass="invalid-feedback"/>
             </div>
         </div>
 
         <div class="mb-3 row">
             <f:label path="classification" class="col-sm-2 col-form-label">Classification : </f:label>
             <div class="col-sm-10">
-                <input class="form-control"/>
                 <f:select path="classification"
                           items="${classifications}"
                           cssClass="form-select"
                           itemLabel="name"
                 >
                 </f:select>
+                <f:errors path="classification" cssClass="invalid-feedback"/>
             </div>
         </div>
 

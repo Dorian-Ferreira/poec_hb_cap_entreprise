@@ -23,7 +23,7 @@ public class PlatformService implements DAOServiceInterface<Platform> {
     }
 
     @Override
-    public Platform getObjectById(Long id) {
+    public Platform findById(Long id) {
         Optional<Platform> optional = repository.findById(id);
         if (optional.isEmpty()) {
             throw new NotFoundEntityException("Platform", "id", id);

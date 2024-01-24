@@ -23,7 +23,7 @@ public class BusinessModelService implements DAOServiceInterface<BusinessModel> 
     }
 
     @Override
-    public BusinessModel getObjectById(Long id) {
+    public BusinessModel findById(Long id) {
         Optional<BusinessModel> optional = repository.findById(id);
         if (optional.isEmpty()) {
             throw new NotFoundEntityException("BusinessModel", "id", id);

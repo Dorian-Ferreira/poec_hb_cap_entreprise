@@ -10,7 +10,10 @@
         </div>
         <div class="col-6">
             <h1>${game.name}</h1>
-            <h3>Note moyenne : ${game.getAverageRating()}</h3>
+            <h5 class="mt-4">Sortie le : </h5>
+            <ul>
+                <li>${dateUtils.getDateFormat(game.publishedAt, "dd/MM/yyyy")}</li>
+            </ul>
             <h5 class="mt-4">Éditeur : </h5>
             <ul>
                 <li>${game.publisher.name}</li>
@@ -42,9 +45,9 @@
         <h5 class="mt-4">Avis :</h5>
         <c:forEach items="${game.reviews}" var="review">
             <c:if test="${review.moderator != null}">
-                <div class="col-2 mx-4">
+                <div class="col-3 mx-4">
                     <span>${review.writer.nickname} :</span>
-                    <span>${review.rating}</span>
+                    <span class="${jspUtils.getCssClas(review.rating)}">${review.rating}</span>
                 </div>
             </c:if>
         </c:forEach>

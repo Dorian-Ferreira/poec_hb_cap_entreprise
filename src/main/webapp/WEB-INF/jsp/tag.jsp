@@ -12,6 +12,8 @@
 <%@ page import="org.springframework.web.context.WebApplicationContext" %>
 <%@ page import="fr.dorian_ferreira.cap_entreprise.service.UserService" %>
 <%@ page import="fr.dorian_ferreira.cap_entreprise.entity.User" %>
+<%@ page import="fr.dorian_ferreira.cap_entreprise.utils.DateUtils" %>
+<%@ page import="fr.dorian_ferreira.cap_entreprise.utils.JspUtils" %>
 
 <%
   WebApplicationContext ctx = RequestContextUtils.findWebApplicationContext(request);
@@ -21,5 +23,8 @@
       User user = userService.findByName(request.getUserPrincipal().getName());
       request.setAttribute("userLogged", user);
     }
+
+    request.setAttribute("dateUtils", ctx.getBean(DateUtils.class));
+    request.setAttribute("jspUtils", ctx.getBean(JspUtils.class));
   }
 %>

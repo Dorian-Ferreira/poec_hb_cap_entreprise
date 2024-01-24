@@ -2,8 +2,8 @@ package fr.dorian_ferreira.cap_entreprise.repository.interfaces;
 
 import java.util.Optional;
 
-public interface EntitySlugRepository<T> {
+public interface EntityNomenclatureRepository<T> {
 
-    Optional<T> findBySlug(String slug);
+    Optional<T> findByName(String name);
 
 }

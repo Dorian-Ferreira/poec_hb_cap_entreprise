@@ -1,5 +1,6 @@
 package fr.dorian_ferreira.cap_entreprise.entity;
 
+import fr.dorian_ferreira.cap_entreprise.entity.interfaces.NomenclatureInterface;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,12 +16,13 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Classification {
+public class Classification implements NomenclatureInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "classification")
