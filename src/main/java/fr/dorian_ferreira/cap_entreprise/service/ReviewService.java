@@ -9,9 +9,10 @@ import fr.dorian_ferreira.cap_entreprise.exception.NotFoundEntityException;
 import fr.dorian_ferreira.cap_entreprise.repository.ReviewRepository;
 import fr.dorian_ferreira.cap_entreprise.service.interfaces.DAOServiceInterface;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
 
-import java.awt.print.Pageable;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
@@ -29,11 +30,11 @@ public class ReviewService implements DAOServiceInterface<Review> {
         return repository.findAll();
     }
 
-    public List<Review> findAllAvailable(User user) {
+    public Page<Review> findAllAvailable(Pageable pageable, User user) {
         if(user instanceof Moderator) {
-            return findAll();
+            return repository.findAll(pageable);
         }
-        return repository.findAllByModeratorIsNotNullOrWriter((Gamer)user);
+        return repository.findAllByModeratorIsNotNullOrWriter((Gamer)user, pageable);
     }
 
     public List<Review> findAllByGameId(Long id) {

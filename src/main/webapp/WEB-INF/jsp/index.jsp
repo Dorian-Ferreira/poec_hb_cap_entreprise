@@ -5,6 +5,7 @@
 
 <div class="container">
     <h1>Home</h1>
+    <p class="d-flex justify-content-end mt-4">page ${reviews.number + 1} sur ${reviews.totalPages}</p>
     <table class="table table-dark table-striped table-hover align-middle">
         <thead>
             <tr>
@@ -29,7 +30,7 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${reviews}" var="review">
+            <c:forEach items="${reviews.content}" var="review">
                 <tr>
                     <th>
                             ${review.game.name}
@@ -66,6 +67,9 @@
             </c:forEach>
         </tbody>
     </table>
+    <c:set var="page" scope="request" value="${reviews}"/>
+    <c:set var="url" scope="request" value="/"/>
+    <%@ include file="component/pagination.jsp" %>
     <security:authorize access="hasRole('GAMER')">
         <a href="${UrlRoute.URL_REVIEW_NEW}" class="btn btn-light">
             Juger un jeu
