@@ -1,0 +1,11 @@
+
+.sort-filter a {
+    text-decoration: none;
+    color: #FFF;
+}
+
+
+.sort-filter a:hover {
+    text-decoration: none;
+    color: var(--bs-primary);
+}

@@ -19,7 +19,7 @@ public class PlatformService implements DAOServiceInterface<Platform> {
 
     @Override
     public List<Platform> findAll() {
-        return repository.findAll();
+        return repository.findAllByOrderByName();
     }
 
     @Override

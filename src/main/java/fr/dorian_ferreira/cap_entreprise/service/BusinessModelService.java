@@ -19,7 +19,7 @@ public class BusinessModelService implements DAOServiceInterface<BusinessModel> 
 
     @Override
     public List<BusinessModel> findAll() {
-        return repository.findAll();
+        return repository.findAllByOrderByName();
     }
 
     @Override

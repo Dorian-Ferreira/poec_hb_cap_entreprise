@@ -19,7 +19,7 @@ public class GenreService implements DAOServiceInterface<Genre> {
 
     @Override
     public List<Genre> findAll() {
-        return repository.findAll();
+        return repository.findAllByOrderByName();
     }
 
     @Override

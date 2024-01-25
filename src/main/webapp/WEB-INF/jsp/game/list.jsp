@@ -5,7 +5,30 @@
 
 
 <div class="container">
-  <table class="table table-dark table-striped table-hover align-middle">
+  <div class="row d-flex justify-content-between">
+    <div class="d-flex">
+
+      <c:set var="label" scope="request" value="Nom"/>
+      <c:set var="sortable" value="name"/>
+      <%@ include file="../component/sortable.jsp" %>
+
+      <c:set var="label" scope="request" value="Date"/>
+      <c:set var="sortable" value="publishedAt"/>
+      <%@ include file="../component/sortable.jsp" %>
+
+      <c:set var="label" scope="request" value="Éditeur"/>
+      <c:set var="sortable" value="publisher.name"/>
+      <%@ include file="../component/sortable.jsp" %>
+
+      <span class="mt-auto mb-2">
+          <a href="${currentUrl}" class="btn-link">
+              Reset
+          </a>
+      </span>
+    </div>
+  </div>
+
+  <table class="table table-dark table-striped table-hover align-middle mt-2">
     <thead>
     <tr>
       <th>

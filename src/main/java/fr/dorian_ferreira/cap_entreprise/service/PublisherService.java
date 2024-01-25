@@ -19,7 +19,7 @@ public class PublisherService implements DAOServiceInterface<Publisher> {
 
     @Override
     public List<Publisher> findAll() {
-        return repository.findAll();
+        return repository.findAllByOrderByName();
     }
 
     @Override

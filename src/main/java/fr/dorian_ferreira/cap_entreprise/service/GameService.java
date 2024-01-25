@@ -24,7 +24,7 @@ public class GameService implements DAOServiceInterface<Game> {
 
     @Override
     public List<Game> findAll() {
-        return repository.findAll();
+        return repository.findAllByOrderByName();
     }
     public Page<Game> findAll(Pageable pageable) {
         return repository.findAll(pageable);

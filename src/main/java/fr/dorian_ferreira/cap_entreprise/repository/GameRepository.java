@@ -10,4 +10,6 @@ public interface GameRepository
 {
 
     List<Game> findTop5ByOrderById();
+
+    List<Game> findAllByOrderByName();
 }

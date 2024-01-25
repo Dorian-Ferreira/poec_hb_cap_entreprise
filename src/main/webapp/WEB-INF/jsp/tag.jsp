@@ -16,6 +16,17 @@
 <%@ page import="fr.dorian_ferreira.cap_entreprise.utils.JspUtils" %>
 
 <%
+  String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+  String path = request.getAttribute(RequestDispatcher.FORWARD_REQUEST_URI).toString();
+  Object query = request.getAttribute(RequestDispatcher.FORWARD_QUERY_STRING);
+  String queryString = "";
+  if (query != null) {
+    queryString = query.toString();
+  }
+  request.setAttribute("currentQuery", queryString);
+  request.setAttribute("currentPath", path);
+  request.setAttribute("currentUrl", url + path);
+
   WebApplicationContext ctx = RequestContextUtils.findWebApplicationContext(request);
   if (ctx != null) {
     UserService userService = ctx.getBean(UserService.class);

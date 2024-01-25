@@ -15,21 +15,29 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
         <script type="text/javascript" src="../../js/page/multiple-select.js"></script>
         <script type="text/javascript" src="../../js/lib/bootstrap/bootstrap.js"></script>
+        <script type="text/javascript" src="../../js/page/sortable.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="row w-100">
             <div class="col-2">
                 <a class="navbar-brand ms-3" href="${contextPath}/">
-                    <span>Home</span>
+                    <span>Page d'accueil</span>
                 </a>
+            </div>
+            <div class="col-2">
+                <security:authorize access="hasRole('GAMER')">
+                    <a href="${UrlRoute.URL_REVIEW_NEW}" class="btn btn-secondary">
+                        Juger un jeu
+                    </a>
+                </security:authorize>
             </div>
             <div class="col-2">
                 <div class="navbar-nav">
                     <a class="btn btn-secondary" href="${UrlRoute.URL_GAME}">Liste de jeu</a>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-2">
 
             </div>
             <div class="col-4">
@@ -45,7 +53,7 @@
                     <div class="d-flex justify-content-end">
                             <span class="ms-2">
                                 Bienvenue
-                                <a class="logged-user btn-link" href="${UrlRoute.URL_USER}/${userLogged.nickname}">
+                                <a class="logged-user btn-link" href="${UrlRoute.URL_USER}/${userLogged.id}">
                                         ${userLogged.nickname}
                                 </a>
                             </span>
