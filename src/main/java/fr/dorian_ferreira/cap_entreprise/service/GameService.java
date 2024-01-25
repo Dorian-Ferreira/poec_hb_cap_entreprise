@@ -2,12 +2,12 @@ package fr.dorian_ferreira.cap_entreprise.service;
 
 import fr.dorian_ferreira.cap_entreprise.dto.GameDTO;
 import fr.dorian_ferreira.cap_entreprise.entity.Game;
-import fr.dorian_ferreira.cap_entreprise.entity.Moderator;
-import fr.dorian_ferreira.cap_entreprise.entity.User;
 import fr.dorian_ferreira.cap_entreprise.exception.NotFoundEntityException;
 import fr.dorian_ferreira.cap_entreprise.repository.GameRepository;
 import fr.dorian_ferreira.cap_entreprise.service.interfaces.DAOServiceInterface;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
@@ -21,19 +21,15 @@ public class GameService implements DAOServiceInterface<Game> {
 
     private GameRepository repository;
     private UserService userService;
-    private ReviewService reviewService;
 
     @Override
     public List<Game> findAll() {
         return repository.findAll();
     }
-
-    public List<Game> findAllAvailable(User user) {
-        if(user instanceof Moderator) {
-            return findAll();
-        }
-        return repository.findAllByModeratorIsNotNull();
+    public Page<Game> findAll(Pageable pageable) {
+        return repository.findAll(pageable);
     }
+
 
     @Override
     public Game findById(Long id) {
@@ -94,5 +90,9 @@ public class GameService implements DAOServiceInterface<Game> {
         game.setImage(imagePath);
 
         repository.saveAndFlush(game);
+    }
+
+    public List<Game> find5() {
+        return repository.findTop5ByOrderById();
     }
 }

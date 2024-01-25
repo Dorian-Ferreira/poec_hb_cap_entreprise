@@ -1,0 +1,10 @@
+.carousel-item {
+    transition: transform .2s;
+    height: 25em;
+}
+
+.carousel-div{
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 1em;
+    padding: 5px;
+}

@@ -18,4 +18,7 @@ public class JspUtils {
         return "rating-20";
     }
 
+    public String getStringRating(float rating) {
+        return ("" + rating).replace(".0", "");
+    }
 }

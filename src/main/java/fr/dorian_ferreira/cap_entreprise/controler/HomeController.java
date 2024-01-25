@@ -1,5 +1,6 @@
 package fr.dorian_ferreira.cap_entreprise.controler;
 
+import fr.dorian_ferreira.cap_entreprise.service.GameService;
 import fr.dorian_ferreira.cap_entreprise.service.ReviewService;
 import fr.dorian_ferreira.cap_entreprise.service.UserService;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,7 @@ public class HomeController {
 
     private UserService userService;
     private ReviewService reviewService;
+    private GameService gameService;
 
     @GetMapping(name = "index")
     public ModelAndView index(
@@ -37,6 +39,7 @@ public class HomeController {
         }
         mav.setViewName("index");
         mav.addObject("reviews", reviewService.findAllAvailable(pageable, userService.findByName(principal.getName())));
+        mav.addObject("games", gameService.find5());
         return mav;
     }
 

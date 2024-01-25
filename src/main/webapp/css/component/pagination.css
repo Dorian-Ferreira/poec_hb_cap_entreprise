@@ -1,0 +1,44 @@
+.navigation a {
+    text-decoration: none;
+    color: #FFF;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+.navigation a:hover {
+    /*color: var(--bs-primary);*/
+}
+
+.first,
+.previous,
+.next,
+.last {
+    border-radius: 1.2em;
+    padding: 0.4em 0.8em 0.4em 0.8em;
+    background-color: #747474;
+}
+
+.first:hover,
+.previous:hover,
+.next:hover,
+.last:hover {
+    background-color: var(--bs-primary);
+}
+
+.current {
+    padding: 0.4em 0.8em 0.4em 0.8em;
+    border-radius: 1.2em;
+    background-color: var(--bs-primary);
+    font-size: 1.3em;
+}
+
+.first {
+    margin-right: 0.2em;
+}
+.next,
+.current,
+.previous {
+    margin: 0 0.2em;
+}
+.last {
+    margin-left: 0.2em;
+}

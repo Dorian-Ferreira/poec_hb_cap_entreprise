@@ -9,6 +9,5 @@ public interface GameRepository
         extends JpaRepository<Game, Long>
 {
 
-    List<Game> findAllByModeratorIsNotNull();
-
+    List<Game> findTop5ByOrderById();
 }

@@ -80,6 +80,6 @@ public class Game implements NomenclatureInterface {
                 average += review.getRating();
             }
         }
-        return average;
+        return average / reviews.size();
     }
 }

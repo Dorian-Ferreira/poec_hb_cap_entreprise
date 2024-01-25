@@ -10,6 +10,10 @@
         </div>
         <div class="col-6">
             <h1>${game.name}</h1>
+            <h5 class="mt-4">Note moyenne : </h5>
+            <ul>
+                <li>${game.getAverageRating()}</li>
+            </ul>
             <h5 class="mt-4">Sortie le : </h5>
             <ul>
                 <li>${dateUtils.getDateFormat(game.publishedAt, "dd/MM/yyyy")}</li>
@@ -40,6 +44,10 @@
             </ul>
             </p>
         </div>
+    </div>
+    <div class="row container">
+        <h5>Description :</h5>
+        <p>${game.description}</p>
     </div>
     <div class="row container">
         <h5 class="mt-4">Avis :</h5>

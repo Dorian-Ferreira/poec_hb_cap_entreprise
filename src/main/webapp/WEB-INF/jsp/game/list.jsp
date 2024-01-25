@@ -23,7 +23,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${games}" var="game">
+    <c:forEach items="${games.content}" var="game">
         <tr>
           <th>
             <div>
@@ -52,6 +52,22 @@
     </c:forEach>
     </tbody>
   </table>
+
+<%--  <div class="row">--%>
+<%--    <c:forEach items="${games.content}" var="game">--%>
+<%--      <div class="col-lg-4 col-md-6 col-sm-12 mt-4">--%>
+<%--        <div class="main-game-card w-100">--%>
+<%--          <div class="game-card w-100">--%>
+
+<%--          </div>--%>
+<%--        </div>--%>
+<%--      </div>--%>
+<%--    </c:forEach>--%>
+<%--  </div>--%>
+
+  <c:set var="page" scope="request" value="${games}"/>
+  <c:set var="url" scope="request" value="/game"/>
+  <%@ include file="../component/pagination.jsp" %>
   <security:authorize access="hasRole('MODERATOR')">
     <a href="${UrlRoute.URL_ADMIN_GAME_NEW}" class="btn btn-light">
       Ajouter un jeu
