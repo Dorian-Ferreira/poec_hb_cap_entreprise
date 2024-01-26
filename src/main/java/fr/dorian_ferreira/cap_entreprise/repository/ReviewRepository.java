@@ -14,5 +14,7 @@ public interface ReviewRepository
 
     Page<Review> findAllByModeratorIsNotNullOrWriterOrderByModerator(Gamer writer, Pageable pageable);
 
+    List<Review> findTop6ByModeratorIsNotNullOrderByRatingDesc();
+
     List<Review> findAllByGameId(Long id);
 }

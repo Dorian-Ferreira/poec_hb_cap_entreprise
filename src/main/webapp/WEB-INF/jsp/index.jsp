@@ -4,67 +4,22 @@
 <jsp:include flush="true" page="base.jsp"/>
 
 <div class="container">
-    <h2 class="mt-1">Les avis</h2>
-    <div class="row mt-1">
-        <div class="d-flex justify-content-between">
+    <div class="row">
+        <div class="d-flex justify-content-center">
             <div class="d-flex">
-                <!-- Label à afficher -->
-                <c:set var="label" scope="request" value="Date"/>
-                <!-- Sur quelle propriété de l'objet on souhaite trier -->
-                <c:set var="sortable" value="createdAt"/>
-                <%@ include file="component/sortable.jsp" %>
-
-                <c:set var="label" scope="request" value="Note"/>
-                <c:set var="sortable" value="rating"/>
-                <%@ include file="component/sortable.jsp" %>
-
-                <c:set var="label" scope="request" value="Jeu"/>
-                <c:set var="sortable" value="game.name"/>
-                <%@ include file="component/sortable.jsp" %>
-
-                <c:set var="label" scope="request" value="Joueur"/>
-                <c:set var="sortable" value="writer.nickname"/>
-                <%@ include file="component/sortable.jsp" %>
-
-                <span class="mt-auto mb-2">
-                    <a href="${currentUrl}" class="btn-link">
-                        Reset
-                    </a>
-                </span>
+                <h1 class="mt-2">Les meilleurs avis</h1>
             </div>
         </div>
-        <c:forEach items="${reviews.content}" var="review">
-            <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
-                <div class="main-review-card w-100 ${jspUtils.getBorderCssClass(review.moderator != null)}">
-                    <p class="text-center text-white">
-                        Le ${dateUtils.getDateFormat(review.createdAt, "dd/MM/yyyy")}
-                        par <a class="btn-link" href="#">${review.writer.nickname}</a>
-                    </p>
-                    <div class="review-card w-100">
-                        <p class="review-description h-75">
-                            <a class="link-if" href="${UrlRoute.URL_REVIEW}/${review.id}">
-                                ${jspUtils.excerpt(review.description, 209)}
-                            </a>
-                        </p>
-                        <div class="d-flex justify-content-between">
-                            <p class="${jspUtils.getCssClas(review.rating)}">
-                                    ${jspUtils.getStringRating(review.rating)} / 20
-                            </p>
-                            <a class="btn-link" href="${UrlRoute.URL_GAME}/${review.game.id}">
-                                    ${review.game.name}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <c:forEach items="${reviews}" var="review">
+            <%@ include file="component/review-card.jsp" %>
         </c:forEach>
     </div>
 
-    <c:set var="page" scope="request" value="${reviews}"/>
-    <c:set var="url" scope="request" value="/"/>
-    <%@ include file="component/pagination.jsp" %>
-
-    <h2>Proposition de jeux</h2>
+    <div class="d-flex justify-content-center">
+        <div class="d-flex">
+            <h1 class="mt-4">Proposition de jeux</h1>
+        </div>
+    </div>
     <div class="row my-5">
         <div class="col-lg-3 col-md-2">
         </div>

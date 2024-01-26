@@ -19,7 +19,7 @@
           <a class="link-if" data-toggle="tooltip" title="C'est 12345">Mot de passe oublié</a>
         </div>
         <h4 class="text-center mt-4">
-          <a href="${contextPath}/register" class="btn-link">
+          <a href="${UrlRoute.URL_REGISTER}" class="btn-link">
             Créer un compte
           </a>
         </h4>

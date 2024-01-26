@@ -27,12 +27,16 @@
         <f:errors path="password"/>
       </div>
       <div class="row mt-4">
-        <div class="col-5"></div>
-        <div class="align-self-center col-2">
+        <div class="d-flex justify-content-center">
           <button class="btn btn-primary " type="submit">S'inscrire</button>
         </div>
       </div>
     </f:form>
+    <h4 class="text-center mt-4">
+      <a href="${UrlRoute.URL_LOGIN}" class="btn-link">
+        Compte existant
+      </a>
+    </h4>
   </div>
 </div>
 

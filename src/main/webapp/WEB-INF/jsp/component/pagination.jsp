@@ -1,7 +1,7 @@
 <%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <core:set var="currentPage" value="${page.number + 1}"/>
-<div class="navigation d-flex justify-content-center my-4">
+<div class="navigation d-flex justify-content-center mt-4">
   <div class="pagination">
     <core:if test="${!page.first && currentPage - 1 != 1}">
       <core:set var="firstPage" value="page=1"/>

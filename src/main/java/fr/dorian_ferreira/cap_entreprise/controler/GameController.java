@@ -25,7 +25,7 @@ public class GameController {
     public ModelAndView index(
             ModelAndView mav,
             @PageableDefault(
-                    size = 9, // nb Element par page
+                    size = 6, // nb Element par page
                     sort = { "publishedAt" }, // order by
                     direction = Sort.Direction.DESC
             ) Pageable pageable

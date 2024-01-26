@@ -6,6 +6,9 @@ import fr.dorian_ferreira.cap_entreprise.service.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +22,28 @@ import java.security.Principal;
 public class ReviewController {
 
     private ReviewService reviewService;
+    private UserService userService;
 
     private GameService gameService;
+
+    @GetMapping(value = UrlRoute.URL_REVIEW, name = "index")
+    public ModelAndView index(
+            ModelAndView mav,
+            Principal principal,
+            @PageableDefault(
+                    size = 6, // nb Element par page
+                    sort = { "createdAt" }, // order by
+                    direction = Sort.Direction.DESC
+            ) Pageable pageable
+    ) {
+        if(principal == null) {
+            mav.setViewName("redirect:/login");
+            return mav;
+        }
+        mav.setViewName("review/index");
+        mav.addObject("reviews", reviewService.findAllAvailable(pageable, userService.findByName(principal.getName())));
+        return mav;
+    }
 
     @GetMapping(path = UrlRoute.URL_REVIEW + "/{id}", name = "show")
     public ModelAndView show(

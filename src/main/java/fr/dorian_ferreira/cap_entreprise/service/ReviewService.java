@@ -40,6 +40,10 @@ public class ReviewService implements DAOServiceInterface<Review> {
         return repository.findAllByModeratorIsNotNullOrWriterOrderByModerator((Gamer)user, pageable);
     }
 
+    public List<Review> find6HighRateReview() {
+        return repository.findTop6ByModeratorIsNotNullOrderByRatingDesc();
+    }
+
     public List<Review> findAllByGameId(Long id) {
         return repository.findAllByGameId(id);
     }

@@ -6,6 +6,19 @@
     --bs-primary: #ff0000;
 }
 
+html, body {
+    min-height: 100%;
+}
+
+.background {
+    background: linear-gradient(0deg, #2f2f2f, #3f3f3f);
+}
+
+.navbar {
+    height: 5em;
+    background: #252525;
+}
+
 .txt-primary {
     color: #ff0000;
 }

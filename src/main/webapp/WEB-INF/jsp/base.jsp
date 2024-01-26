@@ -17,58 +17,56 @@
         <script type="text/javascript" src="../../js/lib/bootstrap/bootstrap.js"></script>
         <script type="text/javascript" src="../../js/page/sortable.js"></script>
     </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="row w-100">
-            <div class="col-2">
-                <a class="navbar-brand ms-3" href="${contextPath}/">
-                    <span>Page d'accueil</span>
-                </a>
-            </div>
-            <div class="col-2">
-                <security:authorize access="hasRole('GAMER')">
-                    <a href="${UrlRoute.URL_REVIEW_NEW}" class="btn btn-secondary">
-                        Donner un avis sur un jeu
-                    </a>
-                </security:authorize>
-            </div>
-            <div class="col-2">
-                <div class="navbar-nav">
-                    <a class="btn btn-secondary" href="${UrlRoute.URL_GAME}">Liste de jeu</a>
-                </div>
-            </div>
-            <div class="col-2">
+    <body class="background">
+        <security:authorize access="isAuthenticated()">
+            <nav class="navbar navbar-expand-lg">
+                <div class="row w-100">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-            </div>
-            <div class="col-4">
-                <security:authorize access="!isAuthenticated()">
-                    <div class="d-flex justify-content-end">
-                        <a class="nav-link" href="${UrlRoute.URL_REGISTER}">S'inscrire</a>
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <a class="nav-link" href="${UrlRoute.URL_LOGIN}">Se Connecter</a>
-                    </div>
-                </security:authorize>
-                <security:authorize access="isAuthenticated()">
-                    <div class="d-flex justify-content-end">
-                      <span class="ms-2">
-                        <security:authorize access="hasRole('MODERATOR')">
-                          <a class="logged-user btn-link" href="${UrlRoute.URL_ADMIN}">
-                              BO Admin
-                          </a>
-                        </security:authorize>
+                    <div class="navbar-collapse collapse navbar-nav justify-content-between " id="navbarSupportedContent">
+                        <div class="navbar-item">
+                            <a class="navbar-brand ms-3 px-3" href="${contextPath}/">
+                                <span class="text-white">Page d'accueil</span>
+                            </a>
+                        </div>
+
+                        <div class="navbar-item">
+                            <security:authorize access="hasRole('MODERATOR')">
+                                <a class="btn btn-secondary" href="${UrlRoute.URL_ADMIN}">
+                                    BO Admin
+                                </a>
+                            </security:authorize>
+                            <security:authorize access="hasRole('GAMER')">
+                                <span>Bienvenue <span class="txt-primary">${userLogged.nickname}</span></span>
+                            </security:authorize>
+                        </div>
+
                         <security:authorize access="hasRole('GAMER')">
-                          Bienvenue <span class="txt-primary">${userLogged.nickname}</span>
+                            <div class="navbar-item">
+                                <a href="${UrlRoute.URL_REVIEW_NEW}" class="btn btn-secondary">
+                                    Donner un avis sur un jeu
+                                </a>
+                            </div>
                         </security:authorize>
-                      </span>
+
+                        <div class="navbar-item">
+                            <a class="btn btn-secondary" href="${UrlRoute.URL_GAME}">Liste des jeux</a>
+                        </div>
+
+                        <div class="navbar-item">
+                            <a class="btn btn-secondary" href="${UrlRoute.URL_REVIEW}">Liste des avis</a>
+                        </div>
+
+                        <div class="navbar-item">
+                            <form method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
+                                <button type="submit" tabindex="3" class="btn btn-danger">Se Déconnecter</button>
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                            </form>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <form method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
-                            <button type="submit" tabindex="3" class="btn btn-link">Se Déconnecter</button>
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                        </form>
-                    </div>
-                </security:authorize>
-            </div>
-        </div>
-    </nav>
+                </div>
+            </nav>
+        </security:authorize>
+

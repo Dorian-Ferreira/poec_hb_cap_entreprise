@@ -3,6 +3,13 @@
     height: 25em;
 }
 
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.5em;
+}
+
 .carousel-div{
     background-color: rgba(0, 0, 0, 0.4);
     border-radius: 1em;

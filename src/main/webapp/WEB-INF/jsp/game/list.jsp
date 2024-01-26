@@ -5,30 +5,37 @@
 
 
 <div class="container">
-  <div class="row d-flex justify-content-between">
-    <div class="d-flex">
+  <div class="row">
+    <div class="d-flex justify-content-center">
+      <div class="d-flex">
+        <h1 class="mt-2">Liste des jeux</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-flex justify-content-center">
+      <div class="d-flex">
+        <c:set var="label" scope="request" value="Nom"/>
+        <c:set var="sortable" value="name"/>
+        <%@ include file="../component/sortable.jsp" %>
 
-      <c:set var="label" scope="request" value="Nom"/>
-      <c:set var="sortable" value="name"/>
-      <%@ include file="../component/sortable.jsp" %>
+        <c:set var="label" scope="request" value="Date"/>
+        <c:set var="sortable" value="publishedAt"/>
+        <%@ include file="../component/sortable.jsp" %>
 
-      <c:set var="label" scope="request" value="Date"/>
-      <c:set var="sortable" value="publishedAt"/>
-      <%@ include file="../component/sortable.jsp" %>
-
-      <c:set var="label" scope="request" value="Éditeur"/>
-      <c:set var="sortable" value="publisher.name"/>
-      <%@ include file="../component/sortable.jsp" %>
-
-      <span class="mt-auto mb-2">
-          <a href="${currentUrl}" class="btn-link">
-              Reset
-          </a>
-      </span>
+        <c:set var="label" scope="request" value="Éditeur"/>
+        <c:set var="sortable" value="publisher.name"/>
+        <%@ include file="../component/sortable.jsp" %>
+        <span class="mt-auto mb-2">
+            <a href="${currentUrl}" class="btn-link">
+                Reset
+            </a>
+        </span>
+      </div>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row mt-2">
     <c:forEach items="${games.content}" var="game">
       <a class="col-4 mt-2 main-game-card" href="${UrlRoute.URL_GAME}/${game.id}">
         <div class="game-card">

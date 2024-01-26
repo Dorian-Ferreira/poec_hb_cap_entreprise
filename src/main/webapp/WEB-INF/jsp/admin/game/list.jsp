@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="../../tag.jsp" %>
-<c:set var="title" scope="request" value="Review Admin"/>
+<c:set var="title" scope="request" value="Jeu Admin"/>
 <jsp:include flush="true" page="../../base.jsp"/>
 
 <div class="container">

@@ -26,19 +26,14 @@ public class HomeController {
     @GetMapping(name = "index")
     public ModelAndView index(
             ModelAndView mav,
-            Principal principal,
-            @PageableDefault(
-                    size = 6, // nb Element par page
-                    sort = { "createdAt" }, // order by
-                    direction = Sort.Direction.DESC
-            ) Pageable pageable
+            Principal principal
     ) {
         if(principal == null) {
             mav.setViewName("redirect:/login");
             return mav;
         }
         mav.setViewName("index");
-        mav.addObject("reviews", reviewService.findAllAvailable(pageable, userService.findByName(principal.getName())));
+        mav.addObject("reviews", reviewService.find6HighRateReview());
         mav.addObject("games", gameService.find5());
         return mav;
     }
