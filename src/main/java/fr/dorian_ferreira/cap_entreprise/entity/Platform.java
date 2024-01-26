@@ -1,5 +1,6 @@
 package fr.dorian_ferreira.cap_entreprise.entity;
 
+import fr.dorian_ferreira.cap_entreprise.entity.interfaces.ImageInterface;
 import fr.dorian_ferreira.cap_entreprise.entity.interfaces.NomenclatureInterface;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Platform implements NomenclatureInterface {
+public class Platform implements NomenclatureInterface, ImageInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +24,9 @@ public class Platform implements NomenclatureInterface {
 
     @Column(nullable = false)
     private String name;
+
+    @Column(columnDefinition = "TEXT")
+    private String image;
 
     @ManyToMany
     @JoinTable(

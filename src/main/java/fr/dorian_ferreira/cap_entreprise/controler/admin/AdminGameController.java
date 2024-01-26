@@ -6,6 +6,9 @@ import fr.dorian_ferreira.cap_entreprise.service.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +31,21 @@ public class AdminGameController {
     private final GenreService genreService;
     private final BusinessModelService businessModelService;
     private final ClassificationService classificationService;
+
+    @GetMapping(value = UrlRoute.URL_ADMIN_GAME, name = "index")
+    public ModelAndView index(
+            ModelAndView mav,
+            Principal principal,
+            @PageableDefault(
+                    size = 5, // nb Element par page
+                    sort = { "publishedAt" }, // order by
+                    direction = Sort.Direction.DESC
+            ) Pageable pageable
+    ) {
+        mav.setViewName("admin/game/list");
+        mav.addObject("games", gameService.findAll(pageable));
+        return mav;
+    }
 
     @GetMapping(path = UrlRoute.URL_ADMIN_GAME_NEW, name = "new")
     public ModelAndView create(

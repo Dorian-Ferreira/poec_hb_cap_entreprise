@@ -1,9 +1,16 @@
 .main-review-card {
-    border: 1px solid #fff;
+    border: 1px solid;
     border-radius: 0.5em;
     text-decoration: none;
     padding: 0.2em 0.8em;
-    color: #fff;
+}
+
+.main-review-border-red {
+    color: #bb2d3b;
+}
+
+.main-review-border-green {
+    color: #4cbb2d;
 }
 
 .review-card {

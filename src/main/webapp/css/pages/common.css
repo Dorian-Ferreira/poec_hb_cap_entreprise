@@ -6,6 +6,10 @@
     --bs-primary: #ff0000;
 }
 
+.txt-primary {
+    color: #ff0000;
+}
+
 .btn-primary {
     --bs-btn-color: #fff;
     --bs-btn-bg: #ff2020;

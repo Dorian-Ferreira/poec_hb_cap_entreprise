@@ -29,12 +29,15 @@ public class ReviewService implements DAOServiceInterface<Review> {
     public List<Review> findAll() {
         return repository.findAll();
     }
+    public Page<Review> findAll(Pageable pageable) {
+        return repository.findAll(pageable);
+    }
 
     public Page<Review> findAllAvailable(Pageable pageable, User user) {
         if(user instanceof Moderator) {
             return repository.findAll(pageable);
         }
-        return repository.findAllByModeratorIsNotNullOrWriter((Gamer)user, pageable);
+        return repository.findAllByModeratorIsNotNullOrWriterOrderByModerator((Gamer)user, pageable);
     }
 
     public List<Review> findAllByGameId(Long id) {

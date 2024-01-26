@@ -4,7 +4,7 @@
 <jsp:include flush="true" page="../base.jsp"/>
 
 <div class="container">
-  <h1 class="mt-5">Juger un jeu</h1>
+  <h1 class="mt-5">Donner son avis sur un jeu</h1>
   <f:form modelAttribute="reviewDto" method="post" action="${action}" cssClass="p-5 col-md-8 col-sm-12 mx-auto">
     <div class="mb-3 row">
       <span class="col-sm-2 col-form-label">Jeu : </span>

@@ -28,7 +28,7 @@
             <div class="col-2">
                 <security:authorize access="hasRole('GAMER')">
                     <a href="${UrlRoute.URL_REVIEW_NEW}" class="btn btn-secondary">
-                        Juger un jeu
+                        Donner un avis sur un jeu
                     </a>
                 </security:authorize>
             </div>
@@ -51,12 +51,16 @@
                 </security:authorize>
                 <security:authorize access="isAuthenticated()">
                     <div class="d-flex justify-content-end">
-                            <span class="ms-2">
-                                Bienvenue
-                                <a class="logged-user btn-link" href="${UrlRoute.URL_USER}/${userLogged.id}">
-                                        ${userLogged.nickname}
-                                </a>
-                            </span>
+                      <span class="ms-2">
+                        <security:authorize access="hasRole('MODERATOR')">
+                          <a class="logged-user btn-link" href="${UrlRoute.URL_ADMIN}">
+                              BO Admin
+                          </a>
+                        </security:authorize>
+                        <security:authorize access="hasRole('GAMER')">
+                          Bienvenue <span class="txt-primary">${userLogged.nickname}</span>
+                        </security:authorize>
+                      </span>
                     </div>
                     <div class="d-flex justify-content-end">
                         <form method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">

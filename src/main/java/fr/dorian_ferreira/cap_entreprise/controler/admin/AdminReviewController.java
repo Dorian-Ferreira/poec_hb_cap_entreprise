@@ -1,10 +1,11 @@
 package fr.dorian_ferreira.cap_entreprise.controler.admin;
 
-import fr.dorian_ferreira.cap_entreprise.dto.ReviewDTO;
 import fr.dorian_ferreira.cap_entreprise.mapping.UrlRoute;
 import fr.dorian_ferreira.cap_entreprise.service.ReviewService;
-import fr.dorian_ferreira.cap_entreprise.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,6 +19,21 @@ public class AdminReviewController {
 
     private ReviewService reviewService;
 
+    @GetMapping(value = UrlRoute.URL_ADMIN_REVIEW, name = "index")
+    public ModelAndView index(
+            ModelAndView mav,
+            Principal principal,
+            @PageableDefault(
+                    size = 5, // nb Element par page
+                    sort = { "createdAt" }, // order by
+                    direction = Sort.Direction.DESC
+            ) Pageable pageable
+    ) {
+        mav.setViewName("admin/review/list");
+        mav.addObject("reviews", reviewService.findAll(pageable));
+        return mav;
+    }
+
     @GetMapping(path = UrlRoute.URL_ADMIN_REVIEW + "/{id}" + "/accept")
     public ModelAndView accept(
             @PathVariable Long id,
@@ -26,7 +42,7 @@ public class AdminReviewController {
     ) {
         reviewService.validate(id, principal);
 
-        mav.setViewName("redirect:/");
+        mav.setViewName("redirect:" + UrlRoute.URL_ADMIN_REVIEW);
         return mav;
     }
 
@@ -37,7 +53,7 @@ public class AdminReviewController {
     ) {
         reviewService.refuse(id);
 
-        mav.setViewName("redirect:/");
+        mav.setViewName("redirect:" + UrlRoute.URL_ADMIN_REVIEW);
         return mav;
     }
 }

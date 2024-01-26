@@ -6,10 +6,11 @@
 <div class="container">
 
     <h1>Ajouter une image au Jeu ${game.name}</h1>
-    <form method="POST" action="${UrlRoute.URL_ADMIN_GAME_IMAGE}/${game.id}?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
+    <form method="POST" action="${UrlRoute.URL_ADMIN_GAME_IMAGE}/${game.id}" enctype="multipart/form-data">
         <label>Choisir un fichier:</label>
         <input type="file" name="file" />
         <input type="submit" value="Soumettre"/>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
     </form>
 
 </div>

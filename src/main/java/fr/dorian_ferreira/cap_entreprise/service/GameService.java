@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -93,6 +94,8 @@ public class GameService implements DAOServiceInterface<Game> {
     }
 
     public List<Game> find5() {
-        return repository.findTop5ByOrderById();
+        List<Game> games = repository.findAll();
+        Collections.shuffle(games);
+        return games.subList(0, 5);
     }
 }

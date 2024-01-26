@@ -1,7 +1,10 @@
 package fr.dorian_ferreira.cap_entreprise.utils;
 
+import fr.dorian_ferreira.cap_entreprise.entity.Platform;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @Service
 public class JspUtils {
@@ -19,8 +22,23 @@ public class JspUtils {
         return "rating-20";
     }
 
+    public String getBorderCssClass(boolean moderated) {
+        return moderated ? "main-review-border-green" : "main-review-border-red";
+    }
+
     public String getStringRating(float rating) {
         return ("" + rating).replace(".0", "");
+    }
+
+    public String getPlatformsString(List<Platform> platformList) {
+        String s = "";
+        for(Platform p : platformList) {
+            if(!s.contains(p.getImage()))
+            {
+                s += p.getImage() + " ";
+            }
+        }
+        return s;
     }
 
     /**

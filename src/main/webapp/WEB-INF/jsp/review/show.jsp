@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file="../tag.jsp" %>
-<c:set var="title" scope="request" value="Review ${review.id}"/>
+<c:set var="title" scope="request" value="Avis ${review.id}"/>
 <jsp:include flush="true" page="../base.jsp"/>
 
 <div class="container mt-2">
     <div class="row">
-        <h1>Jugement de ${review.writer.nickname} sur ${review.game.name}</h1>
+        <h1>Avis de ${review.writer.nickname} sur ${review.game.name}</h1>
         <security:authorize access="hasRole('MODERATOR')">
             <c:if test="${review.moderator == null}">
                 <a class="col-1 btn btn-success" href="${UrlRoute.URL_ADMIN_REVIEW}/${review.id}/accept">Accepter</a>
