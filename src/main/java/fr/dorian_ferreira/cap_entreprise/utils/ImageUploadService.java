@@ -1,4 +1,4 @@
-package fr.dorian_ferreira.cap_entreprise.service;
+package fr.dorian_ferreira.cap_entreprise.utils;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

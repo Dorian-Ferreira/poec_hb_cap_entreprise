@@ -5,7 +5,7 @@
 
 <div class="container mt-2">
     <div class="row">
-        <h1>Avis de ${review.writer.nickname} sur ${review.game.name}</h1>
+        <h1>Avis de <span class="txt-primary">${review.writer.nickname}</span> sur <a class="link-if" href="${UrlRoute.URL_GAME}/${review.game.id}">${review.game.name}</a></h1>
         <security:authorize access="hasRole('MODERATOR')">
             <c:if test="${review.moderator == null}">
                 <a class="col-1 btn btn-success" href="${UrlRoute.URL_ADMIN_REVIEW}/${review.id}/accept">Accepter</a>
@@ -15,8 +15,15 @@
     </div>
 
     <div class="row">
-        <div class="col-4">Posté le ${dateUtils.getDateFormat(review.createdAt, "dd/MM/yyyy à hh:mm")}</div>
-        <div class="col-4">Note : ${review.rating}/20</div>
+        <div class="col-4">
+            Posté le ${dateUtils.getDateFormat(review.createdAt, "dd/MM/yyyy à hh:mm")}
+        </div>
+        <div class="col-4">
+            Note :
+            <span class="col-4 ${jspUtils.getCssClas(review.rating)}">
+                ${review.rating}/20
+            </span>
+        </div>
     </div>
     <div class="row">
         <h2 class="mt-5">Commentaire :</h2>

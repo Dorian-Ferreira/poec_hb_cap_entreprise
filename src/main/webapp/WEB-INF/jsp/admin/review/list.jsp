@@ -4,21 +4,41 @@
 <jsp:include flush="true" page="../../base.jsp"/>
 
 <div class="container">
+  <div class="row">
+    <div class="d-flex justify-content-center">
+      <div class="d-flex">
+        <h1 class="mt-2">Liste des avis</h1>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <div class="d-flex">
+        <!-- Label à afficher -->
+        <c:set var="label" scope="request" value="Date"/>
+        <!-- Sur quelle propriété de l'objet on souhaite trier -->
+        <c:set var="sortable" value="createdAt"/>
+        <%@ include file="../../component/sortable.jsp" %>
 
-  <div class="d-flex justify-content-between">
-    <div class="d-flex">
-      <c:set var="label" scope="request" value="Modéré ?"/>
-      <c:set var="sortable" value="moderator"/>
-      <%@ include file="../../component/sortable.jsp" %>
+        <c:set var="label" scope="request" value="Note"/>
+        <c:set var="sortable" value="rating"/>
+        <%@ include file="../../component/sortable.jsp" %>
 
-      <span class="mt-auto mb-2">
+        <c:set var="label" scope="request" value="Jeu"/>
+        <c:set var="sortable" value="game.name"/>
+        <%@ include file="../../component/sortable.jsp" %>
+
+        <c:set var="label" scope="request" value="Joueur"/>
+        <c:set var="sortable" value="writer.nickname"/>
+        <%@ include file="../../component/sortable.jsp" %>
+
+        <span class="mt-auto mb-2">
           <a href="${currentUrl}" class="btn-link">
               Reset
           </a>
-      </span>
+        </span>
+      </div>
     </div>
   </div>
-  <table class="table table-dark table-striped table-hover align-middle">
+  <table class="table table-dark table-striped table-hover align-middle mt-4">
     <thead>
     <tr>
       <th>
@@ -77,6 +97,12 @@
     </c:forEach>
     </tbody>
   </table>
+  <div>
+    <a href="${UrlRoute.URL_EXPORT}" class="btn btn-link">
+      <i class="fa-solid fa-file-excel me-1"></i>
+      Télécharger export Excel
+    </a>
+  </div>
   <c:set var="page" scope="request" value="${reviews}"/>
   <c:set var="url" scope="request" value="${UrlRoute.URL_ADMIN_REVIEW}"/>
   <%@ include file="../../component/pagination.jsp" %>

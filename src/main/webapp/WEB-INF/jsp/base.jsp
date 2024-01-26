@@ -60,7 +60,7 @@
                         </div>
 
                         <div class="navbar-item">
-                            <form method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
+                            <form class="navbar-brand m-0" method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
                                 <button type="submit" tabindex="3" class="btn btn-danger">Se Déconnecter</button>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             </form>

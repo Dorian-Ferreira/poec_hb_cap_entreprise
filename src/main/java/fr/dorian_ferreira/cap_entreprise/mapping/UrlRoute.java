@@ -9,7 +9,7 @@ public class UrlRoute {
 
     public final static String URL_GAME = "/game";
     public final static String URL_REVIEW = "/review";
-    public final static String URL_USER = "/user";
+    public final static String URL_EXPORT= "/telecharger-export-excel";
 
     public final static String URL_NEW = "/new";
     public final static String URL_EDIT = "/edit";

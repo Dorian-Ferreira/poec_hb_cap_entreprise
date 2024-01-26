@@ -37,6 +37,8 @@
                 </span>
             </div>
         </div>
+    </div>
+    <div class="row">
         <c:forEach items="${reviews.content}" var="review">
             <%@ include file="../component/review-card.jsp" %>
         </c:forEach>

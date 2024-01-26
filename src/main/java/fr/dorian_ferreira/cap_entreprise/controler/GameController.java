@@ -19,7 +19,6 @@ import java.security.Principal;
 public class GameController {
 
     private GameService gameService;
-    private UserService userService;
 
     @GetMapping(value = UrlRoute.URL_GAME, name = "list")
     public ModelAndView index(
@@ -44,6 +43,4 @@ public class GameController {
         mav.addObject("game", gameService.findById(id));
         return mav;
     }
-
-
 }

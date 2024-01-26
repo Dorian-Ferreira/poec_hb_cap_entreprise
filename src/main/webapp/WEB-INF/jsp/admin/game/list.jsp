@@ -5,29 +5,37 @@
 
 <div class="container">
 
-  <div class="d-flex justify-content-between">
-    <div class="d-flex">
-      <c:set var="label" scope="request" value="Nom"/>
-      <c:set var="sortable" value="name"/>
-      <%@ include file="../../component/sortable.jsp" %>
+  <div class="row">
+    <div class="d-flex justify-content-center">
+      <div class="d-flex">
+        <h1 class="mt-2">Liste des jeux</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-flex justify-content-center">
+      <div class="d-flex">
+        <c:set var="label" scope="request" value="Nom"/>
+        <c:set var="sortable" value="name"/>
+        <%@ include file="../../component/sortable.jsp" %>
 
-      <c:set var="label" scope="request" value="Date de Sortie"/>
-      <c:set var="sortable" value="publishedAt"/>
-      <%@ include file="../../component/sortable.jsp" %>
+        <c:set var="label" scope="request" value="Date"/>
+        <c:set var="sortable" value="publishedAt"/>
+        <%@ include file="../../component/sortable.jsp" %>
 
-      <c:set var="label" scope="request" value="Éditeur"/>
-      <c:set var="sortable" value="publisher.name"/>
-      <%@ include file="../../component/sortable.jsp" %>
-
-      <span class="mt-auto mb-2">
-          <a href="${currentUrl}" class="btn-link">
-              Reset
-          </a>
-      </span>
+        <c:set var="label" scope="request" value="Éditeur"/>
+        <c:set var="sortable" value="publisher.name"/>
+        <%@ include file="../../component/sortable.jsp" %>
+        <span class="mt-auto mb-2">
+            <a href="${currentUrl}" class="btn-link">
+                Reset
+            </a>
+        </span>
+      </div>
     </div>
   </div>
 
-  <table class="table table-dark table-striped table-hover align-middle mt-2">
+  <table class="table table-dark table-striped table-hover align-middle mt-4">
     <thead>
       <tr>
         <th>

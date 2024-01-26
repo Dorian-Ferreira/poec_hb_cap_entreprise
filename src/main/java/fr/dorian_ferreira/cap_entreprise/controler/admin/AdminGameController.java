@@ -3,6 +3,7 @@ package fr.dorian_ferreira.cap_entreprise.controler.admin;
 import fr.dorian_ferreira.cap_entreprise.dto.GameDTO;
 import fr.dorian_ferreira.cap_entreprise.mapping.UrlRoute;
 import fr.dorian_ferreira.cap_entreprise.service.*;
+import fr.dorian_ferreira.cap_entreprise.utils.ImageUploadService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
