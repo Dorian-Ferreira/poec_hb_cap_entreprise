@@ -1,12 +1,14 @@
 package fr.dorian_ferreira.cap_entreprise.entity;
 
 import fr.dorian_ferreira.cap_entreprise.entity.interfaces.NomenclatureInterface;
+import fr.dorian_ferreira.cap_entreprise.entity.interfaces.SluggerInterface;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Game implements NomenclatureInterface {
+public class Game implements NomenclatureInterface, SluggerInterface {
+
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +28,8 @@ public class Game implements NomenclatureInterface {
 
     @Column(nullable = false)
     private String name;
+
+    private String slug;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
@@ -73,13 +79,18 @@ public class Game implements NomenclatureInterface {
         review.setGame(this);
     }
 
-    public float getAverageRating() {
+    public String getAverageRating() {
         float average = 0;
         for (Review review : reviews) {
             if(review.getModerator() != null){
                 average += review.getRating();
             }
         }
-        return average / reviews.size();
+        return df.format(average / reviews.size());
+    }
+
+    @Override
+    public String getField() {
+        return name;
     }
 }

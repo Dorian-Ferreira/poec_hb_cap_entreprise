@@ -33,11 +33,28 @@ public class ReviewService implements DAOServiceInterface<Review> {
         return repository.findAll(pageable);
     }
 
-    public Page<Review> findAllAvailable(Pageable pageable, User user) {
-        if(user instanceof Moderator) {
-            return repository.findAll(pageable);
+    public Page<Review> findAllFiltered(String search1, String search2, Principal principal, Pageable page, String moderation){
+        if(search1==null){
+            search1="";
+            search2="";
         }
-        return repository.findAllByModeratorIsNotNullOrWriterOrderByModerator((Gamer)user, pageable);
+        if (moderation == null || moderation.equals("1")) {
+            if(userService.isAdmin(principal)){
+                return repository.findAllForModerator(search1, search2, principal.getName(), page);
+            }
+            return repository.findAllByGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase
+                    (search1, search2, principal.getName(), page);
+        }
+        if (moderation != null && moderation.equals("2")) {
+            return repository.findAllByModeratorNullAndGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase
+                    (search1, search2, page);
+        }
+        if (moderation != null && moderation.equals("3")) {
+            return repository.findAllByModeratorNotNullAndGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase
+                    (search1, search2, page);
+        }
+
+        return null;
     }
 
     public List<Review> find6HighRateReview() {

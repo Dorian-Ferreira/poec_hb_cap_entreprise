@@ -8,7 +8,7 @@
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item"><a href="${UrlRoute.URL_ADMIN}">BO Admin</a></li>
+        <li class="breadcrumb-item">BO Admin</li>
         <li class="breadcrumb-item">Liste des Jeux</li>
       </ol>
     </nav>
@@ -23,6 +23,16 @@
   <div class="row">
     <div class="d-flex justify-content-center">
       <div class="d-flex">
+        <div class="d-flex main-container mx-5">
+          <input type="text"
+                 class="form-control"
+                 placeholder="Starcraft, Blizzard, ..."
+                 data-filter
+          >
+          <a class="my-auto me-3">
+            <i class="fa fa-magnifying-glass"></i>
+          </a>
+        </div>
         <span class="mt-auto mb-2">
           <a href="${currentUrl}" class="btn-link" title="Réinitialiser les filtres">
                 <i class="fa-solid fa-filter-circle-xmark"></i>

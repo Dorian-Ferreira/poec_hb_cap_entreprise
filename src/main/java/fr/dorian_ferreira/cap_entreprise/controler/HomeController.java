@@ -34,7 +34,7 @@ public class HomeController {
         }
         mav.setViewName("index");
         mav.addObject("reviews", reviewService.find6HighRateReview());
-        mav.addObject("games", gameService.find5());
+        mav.addObject("games", gameService.find(5));
         return mav;
     }
 

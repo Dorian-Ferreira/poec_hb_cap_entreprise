@@ -102,4 +102,5 @@ public class UserService implements DAOServiceInterface<User>, UserDetailsServic
     public boolean isAdmin(Principal principal) {
         return findByName(principal.getName()) instanceof Moderator;
     }
+
 }

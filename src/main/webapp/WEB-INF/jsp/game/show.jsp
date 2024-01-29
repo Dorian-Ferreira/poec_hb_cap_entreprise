@@ -42,7 +42,7 @@
             <div>
                 <c:if test="${game.reviews.size() > 0}">
                     <h5 class="mt-4">Note moyenne : </h5>
-                    <p>${game.getAverageRating()}</p>
+                    <p>${game.getAverageRating()}/20</p>
                 </c:if>
 
                 <h5 class="mt-4">Sortie le : </h5>
@@ -74,10 +74,7 @@
             <h5 class="mt-4">Avis :</h5>
             <c:forEach items="${game.reviews}" var="review">
                 <c:if test="${review.moderator != null}">
-                    <div class="col-3 mx-4">
-                        <span>${review.writer.nickname} :</span>
-                        <span class="${jspUtils.getCssClas(review.rating)}">${review.rating}</span>
-                    </div>
+                    <%@ include file="../component/review-card.jsp" %>
                 </c:if>
             </c:forEach>
         </div>

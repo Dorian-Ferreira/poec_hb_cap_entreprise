@@ -23,6 +23,17 @@
   <div class="row">
     <div class="d-flex justify-content-center">
       <div class="d-flex">
+        <div class="d-flex main-container mx-5">
+          <input type="text"
+                 class="form-control"
+                 placeholder="Starcraft, Blizzard, ..."
+                 data-filter
+          >
+          <a class="my-auto me-3">
+            <i class="fa fa-magnifying-glass"></i>
+          </a>
+        </div>
+
         <c:set var="label" scope="request" value="Nom"/>
         <c:set var="sortable" value="name"/>
         <%@ include file="../component/sortable.jsp" %>
@@ -34,8 +45,9 @@
         <c:set var="label" scope="request" value="Éditeur"/>
         <c:set var="sortable" value="publisher.name"/>
         <%@ include file="../component/sortable.jsp" %>
+
         <span class="mt-auto mb-2">
-            <a href="${currentUrl}" class="btn-link" title="Réinitialiser les filtres">
+            <a href="${UrlRoute.URL_GAME}" class="btn-link" title="Réinitialiser les filtres">
                 <i class="fa-solid fa-filter-circle-xmark"></i>
             </a>
         </span>

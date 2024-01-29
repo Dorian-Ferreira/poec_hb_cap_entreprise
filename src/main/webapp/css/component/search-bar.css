@@ -1,0 +1,36 @@
+.main-container {
+    background: linear-gradient(10deg, #ff0000, transparent) #ff2020;
+    border-radius: 3em;
+}
+
+.main-container .search-response-container {
+    position: relative;
+}
+
+.main-container input {
+    background: transparent;
+    color: #fff;
+    border: none;
+}
+
+.main-container a {
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.main-container a:hover {
+    color: #323232;
+}
+
+.main-container input:focus,
+.main-container input:active {
+    background: linear-gradient(10deg, #ff0000, transparent) #ff2020;
+    color: #fff;
+    border: none;
+    box-shadow: none;
+}
+
+.main-container input::placeholder {
+    color: #fff;
+}

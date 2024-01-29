@@ -35,10 +35,13 @@ public class AdminReviewController {
                     size = 5, // nb Element par page
                     sort = { "createdAt" }, // order by
                     direction = Sort.Direction.DESC
-            ) Pageable pageable
+            ) Pageable pageable,
+            @RequestParam(value = "moderation",required = false) String moderation,
+            @RequestParam(value="search",required = false) String search,
+            Principal principal
     ) {
         mav.setViewName("admin/review/list");
-        mav.addObject("reviews", reviewService.findAll(pageable));
+        mav.addObject("reviews", reviewService.findAllFiltered(search, search, principal, pageable, moderation));
         return mav;
     }
 

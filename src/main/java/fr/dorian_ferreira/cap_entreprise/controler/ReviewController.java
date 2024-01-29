@@ -34,14 +34,16 @@ public class ReviewController {
                     size = 6, // nb Element par page
                     sort = { "createdAt" }, // order by
                     direction = Sort.Direction.DESC
-            ) Pageable pageable
+            ) Pageable pageable,
+            @RequestParam(value="search",required = false) String search
+
     ) {
         if(principal == null) {
             mav.setViewName("redirect:/login");
             return mav;
         }
         mav.setViewName("review/index");
-        mav.addObject("reviews", reviewService.findAllAvailable(pageable, userService.findByName(principal.getName())));
+        mav.addObject("reviews", reviewService.findAllFiltered(search, search, principal, pageable, null));
         return mav;
     }
 

@@ -15,11 +15,22 @@
     <div class="row">
         <div class="d-flex justify-content-center">
             <div class="d-flex">
-                <h1 class="mt-2">Liste des avis</h1>
+                <h1 class="">Liste des avis</h1>
             </div>
         </div>
         <div class="d-flex justify-content-center">
             <div class="d-flex">
+                <div class="d-flex main-container mx-5">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Starcraft, Blizzard, ..."
+                           data-filter
+                    >
+                    <a class="my-auto me-3">
+                        <i class="fa fa-magnifying-glass"></i>
+                    </a>
+                </div>
+
                 <!-- Label à afficher -->
                 <c:set var="label" scope="request" value="Date"/>
                 <!-- Sur quelle propriété de l'objet on souhaite trier -->
@@ -39,8 +50,8 @@
                 <%@ include file="../component/sortable.jsp" %>
 
                 <span class="mt-auto mb-2">
-                    <a href="${currentUrl}" class="btn-link" title="Réinitialiser les filtres">
-                <i class="fa-solid fa-filter-circle-xmark"></i>
+                    <a href="${UrlRoute.URL_REVIEW}" class="btn-link" title="Réinitialiser les filtres">
+                        <i class="fa-solid fa-filter-circle-xmark"></i>
                     </a>
                 </span>
             </div>

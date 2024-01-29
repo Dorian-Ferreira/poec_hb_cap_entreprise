@@ -70,25 +70,27 @@ public class InitDataLoaderConfig implements CommandLineRunner {
         Faker faker = new Faker(Locale.of("fr"));
         List<String> names = new ArrayList<>();
         for (long i = 1L; i <= 200; i++) {
-            User user;
-            if (i <= 5) {
-                user = new Moderator();
-                ((Moderator) user).setPhoneNumber(faker.phoneNumber().cellPhone());
-            } else {
-                user = new Gamer();
-                LocalDate localDate = new java.sql.Date(faker.date().birthday(12, 60).getTime()).toLocalDate();
-                ((Gamer) user).setBirthAt(localDate);
+            if (userRepository.findById(i).isEmpty()) {
+                User user;
+                if (i <= 5) {
+                    user = new Moderator();
+                    ((Moderator) user).setPhoneNumber(faker.phoneNumber().cellPhone());
+                } else {
+                    user = new Gamer();
+                    LocalDate localDate = new java.sql.Date(faker.date().birthday(12, 60).getTime()).toLocalDate();
+                    ((Gamer) user).setBirthAt(localDate);
+                }
+                user.setId(i);
+                String name;
+                do {
+                    name = slugger.slugify(faker.funnyName().name().replace(" ", ""));
+                } while (names.contains(name));
+                names.add(name);
+                user.setNickname(name);
+                user.setEmail(faker.internet().safeEmailAddress());
+                user.setPassword(passwordEncoder.encode("12345"));
+                userRepository.save(user);
             }
-            user.setId(i);
-            String name;
-            do {
-                name = slugger.slugify(faker.funnyName().name().replace(" ", ""));
-            } while (names.contains(name));
-            names.add(name);
-            user.setNickname(name);
-            user.setEmail(faker.internet().safeEmailAddress());
-            user.setPassword(passwordEncoder.encode("12345"));
-            userRepository.save(user);
         }
     }
 
@@ -129,16 +131,37 @@ public class InitDataLoaderConfig implements CommandLineRunner {
         Faker faker = new Faker(Locale.of("fr"));
         List<String> games = List.of("World of Warcraft", "Overwatch", "Diablo IV", "StarCraft II", "Warcraft III : reforged",
                 "DotA 2", "Counter Strike 2", "Portal 2", "La League des Légendes", "Valorant", "Minecraft", "GTA V", "The witcher III",
-                "Cyberpunk 2077", "Battlefield V", "Anno 1800", "Elden Ring", "Pokémon : Violet", "Pokémon : Ecarlate",
+                "Cyberpunk 2077", "Battlefield V", "Civilization VI", "Anno 1800", "Elden Ring", "Pokémon : Violet", "Pokémon : Ecarlate",
                 "Zelda : Tears of the Kingdom", "Monster Hunter : World");
-        List<Long> businessModels = List.of(2L, 2L, 2L, 2L, 2L, 1L, 2L, 2L, 3L, 1L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L);
-        List<Long> publishers = List.of(1L, 1L, 1L, 1L, 1L, 2L, 2L, 2L, 3L, 3L, 4L, 5L, 6L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 13L);
-        List<Long> genres = List.of(16L, 1L, 7L, 15L, 15L, 2L, 1L, 6L, 2L, 1L, 14L, 14L, 4L, 6L, 1L, 15L, 4L, 4L, 4L, 4L, 10L);
+        List<Long> businessModels = List.of(2L, 2L, 2L, 2L, 2L, 1L, 2L, 2L, 3L, 1L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L);
+        List<Long> publishers = List.of(1L, 1L, 1L, 1L, 1L, 2L, 2L, 2L, 3L, 3L, 4L, 5L, 6L, 6L, 7L, 8L, 9L, 10L, 11L, 11L, 12L, 13L);
+        List<Long> genres = List.of(16L, 1L, 7L, 15L, 15L, 2L, 1L, 6L, 2L, 1L, 14L, 14L, 4L, 6L, 1L, 15L, 15L, 4L, 4L, 4L, 4L, 10L);
         List<List<Long>> platforms = List.of(List.of(2L), List.of(2L, 1L), List.of(2L), List.of(2L),
                 List.of(2L), List.of(2L), List.of(2L), List.of(2L, 1L, 6L, 7L), List.of(2L), List.of(2L),
                 List.of(2L, 1L, 3L, 4L, 5L, 6L, 7L), List.of(2L, 3L, 4L, 5L, 6L, 7L), List.of(2L, 1L, 3L, 4L, 5L, 6L, 7L), List.of(2L, 3L),
-                List.of(2L), List.of(2L, 6L), List.of(2L, 6L, 3L), List.of(1L), List.of(1L), List.of(1L), List.of(2L, 4L, 7L));
-        List<String> images = List.of("https://cdn.thegamesdb.net/images/thumb/boxart/front/149-1.jpg", "https://cdn.thegamesdb.net/images/thumb/boxart/front/32185-1.jpg", "https://cdn.thegamesdb.net/images/thumb/boxart/front/115193-1.jpg", "https://cdn.thegamesdb.net/images/thumb/boxart/front/151-1.jpg", "https://cdn.thegamesdb.net/images/thumb/boxart/front/803-1.jpg", "https://cdn.thegamesdb.net/images/thumb/boxart/front/2474-1.png", "https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/CS2_Cover_Art.jpg/220px-CS2_Cover_Art.jpg", "https://cdn.thegamesdb.net/images/thumb/boxart/front/914-1.jpg", "https://cdn.thegamesdb.net/images/thumb/boxart/front/928-1.jpg", "https://cdn.thegamesdb.net/images/thumb/boxart/front/72904-1.jpg", "https://cdn.thegamesdb.net/images/thumb/boxart/front/50424-1.jpg", "https://cdn.thegamesdb.net/images/thumb/boxart/front/20952-1.jpg", "https://calimacil.com/cdn/shop/files/Geralt-calimacil-larp-replica-banner-mobile.jpg?v=1695734545&width=1500", "https://cdn.thegamesdb.net/images/thumb/boxart/front/14517-1.jpg", "https://cdn.thegamesdb.net/images/thumb/boxart/front/55756-1.jpg", "https://cdn.thegamesdb.net/images/thumb/boxart/front/64422-1.jpg", "https://cdn.thegamesdb.net/images/thumb/boxart/front/65101-1.jpg", "https://cdn.thegamesdb.net/images/thumb/boxart/front/104566-1.jpg", "https://cdn.thegamesdb.net/images/thumb/boxart/front/104565-1.jpg", "https://cdn.thegamesdb.net/images/thumb/boxart/front/104362-1.jpg", "https://cdn.thegamesdb.net/images/thumb/boxart/front/60572-1.jpg");
+                List.of(2L), List.of(1L, 2L), List.of(2L, 6L), List.of(2L, 6L, 3L), List.of(1L), List.of(1L), List.of(1L), List.of(2L, 4L, 7L));
+        List<String> images = List.of("https://cdn.thegamesdb.net/images/thumb/boxart/front/149-1.jpg",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/32185-1.jpg",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/115193-1.jpg",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/151-1.jpg",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/803-1.jpg",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/2474-1.png",
+                "https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/CS2_Cover_Art.jpg/220px-CS2_Cover_Art.jpg",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/914-1.jpg",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/928-1.jpg",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/72904-1.jpg",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/50424-1.jpg",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/20952-1.jpg",
+                "https://calimacil.com/cdn/shop/files/Geralt-calimacil-larp-replica-banner-mobile.jpg?v=1695734545&width=1500",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/14517-1.jpg",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/55756-1.jpg",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/36612-1.jpg",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/64422-1.jpg",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/65101-1.jpg",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/104566-1.jpg",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/104565-1.jpg",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/104362-1.jpg",
+                "https://cdn.thegamesdb.net/images/thumb/boxart/front/60572-1.jpg");
         for (int i = 0; i < games.size(); i++) {
             Long id = (long) (i + 1);
             if (gameRepository.findById(id).isEmpty()) {
@@ -166,20 +189,30 @@ public class InitDataLoaderConfig implements CommandLineRunner {
     private void createReview() {
         Faker faker = new Faker(Locale.of("fr"));
         for (long i = 1; i <= 500; i++) {
-            Review review = new Review();
-            review.setId(i);
-            Random rand = new Random();
-            LocalDateTime localDate = new java.sql.Date(faker.date().birthday(0, 2).getTime()).toLocalDate().atTime(0, 0);
-            review.setCreatedAt(localDate);
-            review.setRating((float) rand.nextLong(20));
-            review.setWriter((Gamer) userService.findById(rand.nextLong(200 - 6) + 6));
-            review.setGame(gameService.findById(rand.nextLong(21 - 1) + 1));
-            review.setDescription(faker.chuckNorris().fact() + "</br>" + faker.lorem().paragraph(3));
-            if (i%5 != 0) {
-                review.setModerator((Moderator) userService.findById(rand.nextLong(5 - 1) + 1));
-                review.setModeratedAt(LocalDateTime.now());
+            if (reviewRepository.findById(i).isEmpty()) {
+                Review review = new Review();
+                review.setId(i);
+                Random rand = new Random();
+                LocalDateTime localDate = new java.sql.Date(faker.date().birthday(0, 2).getTime()).toLocalDate().atTime(0, 0);
+                review.setCreatedAt(localDate);
+                review.setWriter((Gamer) userService.findById(rand.nextLong(201 - 6) + 6));
+                review.setGame(gameService.findById(rand.nextLong(22 - 1) + 1));
+
+                float rating = (float) rand.nextLong(21 - 2) + 2;
+                if (review.getGame().getId().equals(9L)) {
+                    rating = (float) rand.nextLong(3);
+                } else if (review.getGame().getId().equals(6L) || review.getGame().getId().equals(1L)) {
+                    rating = (float) rand.nextLong(21 - 10) + 10;
+                }
+                review.setRating(rating);
+
+                review.setDescription("<strong>" + faker.chuckNorris().fact() + "</strong></br></br>" + faker.lorem().paragraph(3));
+                if (i%5 != 0) {
+                    review.setModerator((Moderator) userService.findById(rand.nextLong(5 - 1) + 1));
+                    review.setModeratedAt(LocalDateTime.now());
+                }
+                reviewRepository.save(review);
             }
-            reviewRepository.save(review);
         }
     }
 

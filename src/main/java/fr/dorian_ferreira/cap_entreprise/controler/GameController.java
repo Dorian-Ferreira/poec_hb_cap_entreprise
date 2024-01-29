@@ -27,10 +27,11 @@ public class GameController {
                     size = 6, // nb Element par page
                     sort = { "publishedAt" }, // order by
                     direction = Sort.Direction.DESC
-            ) Pageable pageable
+            ) Pageable pageable,
+            @RequestParam(value="search",required = false) String search
     ) {
         mav.setViewName("game/list");
-        mav.addObject("games", gameService.findAll(pageable));
+        mav.addObject("games", gameService.findAll(pageable, search));
         return mav;
     }
 

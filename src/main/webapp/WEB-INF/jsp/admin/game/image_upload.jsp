@@ -4,6 +4,15 @@
 <jsp:include flush="true" page="../../base.jsp"/>
 
 <div class="container">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="${UrlRoute.URL_ADMIN_GAME}">Liste des jeux</a></li>
+                <li class="breadcrumb-item">Téléverser une image</li>
+            </ol>
+        </nav>
+    </div>
 
     <h1>Ajouter une image au Jeu ${game.name}</h1>
     <form method="POST" action="${UrlRoute.URL_ADMIN_GAME_IMAGE}/${game.id}" enctype="multipart/form-data">

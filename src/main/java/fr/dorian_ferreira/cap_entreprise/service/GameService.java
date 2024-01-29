@@ -12,9 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -27,10 +25,17 @@ public class GameService implements DAOServiceInterface<Game> {
     public List<Game> findAll() {
         return repository.findAllByOrderByName();
     }
+
     public Page<Game> findAll(Pageable pageable) {
         return repository.findAll(pageable);
     }
 
+    public Page<Game> findAll(Pageable pageable, String search) {
+        if(search == null || search.isEmpty()) {
+            return findAll(pageable);
+        }
+        return repository.findAllByNameContainingIgnoreCaseOrPublisherNameContainingIgnoreCase(search, search, pageable);
+    }
 
     @Override
     public Game findById(Long id) {
@@ -93,9 +98,16 @@ public class GameService implements DAOServiceInterface<Game> {
         repository.saveAndFlush(game);
     }
 
-    public List<Game> find5() {
-        List<Game> games = repository.findAll();
-        Collections.shuffle(games);
-        return games.subList(0, 5);
+    public List<Game> find(int number) {
+        Random random = new Random();
+        long max = repository.count();
+        List<Long> gamesId = new ArrayList<>();
+        while(gamesId.size() < number) {
+            long rnd = random.nextLong(max);
+            if(!gamesId.contains(rnd)){
+                gamesId.add(rnd);
+            }
+        }
+        return repository.findAllById(gamesId);
     }
 }

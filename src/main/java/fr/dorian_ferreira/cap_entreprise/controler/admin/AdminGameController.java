@@ -36,7 +36,7 @@ public class AdminGameController {
     @GetMapping(value = UrlRoute.URL_ADMIN_GAME, name = "index")
     public ModelAndView index(
             ModelAndView mav,
-            Principal principal,
+            @RequestParam(value="search",required = false) String search,
             @PageableDefault(
                     size = 5, // nb Element par page
                     sort = { "publishedAt" }, // order by
@@ -44,7 +44,7 @@ public class AdminGameController {
             ) Pageable pageable
     ) {
         mav.setViewName("admin/game/list");
-        mav.addObject("games", gameService.findAll(pageable));
+        mav.addObject("games", gameService.findAll(pageable, search));
         return mav;
     }
 

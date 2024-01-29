@@ -1,6 +1,8 @@
 package fr.dorian_ferreira.cap_entreprise.repository;
 
 import fr.dorian_ferreira.cap_entreprise.entity.Game;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -9,4 +11,6 @@ public interface GameRepository
         extends JpaRepository<Game, Long>
 {
     List<Game> findAllByOrderByName();
+
+    Page<Game> findAllByNameContainingIgnoreCaseOrPublisherNameContainingIgnoreCase(String search1, String search2, Pageable pageable);
 }

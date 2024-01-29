@@ -5,6 +5,7 @@ import fr.dorian_ferreira.cap_entreprise.entity.Review;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -13,6 +14,18 @@ public interface ReviewRepository
 {
 
     Page<Review> findAllByModeratorIsNotNullOrWriterOrderByModerator(Gamer writer, Pageable pageable);
+
+    @Query("Select r From Review r Join Game g on r.game = g join User u on r.writer = u where (r.moderator is not NULL or u.nickname like ?3) AND (g.name like %?1% or u.nickname like %?2%)")
+    Page<Review> findAllByGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase(String search1, String search2, String username, Pageable pageable);
+
+    @Query("Select r From Review r Join Game g on r.game = g join User u on r.writer = u where g.name like %?1% or u.nickname like %?2%")
+    Page<Review> findAllForModerator(String search1, String search2, String username, Pageable pageable);
+
+    @Query("Select r From Review r Join Game g on r.game = g join User u on r.writer = u where r.moderator is not NULL AND (g.name like %?1% or u.nickname like %?2%)")
+    Page<Review> findAllByModeratorNotNullAndGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase(String search1, String search2, Pageable pageable);
+
+    @Query("Select r From Review r Join Game g on r.game = g join User u on r.writer = u where r.moderator is NULL AND (g.name like %?1% or u.nickname like %?2%)")
+    Page<Review> findAllByModeratorNullAndGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase(String search1, String search2, Pageable pageable);
 
     List<Review> findTop6ByModeratorIsNotNullOrderByRatingDesc();
 

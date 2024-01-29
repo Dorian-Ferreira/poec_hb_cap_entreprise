@@ -33,15 +33,23 @@
                             </a>
                         </div>
 
+                        <security:authorize access="hasRole('MODERATOR')">
+                            <div class="navbar-item">
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        BO Admin
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="${UrlRoute.URL_ADMIN_REVIEW}">Liste des Avis</a></li>
+                                        <li><a class="dropdown-item" href="${UrlRoute.URL_ADMIN_GAME}">Liste des Jeux</a></li>
+                                        <li><a class="dropdown-item" href="${UrlRoute.URL_ADMIN_GAME_NEW}">Ajouter un jeu</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </security:authorize>
+
                         <div class="navbar-item">
-                            <security:authorize access="hasRole('MODERATOR')">
-                                <a class="btn btn-secondary" href="${UrlRoute.URL_ADMIN}">
-                                    BO Admin
-                                </a>
-                            </security:authorize>
-                            <security:authorize access="hasRole('GAMER')">
-                                <span class="mx-1 txt-primary">${userLogged.nickname}</span>
-                            </security:authorize>
+                            <span class="mx-1 txt-primary">${userLogged.nickname}</span>
                             <form class="navbar-brand m-0" method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
                                 <button type="submit" tabindex="3" class="btn btn-danger"><i class="fa-solid fa-user-slash"></i></button>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />

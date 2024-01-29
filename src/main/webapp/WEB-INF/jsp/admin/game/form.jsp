@@ -8,7 +8,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item"><a href="${UrlRoute.URL_ADMIN}">BO Admin</a></li>
+                <li class="breadcrumb-item"><a href="${UrlRoute.URL_ADMIN_GAME}">Liste des jeux</a></li>
                 <li class="breadcrumb-item">Ajouter un jeu</li>
             </ol>
         </nav>
