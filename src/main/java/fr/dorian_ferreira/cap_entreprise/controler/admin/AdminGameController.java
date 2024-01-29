@@ -105,7 +105,7 @@ public class AdminGameController {
 
         gameService.addImage(id, imagePath);
 
-        mav.setViewName("redirect:"+UrlRoute.URL_GAME);
+        mav.setViewName("redirect:"+UrlRoute.URL_GAME + "/" + gameService.findById(id).getSlug());
         return mav;
     }
 
@@ -154,8 +154,7 @@ public class AdminGameController {
             mav.setViewName("admin/game/form");
             return setup(mav);
         }
-        gameService.persist(dto, id, principal);
-        mav.setViewName("redirect:" + UrlRoute.URL_GAME);
+        mav.setViewName("redirect:" + UrlRoute.URL_GAME + "/" + gameService.persist(dto, id, principal).getSlug());
         return mav;
     }
 
