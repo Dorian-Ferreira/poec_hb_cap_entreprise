@@ -5,6 +5,15 @@
 
 <div class="container">
   <div class="row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="${UrlRoute.URL_ADMIN}">BO Admin</a></li>
+        <li class="breadcrumb-item">Liste des avis</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="row">
     <div class="d-flex justify-content-center">
       <div class="d-flex">
         <h1 class="mt-2">Liste des avis</h1>
@@ -12,27 +21,9 @@
     </div>
     <div class="d-flex justify-content-center">
       <div class="d-flex">
-        <!-- Label à afficher -->
-        <c:set var="label" scope="request" value="Date"/>
-        <!-- Sur quelle propriété de l'objet on souhaite trier -->
-        <c:set var="sortable" value="createdAt"/>
-        <%@ include file="../../component/sortable.jsp" %>
-
-        <c:set var="label" scope="request" value="Note"/>
-        <c:set var="sortable" value="rating"/>
-        <%@ include file="../../component/sortable.jsp" %>
-
-        <c:set var="label" scope="request" value="Jeu"/>
-        <c:set var="sortable" value="game.name"/>
-        <%@ include file="../../component/sortable.jsp" %>
-
-        <c:set var="label" scope="request" value="Joueur"/>
-        <c:set var="sortable" value="writer.nickname"/>
-        <%@ include file="../../component/sortable.jsp" %>
-
         <span class="mt-auto mb-2">
-          <a href="${currentUrl}" class="btn-link">
-              Reset
+          <a href="${currentUrl}" class="btn-link" title="Réinitialiser les filtres">
+                <i class="fa-solid fa-filter-circle-xmark"></i>
           </a>
         </span>
       </div>
@@ -42,19 +33,32 @@
     <thead>
     <tr>
       <th>
-        Jeu
+        <c:set var="label" scope="request" value="Jeu"/>
+        <c:set var="sortable" value="game.name"/>
+        <%@ include file="../../component/sortable.jsp" %>
       </th>
       <th>
-        Date de soumission
+        <c:set var="label" scope="request" value="Date de soumission"/>
+        <c:set var="sortable" value="createdAt"/>
+        <%@ include file="../../component/sortable.jsp" %>
       </th>
       <th>
-        Note
+        <c:set var="label" scope="request" value="Note"/>
+        <c:set var="sortable" value="rating"/>
+        <%@ include file="../../component/sortable.jsp" %>
       </th>
       <th>
-        Auteur
+        <c:set var="label" scope="request" value="Joueur"/>
+        <c:set var="sortable" value="writer.nickname"/>
+        <%@ include file="../../component/sortable.jsp" %>
       </th>
       <th>
-        Statut
+        <select class="form-select" aria-label="Default select example" moderationFilter>
+          <option selected>Status</option>
+          <option value="1">Tous</option>
+          <option value="2">Modéré</option>
+          <option value="3">Non Modéré</option>
+        </select>
       </th>
       <th>
         Opérations
@@ -87,11 +91,11 @@
           </c:choose>
         </th>
         <th>
-          <a class="btn btn-light" href="${UrlRoute.URL_REVIEW}/${review.id}">Voir</a>
+          <a class="btn btn-light" href="${UrlRoute.URL_REVIEW}/${review.id}"><i class="fa-regular fa-eye"></i></a>
           <c:if test="${review.moderator == null}">
-            <a class="btn btn-success" href="${UrlRoute.URL_ADMIN_REVIEW}/${review.id}/accept">Accepter</a>
+            <a class="btn btn-success" href="${UrlRoute.URL_ADMIN_REVIEW}/${review.id}/accept"><i class="fa-regular fa-square-check"></i></a>
           </c:if>
-          <a class="btn btn-danger" href="${UrlRoute.URL_ADMIN_REVIEW}/${review.id}/refuse">Refuser</a>
+          <a class="btn btn-danger" href="${UrlRoute.URL_ADMIN_REVIEW}/${review.id}/refuse"><i class="fa-regular fa-circle-xmark"></i></a>
         </th>
       </tr>
     </c:forEach>

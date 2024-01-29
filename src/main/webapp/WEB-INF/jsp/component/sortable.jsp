@@ -1,6 +1,6 @@
 <%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<div class="sort-filter d-flex mt-4">
+<div class="sort-filter d-flex">
   ${label}
   <div class="ms-1 me-2 row">
     <c:set var="sortAsc" scope="request" value="sort=${sortable},asc"/>

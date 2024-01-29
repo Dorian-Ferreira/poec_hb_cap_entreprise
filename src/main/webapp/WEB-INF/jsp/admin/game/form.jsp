@@ -4,13 +4,26 @@
 <jsp:include flush="true" page="../../base.jsp"/>
 
 <div class="container">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="${UrlRoute.URL_ADMIN}">BO Admin</a></li>
+                <li class="breadcrumb-item">Ajouter un jeu</li>
+            </ol>
+        </nav>
+    </div>
 
-    <c:if test="${isEdit}">
-        <h1>Modifier le Jeu ${game.name}</h1>
-    </c:if>
-    <c:if test="${!isEdit}">
-        <h1>Créer un Jeu</h1>
-    </c:if>
+    <div class="row mt-4">
+        <div class="d-flex justify-content-center">
+            <c:if test="${isEdit}">
+                <h1>Modifier le Jeu ${game.name}</h1>
+            </c:if>
+            <c:if test="${!isEdit}">
+                <h1>Créer un Jeu</h1>
+            </c:if>
+        </div>
+    </div>
     <f:form modelAttribute="game" method="post" action="${action}" cssClass="p-5">
         <div class="mb-3 row">
             <f:label path="name" class="col-sm-2 col-form-label">Nom : </f:label>
@@ -104,8 +117,8 @@
             </div>
         </div>
 
-        <f:button class="btn btn-secondary" type="reset">Recommencer</f:button>
-        <f:button class="btn btn-primary">Soumettre</f:button>
+        <f:button class="btn btn-success">Soumettre</f:button>
+        <f:button class="btn btn-danger" type="reset">Recommencer</f:button>
     </f:form>
 </div>
 

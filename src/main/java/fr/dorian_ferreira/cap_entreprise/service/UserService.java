@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -96,5 +97,9 @@ public class UserService implements DAOServiceInterface<User>, UserDetailsServic
             throw new NotFoundEntityException("User", "name", name);
         }
         return (Moderator)optional.get();
+    }
+
+    public boolean isAdmin(Principal principal) {
+        return findByName(principal.getName()) instanceof Moderator;
     }
 }

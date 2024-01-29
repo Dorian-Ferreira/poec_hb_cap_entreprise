@@ -16,14 +16,14 @@ import lombok.Setter;
 @Setter
 public class ReviewDTO {
 
-    @NotBlank(message = "The description should have a value")
+    @NotBlank(message = "Un avis doit avoir un commentaire")
     private String description;
 
-    @NotNull
+    @NotNull(message = "Un avis doit avoir une note")
     @Min(value =  0)
     @Max(value = 20)
     private Float rating;
 
-    @NotNull
+    @NotNull(message = "Un avis porte sur un jeu")
     private Game game;
 }

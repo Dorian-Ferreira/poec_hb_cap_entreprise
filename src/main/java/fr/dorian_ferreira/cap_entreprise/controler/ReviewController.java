@@ -95,6 +95,24 @@ public class ReviewController {
         mav.setViewName("redirect:/");
         return mav;
     }
+    @PostMapping(value = UrlRoute.URL_REVIEW_NEW + "/{id}", name = "createHandler")
+    public ModelAndView createReview(
+            @ModelAttribute("reviewDto") @Valid ReviewDTO reviewDto,
+            BindingResult result,
+            ModelAndView mav,
+            HttpServletRequest httpServletRequest,
+            Principal principal,
+            @PathVariable Long id
+    ) {
+        if (result.hasErrors()) {
+            mav.setViewName("review/form");
+            return setUp(mav, reviewDto, httpServletRequest.getRequestURI());
+        }
+
+        reviewService.persist(reviewDto, principal);
+        mav.setViewName("redirect:/");
+        return mav;
+    }
 
     private ModelAndView setUp(ModelAndView mav, ReviewDTO reviewDTO, String uri) {
         mav.addObject("action", uri);

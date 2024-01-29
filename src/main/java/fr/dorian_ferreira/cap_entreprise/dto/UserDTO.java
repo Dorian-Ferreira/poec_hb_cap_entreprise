@@ -17,17 +17,17 @@ import java.util.Date;
 @Setter
 public class UserDTO {
 
-    @NotBlank(message = "The username should have a value")
+    @NotBlank(message = "Le nom d'utilisateur ne doit pas être vide")
     private String username;
 
-    @NotBlank(message = "The password should have a value")
+    @NotBlank(message = "Il te faut un mot de passe")
     private String password;
 
     @Email
-    @NotBlank(message = "The email should have a value")
+    @NotBlank(message = "Il te faut un email")
     private String email;
 
-    @NotNull(message = "The date should have a value")
+    @NotNull(message = "Il faut renseigner ta date de naissance")
     private LocalDate birthAt;
 
 }

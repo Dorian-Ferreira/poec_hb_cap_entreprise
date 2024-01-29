@@ -5,6 +5,14 @@
 
 <div class="container">
     <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item">Liste des Avis</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
         <div class="d-flex justify-content-center">
             <div class="d-flex">
                 <h1 class="mt-2">Liste des avis</h1>
@@ -31,8 +39,8 @@
                 <%@ include file="../component/sortable.jsp" %>
 
                 <span class="mt-auto mb-2">
-                    <a href="${currentUrl}" class="btn-link">
-                        Reset
+                    <a href="${currentUrl}" class="btn-link" title="Réinitialiser les filtres">
+                <i class="fa-solid fa-filter-circle-xmark"></i>
                     </a>
                 </span>
             </div>
@@ -47,7 +55,11 @@
     <c:set var="page" scope="request" value="${reviews}"/>
     <c:set var="url" scope="request" value="/review"/>
     <%@ include file="../component/pagination.jsp" %>
-
+    <security:authorize access="hasRole('GAMER')">
+        <a href="${UrlRoute.URL_REVIEW_NEW}" class="btn btn-light">
+            Ajouter un avis
+        </a>
+    </security:authorize>
 </div>
 
 <%@ include file="../footer.jsp" %>

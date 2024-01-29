@@ -12,9 +12,9 @@ import lombok.Setter;
 @Setter
 public class UserLoginDTO {
 
-    @NotBlank(message = "The username should have a value")
+    @NotBlank(message = "Le nom d'utilisateur ne doit pas être vide")
     private String username;
 
-    @NotBlank(message = "The password should have a value")
+    @NotBlank(message = "Il te faut un mot de passe")
     private String password;
 }

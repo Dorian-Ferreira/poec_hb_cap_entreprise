@@ -4,7 +4,15 @@
 <jsp:include flush="true" page="../../base.jsp"/>
 
 <div class="container">
-
+  <div class="row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="${UrlRoute.URL_ADMIN}">BO Admin</a></li>
+        <li class="breadcrumb-item">Liste des Jeux</li>
+      </ol>
+    </nav>
+  </div>
   <div class="row">
     <div class="d-flex justify-content-center">
       <div class="d-flex">
@@ -15,21 +23,10 @@
   <div class="row">
     <div class="d-flex justify-content-center">
       <div class="d-flex">
-        <c:set var="label" scope="request" value="Nom"/>
-        <c:set var="sortable" value="name"/>
-        <%@ include file="../../component/sortable.jsp" %>
-
-        <c:set var="label" scope="request" value="Date"/>
-        <c:set var="sortable" value="publishedAt"/>
-        <%@ include file="../../component/sortable.jsp" %>
-
-        <c:set var="label" scope="request" value="Éditeur"/>
-        <c:set var="sortable" value="publisher.name"/>
-        <%@ include file="../../component/sortable.jsp" %>
         <span class="mt-auto mb-2">
-            <a href="${currentUrl}" class="btn-link">
-                Reset
-            </a>
+          <a href="${currentUrl}" class="btn-link" title="Réinitialiser les filtres">
+                <i class="fa-solid fa-filter-circle-xmark"></i>
+          </a>
         </span>
       </div>
     </div>
@@ -39,13 +36,19 @@
     <thead>
       <tr>
         <th>
-          Nom
+          <c:set var="label" scope="request" value="Nom"/>
+          <c:set var="sortable" value="name"/>
+          <%@ include file="../../component/sortable.jsp" %>
         </th>
         <th>
-          Date de sortie
+          <c:set var="label" scope="request" value="Date de Sortie"/>
+          <c:set var="sortable" value="publishedAt"/>
+          <%@ include file="../../component/sortable.jsp" %>
         </th>
         <th>
-          Éditeur
+          <c:set var="label" scope="request" value="Éditeur"/>
+          <c:set var="sortable" value="publisher.name"/>
+          <%@ include file="../../component/sortable.jsp" %>
         </th>
         <th>
           Opérations
@@ -71,10 +74,10 @@
             </div>
           </th>
           <th>
-            <a class="btn btn-light" href="${UrlRoute.URL_GAME}/${game.id}">Voir</a>
-            <a class="btn btn-success" href="${UrlRoute.URL_ADMIN_GAME_EDIT}/${game.id}">Modifier</a>
-            <a class="btn btn-success" href="${UrlRoute.URL_ADMIN_GAME_IMAGE}/${game.id}">Téléverser l'image</a>
-            <a class="btn btn-danger" href="${UrlRoute.URL_ADMIN_GAME_DELETE}/${game.id}">Supprimer</a>
+            <a class="btn btn-light" href="${UrlRoute.URL_GAME}/${game.id}"><i class="fa-regular fa-eye"></i></a>
+            <a class="btn btn-success" href="${UrlRoute.URL_ADMIN_GAME_EDIT}/${game.id}"><i class="fa-solid fa-pen"></i></a>
+            <a class="btn btn-success" href="${UrlRoute.URL_ADMIN_GAME_IMAGE}/${game.id}"><i class="fa-regular fa-image"></i></a>
+            <a class="btn btn-danger" href="${UrlRoute.URL_ADMIN_GAME_DELETE}/${game.id}"><i class="fa-solid fa-trash"></i></a>
           </th>
         </tr>
         </c:forEach>

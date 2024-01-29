@@ -18,29 +18,29 @@ import java.util.List;
 @Setter
 public class GameDTO {
 
-    @NotBlank(message = "The name should have a value")
+    @NotBlank(message = "Le jeu doit avoir un nom")
     private String name;
 
-    @NotBlank(message = "The description should have a value")
+    @NotBlank(message = "Le jeu doit avoir une desciption")
     private String description;
 
-    @NotNull
+    @NotNull(message = "Le jeu doit avoir une date de sortie")
     private String publishedAt;
 
     private String image;
 
-    @NotNull
+    @NotNull(message = "Le jeu doit avoir un éditeur")
     private Publisher publisher;
 
-    @NotNull
+    @NotNull(message = "Le jeu doit avoir une classification")
     private Classification classification;
 
-    @NotNull
+    @NotNull(message = "Le jeu doit avoir un genre")
     private Genre genre;
 
-    @NotNull
+    @NotNull(message = "Le jeu doit avoir un modélé économique")
     private BusinessModel businessModel;
 
-    @NotNull
+    @NotNull(message = "Le jeu doit avoir au moins une platforme")
     private List<Platform> platforms = new ArrayList<>();
 }

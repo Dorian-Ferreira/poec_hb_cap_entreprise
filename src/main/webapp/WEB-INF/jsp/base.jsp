@@ -14,8 +14,9 @@
         <link href="${contextPath}/css/main.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
         <script type="text/javascript" src="../../js/page/multiple-select.js"></script>
-        <script type="text/javascript" src="../../js/lib/bootstrap/bootstrap.js"></script>
+        <script type="text/javascript" src="../../js/lib/bootstrap/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="../../js/page/sortable.js"></script>
+        <script type="text/javascript" src="../../js/page/filter.js"></script>
     </head>
     <body class="background">
         <security:authorize access="isAuthenticated()">
@@ -39,29 +40,10 @@
                                 </a>
                             </security:authorize>
                             <security:authorize access="hasRole('GAMER')">
-                                <span>Bienvenue <span class="txt-primary">${userLogged.nickname}</span></span>
+                                <span class="mx-1 txt-primary">${userLogged.nickname}</span>
                             </security:authorize>
-                        </div>
-
-                        <security:authorize access="hasRole('GAMER')">
-                            <div class="navbar-item">
-                                <a href="${UrlRoute.URL_REVIEW_NEW}" class="btn btn-secondary">
-                                    Donner un avis sur un jeu
-                                </a>
-                            </div>
-                        </security:authorize>
-
-                        <div class="navbar-item">
-                            <a class="btn btn-secondary" href="${UrlRoute.URL_GAME}">Liste des jeux</a>
-                        </div>
-
-                        <div class="navbar-item">
-                            <a class="btn btn-secondary" href="${UrlRoute.URL_REVIEW}">Liste des avis</a>
-                        </div>
-
-                        <div class="navbar-item">
                             <form class="navbar-brand m-0" method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
-                                <button type="submit" tabindex="3" class="btn btn-danger">Se Déconnecter</button>
+                                <button type="submit" tabindex="3" class="btn btn-danger"><i class="fa-solid fa-user-slash"></i></button>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             </form>
                         </div>

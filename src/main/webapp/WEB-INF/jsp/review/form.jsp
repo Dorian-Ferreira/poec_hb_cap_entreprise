@@ -37,8 +37,9 @@
         <f:errors path="rating" cssClass="invalid-feedback"/>
       </div>
     </div>
-    <f:button class="btn btn-secondary" type="reset">Recommencer</f:button>
-    <f:button class="btn btn-primary">Soumettre</f:button>
+
+    <f:button class="btn btn-success">Soumettre</f:button>
+    <f:button class="btn btn-danger" type="reset">Recommencer</f:button>
   </f:form>
 </div>
 <%@ include file="../footer.jsp" %>

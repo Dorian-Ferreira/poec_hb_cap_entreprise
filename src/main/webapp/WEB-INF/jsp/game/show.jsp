@@ -5,6 +5,15 @@
 
 <div class="container mt-2">
     <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="${UrlRoute.URL_GAME}">Liste des jeux</a></li>
+                <li class="breadcrumb-item">${game.name}</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
         <div class="col-lg-6 col-sm-12">
             <div class="container-img">
                 <img src="${game.image}" alt="${game.name}">

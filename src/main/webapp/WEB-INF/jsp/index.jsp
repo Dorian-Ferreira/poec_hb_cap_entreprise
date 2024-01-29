@@ -6,21 +6,24 @@
 <div class="container">
     <div class="row">
         <div class="d-flex justify-content-center">
-            <div class="d-flex">
-                <h1 class="mt-2">Les meilleurs avis</h1>
-            </div>
+            <h1 class="mt-2">Les meilleurs avis</h1>
+        </div>
+        <div class="d-flex justify-content-end">
+            <a class="mt-4 link-if" href="${UrlRoute.URL_REVIEW}">Voir tous les avis</a>
         </div>
         <c:forEach items="${reviews}" var="review">
             <%@ include file="component/review-card.jsp" %>
         </c:forEach>
     </div>
 
-    <div class="d-flex justify-content-center">
-        <div class="d-flex">
-            <h1 class="mt-4">Proposition de jeux</h1>
-        </div>
-    </div>
     <div class="row my-5">
+        <div class="d-flex justify-content-center">
+            <h1 class="mt-4">Propositions de jeux</h1>
+        </div>
+        <div class="d-flex justify-content-end">
+            <a class="mt-4 link-if" href="${UrlRoute.URL_GAME}">Voir tous les jeux</a>
+        </div>
+
         <div class="col-lg-3 col-md-2">
         </div>
         <div id="carouselExampleCaptions" class="carousel slide col-lg-6 col-md-8 col-sm-12" data-bs-ride="carousel">

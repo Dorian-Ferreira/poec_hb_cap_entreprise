@@ -27,6 +27,18 @@ public class SecurityController {
         return mav;
     }
 
+    @GetMapping(UrlRoute.URL_REDIRECT)
+    public ModelAndView redirect(ModelAndView mav,
+                                 Principal principal) {
+        if(userService.isAdmin(principal)) {
+            mav.setViewName("redirect:"+UrlRoute.URL_ADMIN_REVIEW);
+        } else {
+            mav.setViewName("redirect:/");
+        }
+
+        return mav;
+    }
+
     @PostMapping(UrlRoute.URL_REGISTER)
     public ModelAndView register(
             @ModelAttribute("userForm") @Valid UserDTO userForm,

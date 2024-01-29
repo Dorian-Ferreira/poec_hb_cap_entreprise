@@ -5,6 +5,14 @@
 
 <div class="container mt-2">
     <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="${UrlRoute.URL_REVIEW}">Liste des avis</a></li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
         <h1>Avis de <span class="txt-primary">${review.writer.nickname}</span> sur <a class="link-if" href="${UrlRoute.URL_GAME}/${review.game.id}">${review.game.name}</a></h1>
         <security:authorize access="hasRole('MODERATOR')">
             <c:if test="${review.moderator == null}">

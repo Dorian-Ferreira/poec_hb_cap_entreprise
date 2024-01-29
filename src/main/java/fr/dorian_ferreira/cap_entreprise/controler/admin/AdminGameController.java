@@ -82,7 +82,7 @@ public class AdminGameController {
     ) {
         gameService.delete(id);
 
-        mav.setViewName("redirect:/game");
+        mav.setViewName("redirect:"+UrlRoute.URL_GAME);
         return mav;
     }
 
@@ -105,7 +105,7 @@ public class AdminGameController {
 
         gameService.addImage(id, imagePath);
 
-        mav.setViewName("redirect:/game");
+        mav.setViewName("redirect:"+UrlRoute.URL_GAME);
         return mav;
     }
 

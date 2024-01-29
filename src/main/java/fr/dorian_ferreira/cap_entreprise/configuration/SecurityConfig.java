@@ -1,5 +1,6 @@
 package fr.dorian_ferreira.cap_entreprise.configuration;
 
+import fr.dorian_ferreira.cap_entreprise.mapping.UrlRoute;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,6 +25,7 @@ public class SecurityConfig {
             .formLogin(formLogin ->
                 formLogin
                     .loginPage("/login")
+                    .defaultSuccessUrl(UrlRoute.URL_REDIRECT)
                     .permitAll()
             )
             .logout(logout ->
