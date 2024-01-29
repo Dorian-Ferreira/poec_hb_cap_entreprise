@@ -35,13 +35,13 @@ public class GameController {
         return mav;
     }
 
-    @GetMapping(path = UrlRoute.URL_GAME + "/{id}", name = "show")
+    @GetMapping(path = UrlRoute.URL_GAME + "/{slug}", name = "show")
     public ModelAndView show(
-            @PathVariable Long id,
+            @PathVariable String slug,
             ModelAndView mav
     ) {
         mav.setViewName("game/show");
-        mav.addObject("game", gameService.findById(id));
+        mav.addObject("game", gameService.findBySlug(slug));
         return mav;
     }
 }

@@ -35,7 +35,7 @@
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
             </div>
             <div class="carousel-inner">
-                <a class="carousel-item active" data-bs-interval="3000" href="${UrlRoute.URL_GAME}/${games.get(0).id}">
+                <a class="carousel-item active" data-bs-interval="3000" href="${UrlRoute.URL_GAME}/${games.get(0).slug}">
                     <img src="${games.get(0).image}" class="d-block w-100" alt="${games.get(0).name}">
                     <div class="carousel-caption d-flex d-md-block">
                         <div class="w-100">
@@ -49,7 +49,7 @@
                     </div>
                 </a>
                 <c:forEach items="${games.subList(1, games.size())}" var="game">
-                    <a class="carousel-item" data-bs-interval="3000" href="${UrlRoute.URL_GAME}/${game.id}">
+                    <a class="carousel-item" data-bs-interval="3000" href="${UrlRoute.URL_GAME}/${game.slug}">
                         <img src="${game.image}" class="d-block w-100" alt="${game.name}">
                         <div class="carousel-caption d-flex d-md-block">
                             <div class="w-100">

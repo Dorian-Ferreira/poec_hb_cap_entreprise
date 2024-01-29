@@ -27,8 +27,6 @@ public class GameDTO {
     @NotNull(message = "Le jeu doit avoir une date de sortie")
     private String publishedAt;
 
-    private String image;
-
     @NotNull(message = "Le jeu doit avoir un éditeur")
     private Publisher publisher;
 

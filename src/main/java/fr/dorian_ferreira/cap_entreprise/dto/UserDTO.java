@@ -1,5 +1,7 @@
 package fr.dorian_ferreira.cap_entreprise.dto;
 
+import fr.dorian_ferreira.cap_entreprise.repository.UserRepository;
+import fr.dorian_ferreira.cap_entreprise.validator.annotation.UniqueName;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,6 +20,7 @@ import java.util.Date;
 public class UserDTO {
 
     @NotBlank(message = "Le nom d'utilisateur ne doit pas être vide")
+    @UniqueName(repositoryClass = UserRepository.class)
     private String username;
 
     @NotBlank(message = "Il te faut un mot de passe")

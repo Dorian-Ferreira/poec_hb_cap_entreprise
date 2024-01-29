@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface GameRepository
         extends JpaRepository<Game, Long>
@@ -13,4 +14,6 @@ public interface GameRepository
     List<Game> findAllByOrderByName();
 
     Page<Game> findAllByNameContainingIgnoreCaseOrPublisherNameContainingIgnoreCase(String search1, String search2, Pageable pageable);
+
+    Optional<Game> findBySlug(String slug);
 }

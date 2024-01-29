@@ -54,12 +54,13 @@ public class GameService implements DAOServiceInterface<Game> {
         }
 
         Game entity = new Game();
-        entity.setId(id);
+        if(id != null) {
+            entity = repository.findById(id).get();
+        }
 
         entity.setName(dto.getName());
         entity.setDescription(dto.getDescription());
         entity.setPublishedAt(LocalDate.parse(dto.getPublishedAt()));
-        entity.setImage(dto.getImage());
         entity.setPublisher(dto.getPublisher());
         entity.setGenre(dto.getGenre());
         entity.setPlatforms(dto.getPlatforms());
@@ -77,7 +78,6 @@ public class GameService implements DAOServiceInterface<Game> {
         dto.setName(entity.getName());
         dto.setDescription(entity.getDescription());
         dto.setPublishedAt(String.valueOf(entity.getPublishedAt()));
-        dto.setImage(entity.getImage());
         dto.setPublisher(entity.getPublisher());
         dto.setGenre(entity.getGenre());
         dto.setPlatforms(entity.getPlatforms());
@@ -109,5 +109,13 @@ public class GameService implements DAOServiceInterface<Game> {
             }
         }
         return repository.findAllById(gamesId);
+    }
+
+    public Game findBySlug(String slug) {
+        Optional<Game> optional = repository.findBySlug(slug);
+        if (optional.isEmpty()) {
+            throw new NotFoundEntityException("Game", "slug", slug);
+        }
+        return optional.get();
     }
 }

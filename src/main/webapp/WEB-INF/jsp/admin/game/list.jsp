@@ -84,7 +84,7 @@
             </div>
           </th>
           <th>
-            <a class="btn btn-light" href="${UrlRoute.URL_GAME}/${game.id}"><i class="fa-regular fa-eye"></i></a>
+            <a class="btn btn-light" href="${UrlRoute.URL_GAME}/${game.slug}"><i class="fa-regular fa-eye"></i></a>
             <a class="btn btn-success" href="${UrlRoute.URL_ADMIN_GAME_EDIT}/${game.id}"><i class="fa-solid fa-pen"></i></a>
             <a class="btn btn-success" href="${UrlRoute.URL_ADMIN_GAME_IMAGE}/${game.id}"><i class="fa-regular fa-image"></i></a>
             <a class="btn btn-danger" href="${UrlRoute.URL_ADMIN_GAME_DELETE}/${game.id}"><i class="fa-solid fa-trash"></i></a>

@@ -16,7 +16,7 @@
         <p class="${jspUtils.getCssClas(review.rating)}">
           ${jspUtils.getStringRating(review.rating)} / 20
         </p>
-        <a class="btn-link" href="${UrlRoute.URL_GAME}/${review.game.id}">
+        <a class="btn-link" href="${UrlRoute.URL_GAME}/${review.game.slug}">
           ${review.game.name}
         </a>
       </div>

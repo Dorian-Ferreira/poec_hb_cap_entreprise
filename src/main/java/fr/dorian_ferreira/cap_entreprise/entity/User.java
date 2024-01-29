@@ -23,7 +23,7 @@ public abstract class User  implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     protected String nickname;
 
     @Column(nullable = false)

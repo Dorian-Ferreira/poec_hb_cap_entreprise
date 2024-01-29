@@ -34,7 +34,6 @@ public class Review {
     private Float rating;
 
     @UpdateTimestamp
-    @Column(nullable = false)
     private LocalDateTime moderatedAt;
 
     @ManyToOne
