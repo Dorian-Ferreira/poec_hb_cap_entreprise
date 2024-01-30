@@ -35,8 +35,9 @@ public class AdminReviewController {
                     size = 5, // nb Element par page
                     sort = { "createdAt" }, // order by
                     direction = Sort.Direction.DESC
+
             ) Pageable pageable,
-            @RequestParam(value = "moderation",required = false) String moderation,
+            @RequestParam(value = "moderation",required = false, defaultValue = "2") String moderation,
             @RequestParam(value="search",required = false) String search,
             Principal principal
     ) {
@@ -73,8 +74,8 @@ public class AdminReviewController {
         } else if(outcome.equals(("refuse"))) {
             reviewService.refuse(id);
         }
-
         mav.setViewName("redirect:" + UrlRoute.URL_ADMIN_REVIEW);
+
         return mav;
     }
 

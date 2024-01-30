@@ -57,16 +57,16 @@ public class ReviewController {
         return mav;
     }
 
-    @GetMapping(value = UrlRoute.URL_REVIEW_NEW + "/{id}", name = "createForGame")
+    @GetMapping(value = UrlRoute.URL_REVIEW_NEW + "/{slug}", name = "createForGame")
     public ModelAndView createReviewForGame(
             ModelAndView mav,
             HttpServletRequest httpServletRequest,
-            @PathVariable Long id
+            @PathVariable String slug
     ) {
         mav.setViewName("review/form");
 
         ReviewDTO r = new ReviewDTO();
-        r.setGame(gameService.findById(id));
+        r.setGame(gameService.findBySlug(slug));
 
         return setUp(mav, r, httpServletRequest.getRequestURI());
     }
@@ -97,14 +97,14 @@ public class ReviewController {
         mav.setViewName("redirect:/");
         return mav;
     }
-    @PostMapping(value = UrlRoute.URL_REVIEW_NEW + "/{id}", name = "createHandler")
+    @PostMapping(value = UrlRoute.URL_REVIEW_NEW + "/{slug}", name = "createHandler")
     public ModelAndView createReview(
             @ModelAttribute("reviewDto") @Valid ReviewDTO reviewDto,
             BindingResult result,
             ModelAndView mav,
             HttpServletRequest httpServletRequest,
             Principal principal,
-            @PathVariable Long id
+            @PathVariable String slug
     ) {
         if (result.hasErrors()) {
             mav.setViewName("review/form");

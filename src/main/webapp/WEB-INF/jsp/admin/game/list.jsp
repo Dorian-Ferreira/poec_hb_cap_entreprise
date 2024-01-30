@@ -5,15 +5,18 @@
 
 <div class="container">
   <div class="row">
-    <div class="py-2">
+    <div class="d-flex justify-content-between py-2">
       <nav aria-label="breadcrumb py-2">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item"><a class="link-if" href="/">Home</a></li>
           <li class="breadcrumb-item">BO Admin</li>
           <li class="breadcrumb-item">Liste des Jeux</li>
           <li class="breadcrumb-item">Jeux ${games.numberOfElements == 0 ? 0 : (games.number * games.size) + 1} à ${(games.number * games.size) + games.numberOfElements} sur ${games.totalElements}</li>
         </ol>
       </nav>
+      <a href="${UrlRoute.URL_ADMIN_GAME_NEW}" class="btn btn-success">
+        Ajouter un jeu
+      </a>
     </div>
   </div>
   <div class="row">
@@ -87,10 +90,10 @@
             </div>
           </th>
           <th>
-            <a class="btn btn-light" href="${UrlRoute.URL_GAME}/${game.slug}"><i class="fa-regular fa-eye"></i></a>
-            <a class="btn btn-success" href="${UrlRoute.URL_ADMIN_GAME_EDIT}/${game.id}"><i class="fa-solid fa-pen"></i></a>
-            <a class="btn btn-success" href="${UrlRoute.URL_ADMIN_GAME_IMAGE}/${game.id}"><i class="fa-regular fa-image"></i></a>
-            <a class="btn btn-danger" href="${UrlRoute.URL_ADMIN_GAME_DELETE}/${game.id}"><i class="fa-solid fa-trash"></i></a>
+            <a class="btn btn-light" title="Voir le jeu" href="${UrlRoute.URL_GAME}/${game.slug}"><i class="fa-regular fa-eye"></i></a>
+            <a class="btn btn-success" title="Modifier le jeu" href="${UrlRoute.URL_ADMIN_GAME_EDIT}/${game.id}"><i class="fa-solid fa-pen"></i></a>
+            <a class="btn btn-success" title="Ajouter une image au jeu" href="${UrlRoute.URL_ADMIN_GAME_IMAGE}/${game.id}"><i class="fa-regular fa-image"></i></a>
+            <a class="btn btn-danger" title="Supprimer le jeu" href="${UrlRoute.URL_ADMIN_GAME_DELETE}/${game.id}"><i class="fa-solid fa-trash"></i></a>
           </th>
         </tr>
         </c:forEach>
@@ -98,10 +101,6 @@
   </table>
   <c:set var="page" scope="request" value="${games}"/>
   <%@ include file="../../component/pagination.jsp" %>
-
-  <a href="${UrlRoute.URL_ADMIN_GAME_NEW}" class="btn btn-light">
-    Ajouter un jeu
-  </a>
 </div>
 
 <%@ include file="../../footer.jsp" %>

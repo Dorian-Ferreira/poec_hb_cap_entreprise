@@ -7,9 +7,10 @@
     <div class="row">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item"><a href="${UrlRoute.URL_GAME}">Liste des jeux</a></li>
+                <li class="breadcrumb-item"><a class="link-if" href="/">Home</a></li>
+                <li class="breadcrumb-item"><a class="link-if" href="${UrlRoute.URL_GAME}">Liste des jeux</a></li>
                 <li class="breadcrumb-item">${game.name}</li>
+                <li class="breadcrumb-item"><a class="link-if" href="#reviewRow">Les avis</a></li>
             </ol>
         </nav>
     </div>
@@ -24,18 +25,13 @@
                 <h1>${game.name}</h1>
                 <security:authorize access="hasRole('MODERATOR')">
                     <a href="${UrlRoute.URL_ADMIN_GAME_EDIT}/${game.id}" class="btn btn-success">
-                        Modifier le jeu
-                    </a>
-                    <a href="${UrlRoute.URL_ADMIN_GAME_DELETE}/${game.id}" class="btn btn-danger">
-                        Supprimer le jeu
+                        <i class="fa-solid fa-pen"></i>
                     </a>
                     <a href="${UrlRoute.URL_ADMIN_GAME_IMAGE}/${game.id}" class="btn btn-success">
-                        Téléverser une image
+                        <i class="fa-regular fa-image"></i>
                     </a>
-                </security:authorize>
-                <security:authorize access="hasRole('GAMER')">
-                    <a href="${UrlRoute.URL_REVIEW_NEW}/${game.id}" class="btn btn-secondary">
-                        Donner son avis sur le jeu
+                    <a href="${UrlRoute.URL_ADMIN_GAME_DELETE}/${game.id}" class="btn btn-danger">
+                        <i class="fa-solid fa-trash"></i>
                     </a>
                 </security:authorize>
             </div>
@@ -78,6 +74,20 @@
                         <h1 class="">Liste des avis</h1>
                     </div>
                 </div>
+                <security:authorize access="hasRole('MODERATOR')">
+                    <div>
+                        <a href="${UrlRoute.URL_ADMIN_REVIEW}?search=${game.slug}" class="btn btn-success">
+                            Modérer les avis
+                        </a>
+                    </div>
+                </security:authorize>
+                <security:authorize access="hasRole('GAMER')">
+                    <div>
+                        <a href="${UrlRoute.URL_REVIEW_NEW}/${game.slug}" class="btn btn-success">
+                            Donner son avis sur le jeu
+                        </a>
+                    </div>
+                </security:authorize>
                 <div class="d-flex justify-content-center">
                     <div class="d-flex">
                         <!-- Label à afficher -->
@@ -88,10 +98,6 @@
 
                         <c:set var="label" scope="request" value="Note"/>
                         <c:set var="sortable" value="rating"/>
-                        <%@ include file="../component/sortable.jsp" %>
-
-                        <c:set var="label" scope="request" value="Jeu"/>
-                        <c:set var="sortable" value="game.name"/>
                         <%@ include file="../component/sortable.jsp" %>
 
                         <c:set var="label" scope="request" value="Joueur"/>

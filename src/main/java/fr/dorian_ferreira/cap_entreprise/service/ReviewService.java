@@ -37,18 +37,18 @@ public class ReviewService implements DAOServiceInterface<Review> {
         }
         if (moderation == null || moderation.equals("1")) {
             if(userService.isAdmin(principal)){
-                return repository.findAllForModerator(search1, search2, principal.getName(), page);
+                return repository.findAllForModerator(search1, search2, search2, page);
             }
             return repository.findAllByGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase
-                    (search1, search2, principal.getName(), page);
+                    (search1, search2, principal.getName(), search2, page);
         }
         if (moderation != null && moderation.equals("2")) {
             return repository.findAllByModeratorNullAndGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase
-                    (search1, search2, page);
+                    (search1, search2, search2, page);
         }
         if (moderation != null && moderation.equals("3")) {
             return repository.findAllByModeratorNotNullAndGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase
-                    (search1, search2, page);
+                    (search1, search2, search2, page);
         }
 
         return null;

@@ -8,8 +8,8 @@
         <div class="py-2">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item"><a href="${UrlRoute.URL_ADMIN_GAME}">Liste des jeux</a></li>
+                    <li class="breadcrumb-item"><a class="link-if" href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a class="link-if" href="${UrlRoute.URL_ADMIN_GAME}">Liste des jeux</a></li>
                     <li class="breadcrumb-item">Téléverser une image</li>
                 </ol>
             </nav>

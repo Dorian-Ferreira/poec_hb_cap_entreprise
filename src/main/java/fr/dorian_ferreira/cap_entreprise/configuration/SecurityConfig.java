@@ -18,8 +18,8 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth ->
                 auth
                     .requestMatchers("/admin/**").hasRole("MODERATOR")
-                    .requestMatchers("/review/**").authenticated()
-                    .requestMatchers("/game/**").authenticated()
+                    .requestMatchers("/avis/**").authenticated()
+                    .requestMatchers("/jeu/**").authenticated()
                     .requestMatchers("/**").permitAll()
             )
             .formLogin(formLogin ->

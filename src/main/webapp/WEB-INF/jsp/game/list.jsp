@@ -9,13 +9,13 @@
     <div class="d-flex justify-content-between py-2">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item"><a class="link-if" href="/">Home</a></li>
           <li class="breadcrumb-item">Liste des jeux</li>
           <li class="breadcrumb-item">Jeux ${games.numberOfElements == 0 ? 0 : (games.number * games.size) + 1} à ${(games.number * games.size) + games.numberOfElements} sur ${games.totalElements}</li>
         </ol>
       </nav>
       <security:authorize access="hasRole('MODERATOR')">
-        <a href="${UrlRoute.URL_ADMIN_GAME_NEW}" class="btn btn-light">
+        <a href="${UrlRoute.URL_ADMIN_GAME_NEW}" class="btn btn-success">
           Ajouter un jeu
         </a>
       </security:authorize>

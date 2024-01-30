@@ -8,7 +8,7 @@
     <div class="py-2">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item"><a class="link-if" href="/">Home</a></li>
           <li class="breadcrumb-item">BO Admin</li>
           <li class="breadcrumb-item">Liste des avis</li>
           <li class="breadcrumb-item">Avis ${reviews.numberOfElements == 0 ? 0 : ((reviews.number * reviews.size) + 1)} à ${(reviews.number * reviews.size) + reviews.numberOfElements} sur ${reviews.totalElements}</li>
@@ -105,11 +105,11 @@
           </c:choose>
         </th>
         <th>
-          <a class="btn btn-light" href="${UrlRoute.URL_REVIEW}/${review.id}"><i class="fa-regular fa-eye"></i></a>
+          <a class="btn btn-light" title="Voir le commentaire" href="${UrlRoute.URL_REVIEW}/${review.id}"><i class="fa-regular fa-eye"></i></a>
           <c:if test="${review.moderator == null}">
-            <a class="btn btn-success" href="${UrlRoute.URL_ADMIN_REVIEW}/${review.id}/accept"><i class="fa-regular fa-square-check"></i></a>
+            <a class="btn btn-success" title="Accepter le commentaire" href="${UrlRoute.URL_ADMIN_REVIEW}/${review.id}/accept"><i class="fa-regular fa-square-check"></i></a>
           </c:if>
-          <a class="btn btn-danger" href="${UrlRoute.URL_ADMIN_REVIEW}/${review.id}/refuse"><i class="fa-regular fa-circle-xmark"></i></a>
+          <a class="btn btn-danger" title="Refuser le commentaire" href="${UrlRoute.URL_ADMIN_REVIEW}/${review.id}/refuse"><i class="fa-regular fa-circle-xmark"></i></a>
         </th>
       </tr>
     </c:forEach>
