@@ -1,6 +1,5 @@
 package fr.dorian_ferreira.cap_entreprise.service;
 
-import fr.dorian_ferreira.cap_entreprise.dto.GenreDTO;
 import fr.dorian_ferreira.cap_entreprise.entity.Genre;
 import fr.dorian_ferreira.cap_entreprise.exception.NotFoundEntityException;
 import fr.dorian_ferreira.cap_entreprise.repository.GenreRepository;
@@ -29,12 +28,5 @@ public class GenreService implements DAOServiceInterface<Genre> {
             throw new NotFoundEntityException("Genre", "id", id);
         }
         return optional.get();
-    }
-
-    public Genre persist(GenreDTO dto) {
-
-        Genre entity = new Genre();
-        entity.setName(dto.getName());
-        return repository.saveAndFlush(entity);
     }
 }

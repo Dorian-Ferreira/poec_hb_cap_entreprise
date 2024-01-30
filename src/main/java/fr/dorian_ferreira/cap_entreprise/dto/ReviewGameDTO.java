@@ -14,7 +14,13 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ReviewDTO extends ReviewGameDTO {
-    @NotNull(message = "Un avis porte sur un jeu")
-    private Game game;
+public class ReviewGameDTO {
+
+    @NotBlank(message = "Un avis doit avoir un commentaire")
+    private String description;
+
+    @NotNull(message = "Un avis doit avoir une note")
+    @Min(value =  0)
+    @Max(value = 20)
+    private Float rating;
 }

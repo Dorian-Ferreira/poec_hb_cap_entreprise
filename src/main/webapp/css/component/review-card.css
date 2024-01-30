@@ -5,6 +5,10 @@
     padding: 0.2em 0.8em;
 }
 
+.main-review-card:hover {
+    background-color: #505050;
+}
+
 .main-review-border-red {
     color: #bb2d3b;
 }

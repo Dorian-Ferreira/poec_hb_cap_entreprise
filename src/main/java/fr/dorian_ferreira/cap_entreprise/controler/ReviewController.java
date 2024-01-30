@@ -93,7 +93,7 @@ public class ReviewController {
             return setUp(mav, reviewDto, httpServletRequest.getRequestURI());
         }
 
-        reviewService.persist(reviewDto, principal);
+        reviewService.persist(reviewDto, null, principal);
         mav.setViewName("redirect:/");
         return mav;
     }
@@ -111,8 +111,8 @@ public class ReviewController {
             return setUp(mav, reviewDto, httpServletRequest.getRequestURI());
         }
 
-        reviewService.persist(reviewDto, principal);
-        mav.setViewName("redirect:/");
+        reviewService.persist(reviewDto, null, principal);
+        mav.setViewName("redirect:" + UrlRoute.URL_REVIEW);
         return mav;
     }
 

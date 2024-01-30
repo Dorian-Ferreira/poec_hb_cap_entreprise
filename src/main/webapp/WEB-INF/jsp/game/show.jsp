@@ -7,10 +7,10 @@
     <div class="row">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="link-if" href="/">Home</a></li>
-                <li class="breadcrumb-item"><a class="link-if" href="${UrlRoute.URL_GAME}">Liste des jeux</a></li>
+                <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="/">Home</a></li>
+                <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="${UrlRoute.URL_GAME}">Liste des Jeux</a></li>
                 <li class="breadcrumb-item">${game.name}</li>
-                <li class="breadcrumb-item"><a class="link-if" href="#reviewRow">Les avis</a></li>
+                <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="#reviewRow">Les Avis</a></li>
             </ol>
         </nav>
     </div>
@@ -25,13 +25,13 @@
                 <h1>${game.name}</h1>
                 <security:authorize access="hasRole('MODERATOR')">
                     <a href="${UrlRoute.URL_ADMIN_GAME_EDIT}/${game.id}" class="btn btn-success">
-                        <i class="fa-solid fa-pen"></i>
+                        <i class="fa-solid fa-pen"></i> Modifier
                     </a>
                     <a href="${UrlRoute.URL_ADMIN_GAME_IMAGE}/${game.id}" class="btn btn-success">
-                        <i class="fa-regular fa-image"></i>
+                        <i class="fa-regular fa-image"></i> Ajouter une Image
                     </a>
                     <a href="${UrlRoute.URL_ADMIN_GAME_DELETE}/${game.id}" class="btn btn-danger">
-                        <i class="fa-solid fa-trash"></i>
+                        <i class="fa-solid fa-trash"></i> Supprimer
                     </a>
                 </security:authorize>
             </div>
@@ -69,25 +69,55 @@
         <div class="row container" id="reviewRow">
             <c:set var="scroll" scope="request" value="reviewRow"/>
             <div class="row">
-                <div class="d-flex justify-content-center">
-                    <div class="d-flex">
-                        <h1 class="">Liste des avis</h1>
-                    </div>
-                </div>
                 <security:authorize access="hasRole('MODERATOR')">
                     <div>
                         <a href="${UrlRoute.URL_ADMIN_REVIEW}?search=${game.slug}" class="btn btn-success">
-                            Modérer les avis
+                            <i class="fa-solid fa-comment"></i> Modérer les avis
                         </a>
                     </div>
                 </security:authorize>
                 <security:authorize access="hasRole('GAMER')">
                     <div>
-                        <a href="${UrlRoute.URL_REVIEW_NEW}/${game.slug}" class="btn btn-success">
-                            Donner son avis sur le jeu
-                        </a>
+                        <button class="ms-2 btn btn-success"
+                                title="Ajouter un commentaire"
+                                data-hide-show-button="formReview"
+                        >
+                            <i class="fa-solid fa-comment"></i> Commenter
+                        </button>
+                    </div>
+                    <div class="my-3 d-none"
+                         data-hide-show-container="formReview"
+                    >
+                        <f:form cssClass="col-md-8 col-sm-12 mx-auto"
+                                action="${UrlRoute.URL_GAME}/${game.slug}"
+                                method="post"
+                                modelAttribute="reviewDTO"
+                        >
+                            <div class="mb-3 row">
+                                <f:label path="description" class="col-sm-2 col-form-label">Description</f:label>
+                                <div class="col-sm-10">
+                                    <f:textarea cssClass="form-control" path="description"/>
+                                    <f:errors path="description" cssClass="invalid-feedback"/>
+                                </div>
+                            </div>
+                            <div class="my-3 row">
+                                <f:label path="rating" class="col-sm-2 col-form-label">Note</f:label>
+                                <div class="col-sm-10">
+                                    <f:input type="number" step="0.5" cssClass="form-control" path="rating"/>
+                                    <f:errors path="rating" cssClass="invalid-feedback"/>
+                                </div>
+                            </div>
+                            <f:button type="submit" class="btn btn-success">
+                                <i class="fa fa-check"></i> Ajouter
+                            </f:button>
+                        </f:form>
                     </div>
                 </security:authorize>
+                <div class="d-flex justify-content-center">
+                    <div class="d-flex">
+                        <h1 class="">Liste des avis</h1>
+                    </div>
+                </div>
                 <div class="d-flex justify-content-center">
                     <div class="d-flex">
                         <!-- Label à afficher -->

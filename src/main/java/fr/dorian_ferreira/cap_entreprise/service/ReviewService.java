@@ -1,6 +1,7 @@
 package fr.dorian_ferreira.cap_entreprise.service;
 
 import fr.dorian_ferreira.cap_entreprise.dto.ReviewDTO;
+import fr.dorian_ferreira.cap_entreprise.dto.ReviewGameDTO;
 import fr.dorian_ferreira.cap_entreprise.entity.*;
 import fr.dorian_ferreira.cap_entreprise.exception.NotFoundEntityException;
 import fr.dorian_ferreira.cap_entreprise.repository.ReviewRepository;
@@ -71,10 +72,14 @@ public class ReviewService implements DAOServiceInterface<Review> {
         return optional.get();
     }
 
-    public Review persist(ReviewDTO dto, Principal principal) {
+    public Review persist(ReviewGameDTO dto, Game game, Principal principal) {
         Review entity = new Review();
 
-        entity.setGame(dto.getGame());
+        if(dto instanceof ReviewDTO r) {
+            entity.setGame(r.getGame());
+        } else {
+            entity.setGame(game);
+        }
         entity.setDescription(dto.getDescription());
         entity.setRating(dto.getRating());
 

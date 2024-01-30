@@ -8,8 +8,8 @@
     <div class="d-flex justify-content-between py-2">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a class="link-if" href="/">Home</a></li>
-          <li class="breadcrumb-item"><a class="link-if" href="${UrlRoute.URL_REVIEW}">Liste des Avis</a></li>
+          <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="/">Home</a></li>
+          <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="${UrlRoute.URL_REVIEW}">Liste des Avis</a></li>
           <li class="breadcrumb-item">Donner un Avis</li>
         </ol>
       </nav>

@@ -8,9 +8,9 @@
         <div class="py-2">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a class="link-if" href="/">Home</a></li>
-                    <li class="breadcrumb-item"><a class="link-if" href="${UrlRoute.URL_ADMIN_GAME}">Liste des jeux</a></li>
-                    <li class="breadcrumb-item">Ajouter un jeu</li>
+                    <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="${UrlRoute.URL_ADMIN_GAME}">Liste des Jeux</a></li>
+                    <li class="breadcrumb-item">Ajouter un Jeu</li>
                 </ol>
             </nav>
         </div>

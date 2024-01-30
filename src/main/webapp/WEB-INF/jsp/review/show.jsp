@@ -7,13 +7,13 @@
     <div class="row">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="link-if" href="/">Home</a></li>
-                <li class="breadcrumb-item"><a class="link-if" href="${UrlRoute.URL_REVIEW}">Liste des avis</a></li>
+                <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="/">Home</a></li>
+                <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="${UrlRoute.URL_REVIEW}">Liste des Avis</a></li>
             </ol>
         </nav>
     </div>
     <div class="row">
-        <h1>Avis de <span class="txt-primary">${review.writer.nickname}</span> sur <a class="link-if" href="${UrlRoute.URL_GAME}/${review.game.slug}">${review.game.name}</a></h1>
+        <h1>Avis de <a class="link-if" href="${UrlRoute.URL_REVIEW}?search=${review.writer.nickname}">${review.writer.nickname}</a> sur <a class="link-if" href="${UrlRoute.URL_GAME}/${review.game.slug}">${review.game.name}</a></h1>
         <security:authorize access="hasRole('MODERATOR')">
             <c:if test="${review.moderator == null}">
                 <a class="col-1 btn btn-success" title="Accepter le commentaire" href="${UrlRoute.URL_ADMIN_REVIEW}/${review.id}/accept"><i class="fa-regular fa-square-check"></i></a>

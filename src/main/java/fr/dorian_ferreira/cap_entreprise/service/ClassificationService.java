@@ -1,6 +1,5 @@
 package fr.dorian_ferreira.cap_entreprise.service;
 
-import fr.dorian_ferreira.cap_entreprise.dto.ClassificationDTO;
 import fr.dorian_ferreira.cap_entreprise.entity.Classification;
 import fr.dorian_ferreira.cap_entreprise.exception.NotFoundEntityException;
 import fr.dorian_ferreira.cap_entreprise.repository.ClassificationRepository;
@@ -29,12 +28,5 @@ public class ClassificationService implements DAOServiceInterface<Classification
             throw new NotFoundEntityException("Classification", "id", id);
         }
         return optional.get();
-    }
-
-    public Classification persist(ClassificationDTO dto) {
-
-        Classification entity = new Classification();
-        entity.setName(dto.getName());
-        return repository.saveAndFlush(entity);
     }
 }

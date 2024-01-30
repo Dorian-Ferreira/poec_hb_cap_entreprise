@@ -8,9 +8,9 @@
     <div class="py-2">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a class="link-if" href="/">Home</a></li>
+          <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="/">Home</a></li>
           <li class="breadcrumb-item">BO Admin</li>
-          <li class="breadcrumb-item">Liste des avis</li>
+          <li class="breadcrumb-item">Liste des Avis</li>
           <li class="breadcrumb-item">Avis ${reviews.numberOfElements == 0 ? 0 : ((reviews.number * reviews.size) + 1)} à ${(reviews.number * reviews.size) + reviews.numberOfElements} sur ${reviews.totalElements}</li>
         </ol>
       </nav>

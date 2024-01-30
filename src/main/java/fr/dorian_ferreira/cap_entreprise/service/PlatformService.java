@@ -1,6 +1,5 @@
 package fr.dorian_ferreira.cap_entreprise.service;
 
-import fr.dorian_ferreira.cap_entreprise.dto.PlatformDTO;
 import fr.dorian_ferreira.cap_entreprise.entity.Platform;
 import fr.dorian_ferreira.cap_entreprise.exception.NotFoundEntityException;
 import fr.dorian_ferreira.cap_entreprise.repository.PlatformRepository;
@@ -29,18 +28,5 @@ public class PlatformService implements DAOServiceInterface<Platform> {
             throw new NotFoundEntityException("Platform", "id", id);
         }
         return optional.get();
-    }
-
-    public Platform persist(PlatformDTO platformDTO, Long id) {
-        if (id != null && repository.findById(id).isEmpty()) {
-            throw new NotFoundEntityException(
-                    "Platform", "id", id
-            );
-        }
-
-        Platform entity = new Platform();
-        entity.setId(id);
-        entity.setName(platformDTO.getName());
-        return repository.saveAndFlush(entity);
     }
 }

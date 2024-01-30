@@ -9,8 +9,8 @@
     <div class="d-flex justify-content-between py-2">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a class="link-if" href="/">Home</a></li>
-          <li class="breadcrumb-item">Liste des jeux</li>
+          <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="/">Home</a></li>
+          <li class="breadcrumb-item">Liste des Jeux</li>
           <li class="breadcrumb-item">Jeux ${games.numberOfElements == 0 ? 0 : (games.number * games.size) + 1} à ${(games.number * games.size) + games.numberOfElements} sur ${games.totalElements}</li>
         </ol>
       </nav>

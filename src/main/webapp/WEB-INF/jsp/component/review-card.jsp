@@ -4,7 +4,7 @@
   <div class="main-review-card w-100 ${jspUtils.getBorderCssClass(review.moderator != null)}">
     <p class="text-center text-white">
       Le ${dateUtils.getDateFormat(review.createdAt, "dd/MM/yyyy")}
-      par ${review.writer.nickname}
+      par <a class="link-if" href="${UrlRoute.URL_REVIEW}?search=${review.writer.nickname}">${review.writer.nickname}</a>
     </p>
     <div class="review-card w-100">
       <p class="review-description h-75">

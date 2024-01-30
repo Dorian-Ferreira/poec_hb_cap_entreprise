@@ -8,14 +8,14 @@
         <div class="d-flex justify-content-between py-2">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a class="link-if" href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="/">Home</a></li>
                     <li class="breadcrumb-item">Liste des Avis</li>
                     <li class="breadcrumb-item">Avis ${reviews.numberOfElements == 0 ? 0 : ((reviews.number * reviews.size) + 1)} à ${(reviews.number * reviews.size) + reviews.numberOfElements} sur ${reviews.totalElements}</li>
                 </ol>
             </nav>
             <security:authorize access="hasRole('GAMER')">
-                <a href="${UrlRoute.URL_REVIEW_NEW}" class="btn btn-success">
-                    Ajouter un avis
+                <a href="${UrlRoute.URL_REVIEW_NEW}" title="Ajouter un Avis" class="btn btn-success m-0 p-3">
+                    <i class="fa-solid fa-comment"></i> Commenter
                 </a>
             </security:authorize>
         </div>
