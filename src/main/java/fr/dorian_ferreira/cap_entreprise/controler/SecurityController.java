@@ -31,7 +31,7 @@ public class SecurityController {
     public ModelAndView redirect(ModelAndView mav,
                                  Principal principal) {
         if(userService.isAdmin(principal)) {
-            mav.setViewName("redirect:"+UrlRoute.URL_ADMIN_REVIEW);
+            mav.setViewName("redirect:"+UrlRoute.URL_REVIEW);
         } else {
             mav.setViewName("redirect:/");
         }

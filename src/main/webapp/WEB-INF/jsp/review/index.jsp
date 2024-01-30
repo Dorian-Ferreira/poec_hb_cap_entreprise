@@ -57,6 +57,15 @@
                 <c:set var="sortable" value="writer.nickname"/>
                 <%@ include file="../component/sortable.jsp" %>
 
+                <security:authorize access="hasRole('MODERATOR')">
+                    <select class="form-select" aria-label="Default select example" moderationFilter>
+                        <option selected>Status</option>
+                        <option value="1">Tous</option>
+                        <option value="2">Non Modéré</option>
+                        <option value="3">Modéré</option>
+                    </select>
+                </security:authorize>
+
                 <span class="mt-auto mb-2">
                     <a href="${UrlRoute.URL_REVIEW}" class="btn-link" title="Réinitialiser les filtres">
                         <i class="fa-solid fa-filter-circle-xmark"></i>

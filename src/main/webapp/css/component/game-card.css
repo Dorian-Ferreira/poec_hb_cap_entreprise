@@ -5,7 +5,7 @@
 }
 
 .main-game-card:hover {
-    color: #ff5400;
+    color: var(--bs-primary);
 }
 
 .game-card {

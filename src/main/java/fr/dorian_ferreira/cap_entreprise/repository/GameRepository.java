@@ -13,7 +13,7 @@ public interface GameRepository
 {
     List<Game> findAllByOrderByName();
 
-    Page<Game> findAllByNameContainingIgnoreCaseOrPublisherNameContainingIgnoreCase(String search1, String search2, Pageable pageable);
+    Page<Game> findAllByNameContainingIgnoreCaseOrPublisherNameContainingIgnoreCaseOrGenreNameContainingIgnoreCaseOrPlatformsNameContainingIgnoreCase(String search1, String search2, String search3, String search4, Pageable pageable);
 
     Optional<Game> findBySlug(String slug);
 }

@@ -1,25 +1,19 @@
+
 .main-review-card {
     border: 1px solid;
     border-radius: 0.5em;
     text-decoration: none;
     padding: 0.2em 0.8em;
+    height: 300px;
 }
 
 .main-review-card:hover {
-    background-color: #505050;
-}
-
-.main-review-border-red {
-    color: #bb2d3b;
-}
-
-.main-review-border-green {
-    color: #4cbb2d;
+    background-color: #444444;
 }
 
 .review-card {
     width: 100%;
-    height: 180px;
+    height: 210px;
 }
 
 .review-card .review-description {
@@ -44,4 +38,12 @@
 
 .rating-20 {
     color: green;
+}
+
+.main-review-border-red {
+    color: #bb2d3b;
+}
+
+.main-review-border-green {
+    color: #4cbb2d;
 }

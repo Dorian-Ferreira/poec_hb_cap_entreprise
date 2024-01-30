@@ -34,7 +34,7 @@ public class GameService implements DAOServiceInterface<Game> {
         if(search == null || search.isEmpty()) {
             return findAll(pageable);
         }
-        return repository.findAllByNameContainingIgnoreCaseOrPublisherNameContainingIgnoreCase(search, search, pageable);
+        return repository.findAllByNameContainingIgnoreCaseOrPublisherNameContainingIgnoreCaseOrGenreNameContainingIgnoreCaseOrPlatformsNameContainingIgnoreCase(search, search, search, search,  pageable);
     }
 
     @Override

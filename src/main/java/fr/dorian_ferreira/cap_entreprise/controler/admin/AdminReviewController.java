@@ -74,7 +74,7 @@ public class AdminReviewController {
         } else if(outcome.equals(("refuse"))) {
             reviewService.refuse(id);
         }
-        mav.setViewName("redirect:" + UrlRoute.URL_ADMIN_REVIEW);
+        mav.setViewName("redirect:" + UrlRoute.URL_REVIEW);
 
         return mav;
     }
