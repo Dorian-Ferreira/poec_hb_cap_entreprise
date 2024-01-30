@@ -1,7 +1,9 @@
 package fr.dorian_ferreira.cap_entreprise.controler;
 
+import fr.dorian_ferreira.cap_entreprise.entity.Game;
 import fr.dorian_ferreira.cap_entreprise.mapping.UrlRoute;
 import fr.dorian_ferreira.cap_entreprise.service.GameService;
+import fr.dorian_ferreira.cap_entreprise.service.ReviewService;
 import fr.dorian_ferreira.cap_entreprise.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +21,7 @@ import java.security.Principal;
 public class GameController {
 
     private GameService gameService;
+    private ReviewService reviewService;
 
     @GetMapping(value = UrlRoute.URL_GAME, name = "list")
     public ModelAndView index(
@@ -38,10 +41,17 @@ public class GameController {
     @GetMapping(path = UrlRoute.URL_GAME + "/{slug}", name = "show")
     public ModelAndView show(
             @PathVariable String slug,
-            ModelAndView mav
+            ModelAndView mav,
+            @PageableDefault(
+                    size = 6, // nb Element par page
+                    sort = { "createdAt" }, // order by
+                    direction = Sort.Direction.DESC
+            ) Pageable pageable
     ) {
         mav.setViewName("game/show");
-        mav.addObject("game", gameService.findBySlug(slug));
+        Game game = gameService.findBySlug(slug);
+        mav.addObject("game", game);
+        mav.addObject("reviews", reviewService.findByGame(game, pageable));
         return mav;
     }
 }

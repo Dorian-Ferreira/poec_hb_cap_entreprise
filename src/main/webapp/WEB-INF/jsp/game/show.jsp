@@ -69,15 +69,52 @@
         <h5>Description :</h5>
         <p>${game.description}</p>
     </div>
-    <c:if test="${game.reviews.size() > 0}">
-        <div class="row container">
-            <h5 class="mt-4">Avis :</h5>
-            <c:forEach items="${game.reviews}" var="review">
+    <c:if test="${reviews.numberOfElements > 0}">
+        <div class="row container" id="reviewRow">
+            <c:set var="scroll" scope="request" value="reviewRow"/>
+            <div class="row">
+                <div class="d-flex justify-content-center">
+                    <div class="d-flex">
+                        <h1 class="">Liste des avis</h1>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="d-flex">
+                        <!-- Label à afficher -->
+                        <c:set var="label" scope="request" value="Date"/>
+                        <!-- Sur quelle propriété de l'objet on souhaite trier -->
+                        <c:set var="sortable" value="createdAt"/>
+                        <%@ include file="../component/sortable.jsp" %>
+
+                        <c:set var="label" scope="request" value="Note"/>
+                        <c:set var="sortable" value="rating"/>
+                        <%@ include file="../component/sortable.jsp" %>
+
+                        <c:set var="label" scope="request" value="Jeu"/>
+                        <c:set var="sortable" value="game.name"/>
+                        <%@ include file="../component/sortable.jsp" %>
+
+                        <c:set var="label" scope="request" value="Joueur"/>
+                        <c:set var="sortable" value="writer.nickname"/>
+                        <%@ include file="../component/sortable.jsp" %>
+
+                        <span class="mt-auto mb-2">
+                    <a href="${UrlRoute.URL_GAME}/${game.slug}#reviewRow" class="btn-link" title="Réinitialiser les filtres">
+                        <i class="fa-solid fa-filter-circle-xmark"></i>
+                    </a>
+                </span>
+                    </div>
+                </div>
+            </div>
+            <c:forEach items="${reviews.content}" var="review">
                 <c:if test="${review.moderator != null}">
                     <%@ include file="../component/review-card.jsp" %>
                 </c:if>
             </c:forEach>
         </div>
+
+        <c:set var="page" scope="request" value="${reviews}"/>
+        <%@ include file="../component/pagination.jsp" %>
     </c:if>
 
 </div>

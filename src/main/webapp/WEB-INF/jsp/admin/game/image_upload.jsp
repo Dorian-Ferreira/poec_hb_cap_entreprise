@@ -5,13 +5,15 @@
 
 <div class="container">
     <div class="row">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item"><a href="${UrlRoute.URL_ADMIN_GAME}">Liste des jeux</a></li>
-                <li class="breadcrumb-item">Téléverser une image</li>
-            </ol>
-        </nav>
+        <div class="py-2">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a href="${UrlRoute.URL_ADMIN_GAME}">Liste des jeux</a></li>
+                    <li class="breadcrumb-item">Téléverser une image</li>
+                </ol>
+            </nav>
+        </div>
     </div>
 
     <h1>Ajouter une image au Jeu ${game.name}</h1>

@@ -5,12 +5,20 @@
 
 <div class="container">
     <div class="row">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item">Liste des Avis</li>
-            </ol>
-        </nav>
+        <div class="d-flex justify-content-between py-2">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item">Liste des Avis</li>
+                    <li class="breadcrumb-item">Avis ${reviews.numberOfElements == 0 ? 0 : ((reviews.number * reviews.size) + 1)} à ${(reviews.number * reviews.size) + reviews.numberOfElements} sur ${reviews.totalElements}</li>
+                </ol>
+            </nav>
+            <security:authorize access="hasRole('GAMER')">
+                <a href="${UrlRoute.URL_REVIEW_NEW}" class="btn btn-light">
+                    Ajouter un avis
+                </a>
+            </security:authorize>
+        </div>
     </div>
     <div class="row">
         <div class="d-flex justify-content-center">
@@ -23,7 +31,7 @@
                 <div class="d-flex main-container mx-5">
                     <input type="text"
                            class="form-control"
-                           placeholder="Starcraft, Blizzard, ..."
+                           placeholder="Starcraft, Chloe, ..."
                            data-filter
                     >
                     <a class="my-auto me-3">
@@ -66,11 +74,6 @@
     <c:set var="page" scope="request" value="${reviews}"/>
     <c:set var="url" scope="request" value="/review"/>
     <%@ include file="../component/pagination.jsp" %>
-    <security:authorize access="hasRole('GAMER')">
-        <a href="${UrlRoute.URL_REVIEW_NEW}" class="btn btn-light">
-            Ajouter un avis
-        </a>
-    </security:authorize>
 </div>
 
 <%@ include file="../footer.jsp" %>

@@ -5,13 +5,16 @@
 
 <div class="container">
   <div class="row">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item">BO Admin</li>
-        <li class="breadcrumb-item">Liste des avis</li>
-      </ol>
-    </nav>
+    <div class="py-2">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item">BO Admin</li>
+          <li class="breadcrumb-item">Liste des avis</li>
+          <li class="breadcrumb-item">Avis ${reviews.numberOfElements == 0 ? 0 : ((reviews.number * reviews.size) + 1)} à ${(reviews.number * reviews.size) + reviews.numberOfElements} sur ${reviews.totalElements}</li>
+        </ol>
+      </nav>
+    </div>
   </div>
   <div class="row">
     <div class="d-flex justify-content-center">
@@ -24,7 +27,7 @@
         <div class="d-flex main-container mx-5">
           <input type="text"
                  class="form-control"
-                 placeholder="Starcraft, Blizzard, ..."
+                 placeholder="Starcraft, Chloe, ..."
                  data-filter
           >
           <a class="my-auto me-3">
@@ -119,7 +122,6 @@
     </a>
   </div>
   <c:set var="page" scope="request" value="${reviews}"/>
-  <c:set var="url" scope="request" value="${UrlRoute.URL_ADMIN_REVIEW}"/>
   <%@ include file="../../component/pagination.jsp" %>
 </div>
 

@@ -1,10 +1,7 @@
 package fr.dorian_ferreira.cap_entreprise.service;
 
 import fr.dorian_ferreira.cap_entreprise.dto.ReviewDTO;
-import fr.dorian_ferreira.cap_entreprise.entity.Gamer;
-import fr.dorian_ferreira.cap_entreprise.entity.Moderator;
-import fr.dorian_ferreira.cap_entreprise.entity.Review;
-import fr.dorian_ferreira.cap_entreprise.entity.User;
+import fr.dorian_ferreira.cap_entreprise.entity.*;
 import fr.dorian_ferreira.cap_entreprise.exception.NotFoundEntityException;
 import fr.dorian_ferreira.cap_entreprise.repository.ReviewRepository;
 import fr.dorian_ferreira.cap_entreprise.service.interfaces.DAOServiceInterface;
@@ -97,4 +94,7 @@ public class ReviewService implements DAOServiceInterface<Review> {
         repository.delete(r);
     }
 
+    public Page<Review> findByGame(Game game, Pageable pageable) {
+        return repository.findAllByGameAndModeratorIsNotNull(game, pageable);
+    }
 }

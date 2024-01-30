@@ -21,20 +21,16 @@
     <body class="background">
         <security:authorize access="isAuthenticated()">
             <nav class="navbar navbar-expand-lg">
-                <div class="row w-100">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="navbar-collapse collapse navbar-nav justify-content-between " id="navbarSupportedContent">
-                        <div class="navbar-item">
-                            <a class="navbar-brand ms-3 px-3" href="${contextPath}/">
+                <div class="row w-100 ">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="mx-3">
+                            <a class="navbar-brand" href="${contextPath}/">
                                 <span class="text-white">Page d'accueil</span>
                             </a>
                         </div>
 
-                        <security:authorize access="hasRole('MODERATOR')">
-                            <div class="navbar-item">
+                        <div class="d-flex align-items-center">
+                            <security:authorize access="hasRole('MODERATOR')">
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         BO Admin
@@ -45,12 +41,10 @@
                                         <li><a class="dropdown-item" href="${UrlRoute.URL_ADMIN_GAME_NEW}">Ajouter un jeu</a></li>
                                     </ul>
                                 </div>
-                            </div>
-                        </security:authorize>
+                            </security:authorize>
 
-                        <div class="navbar-item">
-                            <span class="mx-1 txt-primary">${userLogged.nickname}</span>
-                            <form class="navbar-brand m-0" method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
+                            <span class="mx-3 txt-primary">${userLogged.nickname}</span>
+                            <form class="navbar-brand m-0 p-2" method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
                                 <button type="submit" tabindex="3" class="btn btn-danger"><i class="fa-solid fa-user-slash"></i></button>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             </form>

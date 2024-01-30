@@ -5,13 +5,16 @@
 
 <div class="container">
   <div class="row">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item">BO Admin</li>
-        <li class="breadcrumb-item">Liste des Jeux</li>
-      </ol>
-    </nav>
+    <div class="py-2">
+      <nav aria-label="breadcrumb py-2">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item">BO Admin</li>
+          <li class="breadcrumb-item">Liste des Jeux</li>
+          <li class="breadcrumb-item">Jeux ${games.numberOfElements == 0 ? 0 : (games.number * games.size) + 1} à ${(games.number * games.size) + games.numberOfElements} sur ${games.totalElements}</li>
+        </ol>
+      </nav>
+    </div>
   </div>
   <div class="row">
     <div class="d-flex justify-content-center">
@@ -94,7 +97,6 @@
     </tbody>
   </table>
   <c:set var="page" scope="request" value="${games}"/>
-  <c:set var="url" scope="request" value="${UrlRoute.URL_ADMIN_GAME}"/>
   <%@ include file="../../component/pagination.jsp" %>
 
   <a href="${UrlRoute.URL_ADMIN_GAME_NEW}" class="btn btn-light">

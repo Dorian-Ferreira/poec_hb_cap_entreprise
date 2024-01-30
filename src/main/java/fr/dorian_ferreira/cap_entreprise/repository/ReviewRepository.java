@@ -1,5 +1,6 @@
 package fr.dorian_ferreira.cap_entreprise.repository;
 
+import fr.dorian_ferreira.cap_entreprise.entity.Game;
 import fr.dorian_ferreira.cap_entreprise.entity.Gamer;
 import fr.dorian_ferreira.cap_entreprise.entity.Review;
 import org.springframework.data.domain.Page;
@@ -30,4 +31,6 @@ public interface ReviewRepository
     List<Review> findTop6ByModeratorIsNotNullOrderByRatingDesc();
 
     List<Review> findAllByGameId(Long id);
+
+    Page<Review> findAllByGameAndModeratorIsNotNull(Game game, Pageable pageable);
 }
