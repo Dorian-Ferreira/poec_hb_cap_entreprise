@@ -7,10 +7,12 @@
     <div class="row">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="/">Home</a></li>
+                <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="/">Accueil</a></li>
                 <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="${UrlRoute.URL_GAME}">Liste des Jeux</a></li>
                 <li class="breadcrumb-item">${game.name}</li>
-                <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="#reviewRow">Les Avis</a></li>
+                <c:if test="${game.reviews.size() > 0}">
+                    <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="#reviewRow">Les Avis</a></li>
+                </c:if>
             </ol>
         </nav>
     </div>
@@ -69,20 +71,13 @@
         <div class="row container" id="reviewRow">
             <c:set var="scroll" scope="request" value="reviewRow"/>
             <div class="row">
-                <security:authorize access="hasRole('MODERATOR')">
-                    <div>
-                        <a href="${UrlRoute.URL_ADMIN_REVIEW}?search=${game.slug}" class="btn btn-success">
-                            <i class="fa-solid fa-comment"></i> Modérer les avis
-                        </a>
-                    </div>
-                </security:authorize>
                 <security:authorize access="hasRole('GAMER')">
                     <div>
                         <button class="ms-2 btn btn-success"
                                 title="Ajouter un commentaire"
                                 data-hide-show-button="formReview"
                         >
-                            <i class="fa-solid fa-comment"></i> Commenter
+                            <i class="fa-solid fa-file-pen me-2"></i>Ajouter un commentaire
                         </button>
                     </div>
                     <div class="my-3 d-none"
@@ -114,12 +109,14 @@
                     </div>
                 </security:authorize>
                 <div class="d-flex justify-content-center">
-                    <div class="d-flex">
-                        <h1 class="">Liste des avis</h1>
+                    <h1 class="">Liste des avis</h1>
                     </div>
-                </div>
                 <div class="d-flex justify-content-center">
                     <div class="d-flex">
+                        <p class="mt-3 me-5">
+                            Avis ${reviews.numberOfElements == 0 ? 0 : ((reviews.number * reviews.size) + 1)} à ${(reviews.number * reviews.size) + reviews.numberOfElements} sur ${reviews.totalElements}
+                        </p>
+
                         <!-- Label à afficher -->
                         <c:set var="label" scope="request" value="Date"/>
                         <!-- Sur quelle propriété de l'objet on souhaite trier -->
@@ -134,11 +131,18 @@
                         <c:set var="sortable" value="writer.nickname"/>
                         <%@ include file="../component/sortable.jsp" %>
 
-                        <span class="mt-auto mb-2">
-                    <a href="${UrlRoute.URL_GAME}/${game.slug}#reviewRow" class="btn-link" title="Réinitialiser les filtres">
-                        <i class="fa-solid fa-filter-circle-xmark"></i>
-                    </a>
-                </span>
+                        <span class="mt-auto mb-auto">
+                            <a href="${UrlRoute.URL_GAME}/${game.slug}#reviewRow" class="btn-link" title="Réinitialiser les filtres">
+                                <i class="fa-solid fa-filter-circle-xmark"></i>
+                            </a>
+                        </span>
+                        <security:authorize access="hasRole('MODERATOR')">
+                            <div class="ms-5 mt-2">
+                                <a href="${UrlRoute.URL_REVIEW}?search=${game.slug}&moderation=2" class="btn btn-danger">
+                                    <i class="fa-solid fa-comment-slash"></i> Modérer les avis en attente
+                                </a>
+                            </div>
+                        </security:authorize>
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@
     <div class="row">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="/">Home</a></li>
+                <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="/">Accueil</a></li>
                 <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="${UrlRoute.URL_REVIEW}">Liste des Avis</a></li>
             </ol>
         </nav>

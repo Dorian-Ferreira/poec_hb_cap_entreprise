@@ -8,16 +8,11 @@
         <div class="d-flex justify-content-between py-2">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="/">Home</a></li>
+                    <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="/">Accueil</a></li>
                     <li class="breadcrumb-item">Liste des Avis</li>
                     <li class="breadcrumb-item">Avis ${reviews.numberOfElements == 0 ? 0 : ((reviews.number * reviews.size) + 1)} à ${(reviews.number * reviews.size) + reviews.numberOfElements} sur ${reviews.totalElements}</li>
                 </ol>
             </nav>
-            <security:authorize access="hasRole('GAMER')">
-                <a href="${UrlRoute.URL_REVIEW_NEW}" title="Ajouter un Avis" class="btn btn-success m-0 p-3">
-                    <i class="fa-solid fa-comment"></i> Commenter
-                </a>
-            </security:authorize>
         </div>
     </div>
     <div class="row">
@@ -28,7 +23,7 @@
         </div>
         <div class="d-flex justify-content-center">
             <div class="d-flex">
-                <div class="d-flex main-container mx-5">
+                <div class="d-flex main-container mx-5 my-auto px-3">
                     <input type="text"
                            class="form-control"
                            placeholder="Starcraft, Chloe, ..."
@@ -58,7 +53,7 @@
                 <%@ include file="../component/sortable.jsp" %>
 
                 <security:authorize access="hasRole('MODERATOR')">
-                    <select class="form-select" aria-label="Default select example" moderationFilter>
+                    <select class="m-auto px-3" aria-label="Default select example" moderationFilter>
                         <option selected>Status</option>
                         <option value="1">Tous</option>
                         <option value="2">Non Modéré</option>
@@ -66,11 +61,17 @@
                     </select>
                 </security:authorize>
 
-                <span class="mt-auto mb-2">
+                <span class="mt-auto mb-2 px-4">
                     <a href="${UrlRoute.URL_REVIEW}" class="btn-link" title="Réinitialiser les filtres">
                         <i class="fa-solid fa-filter-circle-xmark"></i>
                     </a>
                 </span>
+
+              <security:authorize access="hasRole('GAMER')">
+                <a href="${UrlRoute.URL_REVIEW_NEW}" title="Ajouter un Avis" class="mx-5 p-3" title="Ajouter un avis">
+                  <i class="fa-solid fa-comment-medical text-success fs-3"></i>
+                </a>
+              </security:authorize>
             </div>
         </div>
     </div>

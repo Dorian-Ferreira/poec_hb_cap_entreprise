@@ -9,16 +9,11 @@
     <div class="d-flex justify-content-between py-2">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="/">Home</a></li>
+          <li class="breadcrumb-item"><a class="link-if text-decoration-underline" href="/">Accueil</a></li>
           <li class="breadcrumb-item">Liste des Jeux</li>
           <li class="breadcrumb-item">Jeux ${games.numberOfElements == 0 ? 0 : (games.number * games.size) + 1} à ${(games.number * games.size) + games.numberOfElements} sur ${games.totalElements}</li>
         </ol>
       </nav>
-      <security:authorize access="hasRole('MODERATOR')">
-        <a href="${UrlRoute.URL_ADMIN_GAME_NEW}" class="btn btn-success">
-          Ajouter un jeu
-        </a>
-      </security:authorize>
     </div>
   </div>
   <div class="row">
@@ -31,7 +26,7 @@
   <div class="row">
     <div class="d-flex justify-content-center">
       <div class="d-flex">
-        <div class="d-flex main-container mx-5">
+        <div class="d-flex main-container mx-5 my-auto px-3">
           <input type="text"
                  class="form-control"
                  placeholder="Starcraft, Blizzard, ..."
@@ -54,11 +49,16 @@
         <c:set var="sortable" value="publisher.name"/>
         <%@ include file="../component/sortable.jsp" %>
 
-        <span class="mt-auto mb-2">
+        <span class="mt-auto mb-auto px-4">
             <a href="${UrlRoute.URL_GAME}" class="btn-link" title="Réinitialiser les filtres">
                 <i class="fa-solid fa-filter-circle-xmark"></i>
             </a>
         </span>
+        <security:authorize access="hasRole('MODERATOR')">
+          <a href="${UrlRoute.URL_ADMIN_GAME_NEW}" class="mx-5 p-3">
+            <i class="fa-solid fa-square-plus text-success fs-3"></i>
+          </a>
+        </security:authorize>
       </div>
     </div>
   </div>

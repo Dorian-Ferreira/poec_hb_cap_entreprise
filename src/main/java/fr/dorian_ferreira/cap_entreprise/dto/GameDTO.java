@@ -3,6 +3,7 @@ package fr.dorian_ferreira.cap_entreprise.dto;
 import fr.dorian_ferreira.cap_entreprise.entity.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

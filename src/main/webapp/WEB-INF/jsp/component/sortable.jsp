@@ -5,8 +5,10 @@
   <core:set var="scrolling" value="#${scroll}"/>
 </core:if>
 
-<div class="sort-filter d-flex">
-  ${label}
+<div class="sort-filter d-flex align-items-center">
+  <div class="d-flex">
+    ${label}
+  </div>
   <div class="ms-1 me-2 row">
     <c:set var="sortAsc" scope="request" value="sort=${sortable},asc"/>
     <a href="${jspUtils.generateUrlFrom(currentUrl, currentQuery, sortAsc)}${scrolling}" data-my-sortable="${sortAsc}">
