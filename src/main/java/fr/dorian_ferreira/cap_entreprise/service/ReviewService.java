@@ -49,7 +49,7 @@ public class ReviewService implements DAOServiceInterface<Review> {
         }
 
         return repository.findAllByModeratorNotNullAndGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase
-                (search1, search2, search2, page);
+                (search1, search2, search2, userService.getObjectByName(principal.getName()), page);
     }
 
     public List<Review> find6HighRateReview() {
