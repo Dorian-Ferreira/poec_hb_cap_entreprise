@@ -3,6 +3,7 @@ package fr.dorian_ferreira.cap_entreprise.controler.admin;
 import fr.dorian_ferreira.cap_entreprise.dto.GameDTO;
 import fr.dorian_ferreira.cap_entreprise.mapping.UrlRoute;
 import fr.dorian_ferreira.cap_entreprise.service.*;
+import fr.dorian_ferreira.cap_entreprise.utils.FlashMessage;
 import fr.dorian_ferreira.cap_entreprise.utils.ImageUploadService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -15,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -78,9 +80,15 @@ public class AdminGameController {
     @GetMapping(path = UrlRoute.URL_ADMIN_GAME_DELETE + "/{id}")
     public ModelAndView delete(
             @PathVariable Long id,
+            RedirectAttributes redirectAttributes,
             ModelAndView mav
     ) {
         gameService.delete(id);
+
+        redirectAttributes.addFlashAttribute(
+                "flashMessage",
+                new FlashMessage("warning", "Le jeu a bien été supprimé !")
+        );
 
         mav.setViewName("redirect:"+UrlRoute.URL_GAME);
         return mav;
@@ -100,10 +108,16 @@ public class AdminGameController {
     public ModelAndView fileUpload(
             @RequestParam("file") MultipartFile file,
             ModelAndView mav,
+            RedirectAttributes redirectAttributes,
             @PathVariable Long id) {
         String imagePath = imageUploadService.uploadImage("jeu/", file);
 
         gameService.addImage(id, imagePath);
+
+        redirectAttributes.addFlashAttribute(
+                "flashMessage",
+                new FlashMessage("success", "Votre image a bien été enregistré !")
+        );
 
         mav.setViewName("redirect:"+UrlRoute.URL_GAME + "/" + gameService.findById(id).getSlug());
         return mav;
@@ -114,9 +128,10 @@ public class AdminGameController {
         @Valid @ModelAttribute("game") GameDTO platformDTO,
         BindingResult result,
         ModelAndView mav,
-        Principal principal
+        Principal principal,
+        RedirectAttributes redirectAttributes
     ) {
-        return formHandle(result, mav, platformDTO, null, principal);
+        return formHandle(result, mav, platformDTO, null, principal, redirectAttributes);
     }
 
     @PostMapping(path = UrlRoute.URL_ADMIN_GAME_EDIT + "/{id}", name = "editHandler")
@@ -125,9 +140,10 @@ public class AdminGameController {
         BindingResult result,
         ModelAndView mav,
         @PathVariable Long id,
-        Principal principal
+        Principal principal,
+        RedirectAttributes redirectAttributes
     ) {
-        return formHandle(result, mav, platformDTO, id, principal);
+        return formHandle(result, mav, platformDTO, id, principal, redirectAttributes);
     }
 
     private ModelAndView getFormByDTO(
@@ -148,12 +164,18 @@ public class AdminGameController {
             ModelAndView mav,
             GameDTO dto,
             Long id,
-            Principal principal
+            Principal principal,
+            RedirectAttributes redirectAttributes
     ) {
         if (result.hasErrors()) {
             mav.setViewName("admin/game/form");
             return setup(mav);
         }
+
+        redirectAttributes.addFlashAttribute(
+                "flashMessage",
+                new FlashMessage("success", "Le jeu a bien été enregistré!")
+        );
         mav.setViewName("redirect:" + UrlRoute.URL_GAME + "/" + gameService.persist(dto, id, principal).getSlug());
         return mav;
     }

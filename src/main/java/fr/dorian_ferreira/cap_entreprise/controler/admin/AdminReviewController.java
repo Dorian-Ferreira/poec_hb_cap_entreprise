@@ -3,6 +3,7 @@ package fr.dorian_ferreira.cap_entreprise.controler.admin;
 import fr.dorian_ferreira.cap_entreprise.mapping.UrlRoute;
 import fr.dorian_ferreira.cap_entreprise.service.ReviewService;
 import fr.dorian_ferreira.cap_entreprise.utils.ExcelReviewService;
+import fr.dorian_ferreira.cap_entreprise.utils.FlashMessage;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.apache.commons.compress.utils.IOUtils;
@@ -12,6 +13,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -67,13 +69,21 @@ public class AdminReviewController {
             @PathVariable Long id,
             @PathVariable String outcome,
             ModelAndView mav,
+            RedirectAttributes redirectAttributes,
             Principal principal
     ) {
+
+        FlashMessage flashMessage = new FlashMessage();
+
         if(outcome.equals("accept")) {
             reviewService.validate(id, principal);
+            flashMessage = new FlashMessage("success", "Le commentaire a bien été modéré !");
         } else if(outcome.equals(("refuse"))) {
             reviewService.refuse(id);
+            flashMessage = new FlashMessage("warning", "Le commentaire a bien été supprimé !");
         }
+        redirectAttributes.addFlashAttribute("flashMessage", flashMessage);
+
         mav.setViewName("redirect:" + UrlRoute.URL_REVIEW);
 
         return mav;

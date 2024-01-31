@@ -7,6 +7,7 @@ import fr.dorian_ferreira.cap_entreprise.mapping.UrlRoute;
 import fr.dorian_ferreira.cap_entreprise.service.GameService;
 import fr.dorian_ferreira.cap_entreprise.service.ReviewService;
 import fr.dorian_ferreira.cap_entreprise.service.UserService;
+import fr.dorian_ferreira.cap_entreprise.utils.FlashMessage;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 
@@ -44,6 +46,7 @@ public class GameController {
 
     @GetMapping(path = UrlRoute.URL_GAME + "/{slug}", name = "show")
     public ModelAndView show(
+            @ModelAttribute("flashMessage") FlashMessage flashMessage,
             @PathVariable String slug,
             ModelAndView mav,
             @PageableDefault(
@@ -52,8 +55,10 @@ public class GameController {
                     direction = Sort.Direction.DESC
             ) Pageable pageable
     ) {
+
         mav.setViewName("game/show");
         Game game = gameService.findBySlug(slug);
+        mav.addObject("flashMessage", flashMessage);
         mav.addObject("game", game);
         mav.addObject("reviews", reviewService.findByGame(game, pageable));
         mav.addObject("reviewDTO", new ReviewGameDTO());
@@ -71,7 +76,8 @@ public class GameController {
                     size = 6, // nb Element par page
                     sort = { "createdAt" }, // order by
                     direction = Sort.Direction.DESC
-            ) Pageable pageable
+            ) Pageable pageable,
+            RedirectAttributes redirectAttributes
     ) {
         Game game = gameService.findBySlug(slug);
         if (result.hasErrors()) {
@@ -81,8 +87,13 @@ public class GameController {
 
         reviewService.persist(reviewDto, game, principal);
 
-        mav.setViewName("game/show");
-        return setUp(mav, game, pageable);
+        mav.setViewName("redirect:" + UrlRoute.URL_GAME + "/" + slug);
+
+        redirectAttributes.addFlashAttribute(
+                "flashMessage",
+                new FlashMessage("success", "Votre commentaire a bien été enregistré, il est actuellement en attente de modération !")
+        );
+        return mav;
     }
 
     private ModelAndView setUp(ModelAndView mav, Game game, Pageable pageable) {

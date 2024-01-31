@@ -18,6 +18,7 @@
         <script type="text/javascript" src="../../js/page/sortable.js"></script>
         <script type="text/javascript" src="../../js/page/filter.js"></script>
         <script type="text/javascript" src="../../js/page/hide-form.js"></script>
+        <script type="text/javascript" src="../../js/page/alert.js"></script>
     </head>
     <body class="background">
         <security:authorize access="isAuthenticated()">
@@ -31,19 +32,6 @@
                         </div>
 
                         <div class="d-flex align-items-center">
-<%--                            <security:authorize access="hasRole('MODERATOR')">--%>
-<%--                                <div class="dropdown px-2">--%>
-<%--                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">--%>
-<%--                                        BO Admin--%>
-<%--                                    </button>--%>
-<%--                                    <ul class="dropdown-menu">--%>
-<%--                                        <li><a class="dropdown-item" href="${UrlRoute.URL_ADMIN_REVIEW}">Liste des Avis</a></li>--%>
-<%--                                        <li><a class="dropdown-item" href="${UrlRoute.URL_ADMIN_GAME}">Liste des Jeux</a></li>--%>
-<%--                                        <li><a class="dropdown-item" href="${UrlRoute.URL_ADMIN_GAME_NEW}">Ajouter un Jeu</a></li>--%>
-<%--                                    </ul>--%>
-<%--                                </div>--%>
-<%--                            </security:authorize>--%>
-
                             <div>
                                 <security:authorize access="hasRole('GAMER')">
                                     <i class="fa-solid fa-user"></i>
@@ -63,3 +51,10 @@
             </nav>
         </security:authorize>
 
+        <c:if test="${not empty flashMessage.message}">
+            <div class="container">
+                <div class="alert alert-${flashMessage.type}">
+                        ${flashMessage.message}
+                </div>
+            </div>
+        </c:if>
