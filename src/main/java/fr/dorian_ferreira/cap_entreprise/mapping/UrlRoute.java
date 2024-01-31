@@ -18,6 +18,7 @@ public class UrlRoute {
     public static final String URL_REVIEW_NEW = URL_REVIEW + URL_NEW;
     public static final String URL_ADMIN_GAME = URL_ADMIN + URL_GAME;
 
+    public final static String URL_GAME_RANDOM = URL_GAME + "/random";
     public final static String URL_ADMIN_GAME_NEW = URL_ADMIN_GAME + URL_NEW;
     public final static String URL_ADMIN_GAME_EDIT = URL_ADMIN_GAME + URL_EDIT;
     public final static String URL_ADMIN_GAME_DELETE = URL_ADMIN_GAME + "/supprimer";

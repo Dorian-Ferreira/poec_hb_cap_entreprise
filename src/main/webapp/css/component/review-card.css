@@ -20,6 +20,11 @@
     text-justify: auto;
 }
 
+.text-moderation {
+    color: dimgrey;
+    margin: -1em -1em 0em -1em;
+}
+
 .rating-5 {
     color: red;
 }

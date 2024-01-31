@@ -1,6 +1,7 @@
 package fr.dorian_ferreira.cap_entreprise.utils;
 
 import fr.dorian_ferreira.cap_entreprise.entity.Platform;
+import fr.dorian_ferreira.cap_entreprise.mapping.UrlRoute;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -11,7 +12,11 @@ public class JspUtils {
 
     public String excerpt(String text, int size) {
         if (text.length() <= size) return text;
-        return text.substring(0, size) + "...";
+        String finalText = text.substring(0, size) + "...";
+        if (!finalText.contains("</strong>")) {
+            finalText += "</strong>";
+        }
+        return finalText;
     }
 
     public String getCssClas(float rating) {
@@ -35,7 +40,7 @@ public class JspUtils {
         for(Platform p : platformList) {
             if(!s.contains(p.getImage()))
             {
-                s += p.getImage() + " ";
+                s += "<p class=\"mx-2\">" + p.getImage() + "</p>";
             }
         }
         return s;

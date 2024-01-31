@@ -4,8 +4,8 @@
   <div class="main-review-card w-100 ${jspUtils.getBorderCssClass(review.moderator != null)}">
     <p class="text-center text-white">
       Rédigé le ${dateUtils.getDateFormat(review.createdAt, "dd/MM/yyyy")}
-      par <a class="link-if" href="${UrlRoute.URL_REVIEW}?search=${review.writer.nickname}">${review.writer.nickname}</a>
-      <figcaption class="blockquote-footer text-center">
+      par <a class="link-if" title="Chercher les commentaires du joueur" href="${UrlRoute.URL_REVIEW}?search=${review.writer.nickname}">${review.writer.nickname}</a>
+      <figcaption class="text-moderation text-center">
         <c:if test="${not empty review.moderator}">
           Modéré par <cite title="Source Title">${review.moderator.nickname}</cite> -
           le ${dateUtils.getDateFormat(review.moderatedAt, "dd/MM/yyyy")}
@@ -32,15 +32,15 @@
     </p>
     <div class="review-card w-100">
       <p class="review-description h-75">
-        <a class="link-if" href="${UrlRoute.URL_REVIEW}/${review.id}">
-          ${jspUtils.excerpt(review.description, 209)}
+        <a class="link-if" title="Voir le commentaire complet" href="${UrlRoute.URL_REVIEW}/${review.id}">
+          ${jspUtils.excerpt(review.description, 180)}
         </a>
       </p>
       <div class="d-flex justify-content-between">
         <p class="${jspUtils.getCssClas(review.rating)}">
           ${jspUtils.getStringRating(review.rating)} / 20
         </p>
-        <a class="btn-link" href="${UrlRoute.URL_GAME}/${review.game.slug}">
+        <a class="btn-link" title="Aller sur la page du jeu" href="${UrlRoute.URL_GAME}/${review.game.slug}">
           ${review.game.name}
         </a>
       </div>

@@ -1,6 +1,7 @@
 package fr.dorian_ferreira.cap_entreprise.entity;
 
 import fr.dorian_ferreira.cap_entreprise.entity.interfaces.NomenclatureInterface;
+import fr.dorian_ferreira.cap_entreprise.entity.interfaces.SluggerInterface;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Classification implements NomenclatureInterface {
+public class Classification implements NomenclatureInterface, SluggerInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,4 +28,11 @@ public class Classification implements NomenclatureInterface {
 
     @OneToMany(mappedBy = "classification")
     private List<Game> games = new ArrayList<>();
+
+    private String slug;
+
+    @Override
+    public String getField() {
+        return name;
+    }
 }

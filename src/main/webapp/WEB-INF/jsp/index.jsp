@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="d-flex justify-content-center mt-2">
-            <h1 class="mx-5 px-5">Les meilleurs avis</h1>
+            <div class="mx-5 px-5 h1">Les meilleurs avis</div>
             <a class="mt-3 link-if" href="${UrlRoute.URL_REVIEW}">Voir plus</a>
         </div>
         <c:forEach items="${reviews}" var="review">
@@ -16,7 +16,7 @@
 
     <div class="row my-5">
         <div class="d-flex justify-content-center">
-            <h1 class="mx-5 px-5">Propositions de jeux</h1>
+            <div class="mx-5 px-5 h1">Propositions de jeux</div>
             <a class="mt-3 link-if" href="${UrlRoute.URL_GAME}">Voir plus</a>
         </div>
 
@@ -31,7 +31,7 @@
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
             </div>
             <div class="carousel-inner">
-                <a class="carousel-item active" data-bs-interval="3000" href="${UrlRoute.URL_GAME}/${games.get(0).slug}">
+                <a class="carousel-item active" title="Aller sur la page du jeu" data-bs-interval="3000" href="${UrlRoute.URL_GAME}/${games.get(0).slug}">
                     <img src="${games.get(0).image}" class="d-block w-100" alt="${games.get(0).name}">
                     <div class="carousel-caption d-flex d-md-block">
                         <div class="w-100">
@@ -45,7 +45,7 @@
                     </div>
                 </a>
                 <c:forEach items="${games.subList(1, games.size())}" var="game">
-                    <a class="carousel-item" data-bs-interval="3000" href="${UrlRoute.URL_GAME}/${game.slug}">
+                    <a class="carousel-item" title="Aller sur la page du jeu" data-bs-interval="3000" href="${UrlRoute.URL_GAME}/${game.slug}">
                         <img src="${game.image}" class="d-block w-100" alt="${game.name}">
                         <div class="carousel-caption d-flex d-md-block">
                             <div class="w-100">

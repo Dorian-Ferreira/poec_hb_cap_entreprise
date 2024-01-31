@@ -21,6 +21,11 @@
       <div class="d-flex">
         <h1 class="mt-2">Liste des jeux</h1>
       </div>
+      <security:authorize access="hasRole('MODERATOR')">
+        <a href="${UrlRoute.URL_ADMIN_GAME_NEW}" class="btn-green ms-3 pt-4" title="Ajouter un jeu">
+          <i class="fa-solid fa-square-plus fs-3"></i>
+        </a>
+      </security:authorize>
     </div>
   </div>
   <div class="row">
@@ -54,18 +59,13 @@
                 <i class="fa-solid fa-filter-circle-xmark"></i>
             </a>
         </span>
-        <security:authorize access="hasRole('MODERATOR')">
-          <a href="${UrlRoute.URL_ADMIN_GAME_NEW}" class="mx-5 p-3">
-            <i class="fa-solid fa-square-plus text-success fs-3"></i>
-          </a>
-        </security:authorize>
       </div>
     </div>
   </div>
 
   <div class="row mt-2">
     <c:forEach items="${games.content}" var="game">
-      <a class="col-4 mt-2 main-game-card" href="${UrlRoute.URL_GAME}/${game.slug}">
+      <a class="col-lg-4 col-md-6 mt-2 main-game-card" href="${UrlRoute.URL_GAME}/${game.slug}">
         <div class="game-card">
           <div class="game-card-img">
             <img alt="${game.name}" src="${game.image}">

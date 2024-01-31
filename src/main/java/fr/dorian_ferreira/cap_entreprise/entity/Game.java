@@ -20,8 +20,6 @@ import java.util.List;
 @Entity
 public class Game implements NomenclatureInterface, SluggerInterface {
 
-    private static final DecimalFormat df = new DecimalFormat("0.00");
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -79,15 +77,6 @@ public class Game implements NomenclatureInterface, SluggerInterface {
         review.setGame(this);
     }
 
-    public String getAverageRating() {
-        float average = 0;
-        for (Review review : reviews) {
-            if(review.getModerator() != null){
-                average += review.getRating();
-            }
-        }
-        return df.format(average / reviews.size());
-    }
 
     @Override
     public String getField() {

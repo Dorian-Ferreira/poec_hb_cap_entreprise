@@ -53,17 +53,17 @@ public class InitDataLoaderConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-//        createUsers();
-//        createBusinessModels();
-//        createPlatforms();
-//        createPublishers();
-//        createClassifications();
-//        createGenres();
-//        userRepository.flush();
-//        createGames();
-//        gameRepository.flush();
-//        createReview();
-//        reviewRepository.flush();
+        createUsers();
+        createBusinessModels();
+        createPlatforms();
+        createPublishers();
+        createClassifications();
+        createGenres();
+        userRepository.flush();
+        createGames();
+        gameRepository.flush();
+        createReview();
+        reviewRepository.flush();
     }
 
     private void createUsers() {

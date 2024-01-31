@@ -1,5 +1,5 @@
 .main-container {
-    background: linear-gradient(10deg, #ff0000, transparent) #ff2020;
+    background: linear-gradient(10deg, var(--bs-primary), transparent) #ff2020;
     border-radius: 3em;
 }
 
@@ -25,7 +25,7 @@
 
 .main-container input:focus,
 .main-container input:active {
-    background: linear-gradient(10deg, #ff0000, transparent) #ff2020;
+    background: linear-gradient(10deg, var(--bs-primary), transparent) #ff2020;
     color: #fff;
     border: none;
     box-shadow: none;

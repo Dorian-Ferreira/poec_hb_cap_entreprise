@@ -17,12 +17,12 @@
         </nav>
     </div>
     <div class="row">
-        <div class="col-lg-6 col-sm-12">
+        <div class="col-md-4 col-sm-12">
             <div class="container-img">
-                <img src="${game.image}" alt="${game.name}">
+                <img class="d-block" src="${game.image}" alt="${game.name}">
             </div>
         </div>
-        <div class="col-lg-6 col-sm-12">
+        <div class="col-md-8 col-sm-12">
             <div class="justify-content-between">
                 <h1>${game.name}</h1>
                 <security:authorize access="hasRole('MODERATOR')">
@@ -37,77 +37,102 @@
                     </a>
                 </security:authorize>
             </div>
-            <div>
+            <div class="mt-4">
                 <c:if test="${game.reviews.size() > 0}">
-                    <h5 class="mt-4">Note moyenne : </h5>
-                    <p>${game.getAverageRating()}/20</p>
+                    <div class="mt-4">
+                        <span class="h5">Note moyenne : </span>
+                        <span>${averageRating}/20</span>
+                    </div>
                 </c:if>
 
-                <h5 class="mt-4">Sortie le : </h5>
-                <p>${dateUtils.getDateFormat(game.publishedAt, "dd/MM/yyyy")}</p>
+                <div class="mt-4">
+                    <span class="h5">Sortie le : </span>
+                    <span>${dateUtils.getDateFormat(game.publishedAt, "dd/MM/yyyy")}</span>
+                </div>
 
-                <h5 class="mt-4">Éditeur : </h5>
-                <p>${game.publisher.name}</p>
+                <div class="mt-4">
+                    <span class="h5">Éditeur : </span>
+                    <a class="link-if" title="Chercher les jeux de l'éditeur" href="${UrlRoute.URL_GAME}?search=${game.publisher.slug}">${game.publisher.name}</a>
+                </div>
 
-                <h5 class="mt-4">Genre : </h5>
-                <p>${game.genre.name}</p>
+                <div class="mt-4">
+                    <span class="h5">Genre : </span>
+                    <a class="link-if" title="Chercher les jeux du genre" href="${UrlRoute.URL_GAME}?search=${game.genre.slug}">${game.genre.name}</a>
+                </div>
 
-                <h5 class="mt-4">Modèle économique  : </h5>
-                <p>${game.businessModel.name}</p>
+                <div class="mt-4">
+                    <span class="h5">Modèle économique  : </span>
+                    <a class="link-if" title="Chercher les jeux du modèle économique" href="${UrlRoute.URL_GAME}?search=${game.businessModel.slug}">${game.businessModel.name}</a>
+                </div>
 
-                <h5 class="mt-4">Classification : </h5>
-                <p>${game.classification.name}</p>
+                <div class="mt-4">
+                    <span class="h5">Classification : </span>
+                    <a class="link-if" title="Chercher les jeux de la classification" href="${UrlRoute.URL_GAME}?search=${game.classification.slug}">${game.classification.name}</a>
+                </div>
 
-                <h5 class="mt-4">Platformes : </h5>
-                <p>${jspUtils.getPlatformsString(game.platforms)}</p>
+                <div class="mt-4 d-flex">
+                    <span class="h5">Platformes : </span>
+                    ${jspUtils.getPlatformsString(game.platforms)}
+                </div>
             </div>
         </div>
     </div>
-    <div class="row container">
+    <div class="row container mt-5">
         <h5>Description :</h5>
         <p>${game.description}</p>
     </div>
+    <security:authorize access="hasRole('GAMER')">
+        <div class="row">
+            <div>
+                <button class="ms-2 btn btn-success"
+                        title="Ajouter un commentaire"
+                        data-hide-show-button="formReview"
+                >
+                    <i class="fa-solid fa-file-pen me-2"></i>Ajouter un commentaire
+                </button>
+            </div>
+            <div class="my-3 d-none"
+                       data-hide-show-container="formReview"
+            >
+                <f:form cssClass="col-md-8 col-sm-12 mx-auto"
+                        action="${UrlRoute.URL_GAME}/${game.slug}"
+                        method="post"
+                        modelAttribute="reviewDTO"
+                >
+                    <div class="mb-3 row">
+                        <f:label path="description" class="col-sm-2 col-form-label">Description</f:label>
+                        <div class="col-sm-10">
+                            <f:textarea cssClass="form-control" path="description"/>
+                            <f:errors path="description" cssClass="invalid-feedback"/>
+                        </div>
+                    </div>
+                    <div class="my-3 row">
+                        <f:label path="rating" class="col-sm-2 col-form-label">Note</f:label>
+                        <div class="col-sm-10">
+                            <f:input type="number" step="0.5" cssClass="form-control" path="rating"/>
+                            <f:errors path="rating" cssClass="invalid-feedback"/>
+                        </div>
+                    </div>
+                    <f:button type="submit" class="btn btn-success">
+                        <i class="fa fa-check"></i> Ajouter
+                    </f:button>
+                </f:form>
+            </div>
+        </div>
+    </security:authorize>
+    <security:authorize access="hasRole('MODERATOR')">
+        <div class="row">
+            <div class="ms-5 mt-2">
+                <a href="${UrlRoute.URL_REVIEW}?search=${game.slug}&moderation=2" class="btn btn-danger">
+                    <i class="fa-solid fa-comment-slash"></i> Modérer les avis en attente
+                </a>
+            </div>
+        </div>
+    </security:authorize>
     <c:if test="${reviews.numberOfElements > 0}">
         <div class="row container" id="reviewRow">
             <c:set var="scroll" scope="request" value="reviewRow"/>
             <div class="row">
-                <security:authorize access="hasRole('GAMER')">
-                    <div>
-                        <button class="ms-2 btn btn-success"
-                                title="Ajouter un commentaire"
-                                data-hide-show-button="formReview"
-                        >
-                            <i class="fa-solid fa-file-pen me-2"></i>Ajouter un commentaire
-                        </button>
-                    </div>
-                    <div class="my-3 d-none"
-                         data-hide-show-container="formReview"
-                    >
-                        <f:form cssClass="col-md-8 col-sm-12 mx-auto"
-                                action="${UrlRoute.URL_GAME}/${game.slug}"
-                                method="post"
-                                modelAttribute="reviewDTO"
-                        >
-                            <div class="mb-3 row">
-                                <f:label path="description" class="col-sm-2 col-form-label">Description</f:label>
-                                <div class="col-sm-10">
-                                    <f:textarea cssClass="form-control" path="description"/>
-                                    <f:errors path="description" cssClass="invalid-feedback"/>
-                                </div>
-                            </div>
-                            <div class="my-3 row">
-                                <f:label path="rating" class="col-sm-2 col-form-label">Note</f:label>
-                                <div class="col-sm-10">
-                                    <f:input type="number" step="0.5" cssClass="form-control" path="rating"/>
-                                    <f:errors path="rating" cssClass="invalid-feedback"/>
-                                </div>
-                            </div>
-                            <f:button type="submit" class="btn btn-success">
-                                <i class="fa fa-check"></i> Ajouter
-                            </f:button>
-                        </f:form>
-                    </div>
-                </security:authorize>
                 <div class="d-flex justify-content-center">
                     <h1 class="">Liste des avis</h1>
                     </div>
@@ -136,13 +161,6 @@
                                 <i class="fa-solid fa-filter-circle-xmark"></i>
                             </a>
                         </span>
-                        <security:authorize access="hasRole('MODERATOR')">
-                            <div class="ms-5 mt-2">
-                                <a href="${UrlRoute.URL_REVIEW}?search=${game.slug}&moderation=2" class="btn btn-danger">
-                                    <i class="fa-solid fa-comment-slash"></i> Modérer les avis en attente
-                                </a>
-                            </div>
-                        </security:authorize>
                     </div>
                 </div>
             </div>

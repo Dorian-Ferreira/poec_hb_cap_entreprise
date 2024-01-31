@@ -2,6 +2,7 @@ package fr.dorian_ferreira.cap_entreprise.entity;
 
 import fr.dorian_ferreira.cap_entreprise.entity.interfaces.ImageInterface;
 import fr.dorian_ferreira.cap_entreprise.entity.interfaces.NomenclatureInterface;
+import fr.dorian_ferreira.cap_entreprise.entity.interfaces.SluggerInterface;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Platform implements NomenclatureInterface, ImageInterface {
+public class Platform implements NomenclatureInterface, ImageInterface, SluggerInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,5 +36,12 @@ public class Platform implements NomenclatureInterface, ImageInterface {
             inverseJoinColumns = @JoinColumn(name = "game_id")
     )
     private List<Game> games = new ArrayList<>();
+
+    private String slug;
+
+    @Override
+    public String getField() {
+        return name;
+    }
 
 }

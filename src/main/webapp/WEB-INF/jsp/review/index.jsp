@@ -20,6 +20,11 @@
             <div class="d-flex">
                 <h1 class="">Liste des avis</h1>
             </div>
+            <security:authorize access="hasRole('GAMER')">
+                <a href="${UrlRoute.URL_REVIEW_NEW}" title="Ajouter un Avis" class="btn-green ms-3 pt-3" title="Ajouter un avis">
+                    <i class="fa-solid fa-comment-medical fs-3"></i>
+                </a>
+            </security:authorize>
         </div>
         <div class="d-flex justify-content-center">
             <div class="d-flex">
@@ -66,12 +71,6 @@
                         <i class="fa-solid fa-filter-circle-xmark"></i>
                     </a>
                 </span>
-
-              <security:authorize access="hasRole('GAMER')">
-                <a href="${UrlRoute.URL_REVIEW_NEW}" title="Ajouter un Avis" class="mx-5 p-3" title="Ajouter un avis">
-                  <i class="fa-solid fa-comment-medical text-success fs-3"></i>
-                </a>
-              </security:authorize>
             </div>
         </div>
     </div>

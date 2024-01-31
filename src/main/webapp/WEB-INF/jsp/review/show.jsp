@@ -13,7 +13,7 @@
         </nav>
     </div>
     <div class="row">
-        <div class="col-6">
+        <div class="col-md-8 col-sm-12">
             <h1>Avis de
                 <a class="link-if" href="${UrlRoute.URL_REVIEW}?search=${review.writer.nickname}">${review.writer.nickname}</a>
             </h1>
@@ -24,7 +24,7 @@
                     <a class="col-1 btn btn-danger" title="Refuser le commentaire" href="${UrlRoute.URL_ADMIN_REVIEW}/${review.id}/refuse"><i class="fa-regular fa-circle-xmark"></i></a>
                 </security:authorize>
             </c:if>
-            <div class="col-4">
+            <div class="col-md-4 col-sm-12">
                 Posté le ${dateUtils.getDateFormat(review.createdAt, "dd/MM/yyyy à hh:mm")}
             </div>
             <c:if test="${review.moderator != null}">
@@ -32,24 +32,22 @@
                     Modéré par ${review.moderator.nickname} le ${dateUtils.getDateFormat(review.moderatedAt, "dd/MM/yyyy")}
                 </div>
             </c:if>
-            <div class="col-4">
+            <div class="col-md-4 col-sm-12">
                 Note :
                 <span class="col-4 ${jspUtils.getCssClas(review.rating)}">
-                ${review.rating}/20
-            </span>
+                    ${review.rating}/20
+                </span>
+            </div>
+            <div class="row">
+                <h2 class="mt-5">Commentaire :</h2>
+                <div>${review.description}</div>
             </div>
         </div>
-        <div class="col-6">
-            <c:set var="game" scope="request" value="${review.game}"/>
-            <%@ include file="../component/game-card.jsp" %>
+        <div class="col-md-4 col-sm-12">
+            <a class="container-img" href="${UrlRoute.URL_GAME}/${review.game.slug}" title="Aller sur la page du jeu">
+                <img src="${review.game.image}" class="d-block w-75" alt="${review.game.name}">
+            </a>
         </div>
-    </div>
-
-    <div class="row">
-    </div>
-    <div class="row">
-        <h2 class="mt-5">Commentaire :</h2>
-        <div>${review.description}</div>
     </div>
 </div>
 

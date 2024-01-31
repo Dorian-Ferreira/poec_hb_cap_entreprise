@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -20,6 +21,8 @@ public class GameService implements DAOServiceInterface<Game> {
 
     private GameRepository repository;
     private UserService userService;
+
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
     @Override
     public List<Game> findAll() {
@@ -34,7 +37,9 @@ public class GameService implements DAOServiceInterface<Game> {
         if(search == null || search.isEmpty()) {
             return findAll(pageable);
         }
-        return repository.findAllByNameContainingIgnoreCaseOrPublisherNameContainingIgnoreCaseOrGenreNameContainingIgnoreCaseOrPlatformsNameContainingIgnoreCase(search, search, search, search,  pageable);
+        Page<Game> games = repository.findAllByNameIsContainingIgnoreCaseOrPublisherSlugIsContainingIgnoreCaseOrGenreSlugIsContainingIgnoreCaseOrBusinessModelSlugIsContainingIgnoreCaseOrClassificationSlugIsContainingIgnoreCase
+                (search, search, search, search, search, pageable);
+        return games;
     }
 
     @Override
@@ -103,7 +108,7 @@ public class GameService implements DAOServiceInterface<Game> {
         long max = repository.count();
         List<Long> gamesId = new ArrayList<>();
         while(gamesId.size() < number) {
-            long rnd = random.nextLong(max);
+            long rnd = random.nextLong(max)+1;
             if(!gamesId.contains(rnd)){
                 gamesId.add(rnd);
             }
@@ -117,5 +122,13 @@ public class GameService implements DAOServiceInterface<Game> {
             throw new NotFoundEntityException("Game", "slug", slug);
         }
         return optional.get();
+    }
+
+    public Game getRandom() {
+        return repository.findById((new Random()).nextLong(repository.count())+1).get();
+    }
+
+    public String getAverageRating(Game game) {
+        return df.format(repository.findAverageRating(game));
     }
 }

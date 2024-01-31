@@ -3,7 +3,7 @@
     --bs-body-bg: #272727;
     --bs-body-color: #fff;
     --bs-secondary: #323232;
-    --bs-primary: #ff0000;
+    --bs-primary: #c40000;
 }
 
 html, body {
@@ -20,7 +20,7 @@ html, body {
 }
 
 .txt-primary {
-    color: #ff0000;
+    color: var(--bs-primary);
 }
 
 .btn-primary {
@@ -46,4 +46,12 @@ h2 {
 
 .invalid-feedback {
     display: block;
+}
+
+.btn-green {
+    color: green;
+}
+
+.btn-green:hover {
+    color: limegreen;
 }

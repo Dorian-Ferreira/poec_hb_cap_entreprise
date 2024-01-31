@@ -26,8 +26,11 @@
                 <div class="row w-100">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="mx-3">
-                            <a class="navbar-brand" href="/">
+                            <a class="navbar-brand" href="/" title="Page d'accueil">
                                 <i class="text-white fa-solid fa-gamepad fs-1"></i>
+                            </a>
+                            <a class="link-if" href="${UrlRoute.URL_GAME_RANDOM}" title="Jeu aléatoire">
+                                <i class="fa-solid fa-dice fs-3"></i>
                             </a>
                         </div>
 
@@ -40,11 +43,11 @@
                                     <i class="fa-solid fa-user-shield"></i>
                                 </security:authorize>
                                 <span class="txt-primary">${userLogged.nickname}</span>
+                                <form class="navbar-brand m-0 p-2" method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
+                                    <button type="submit" tabindex="3" class="btn btn-link" title="Se Déconnecter"><i class="fa-solid fa-right-from-bracket"></i></button>
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                </form>
                             </div>
-                            <form class="navbar-brand m-0 p-2" method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
-                                <button type="submit" tabindex="3" class="btn btn-danger"><i class="fa-solid fa-user-slash"></i></button>
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                            </form>
                         </div>
                     </div>
                 </div>

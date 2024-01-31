@@ -44,6 +44,14 @@ public class GameController {
         return mav;
     }
 
+    @GetMapping(path = UrlRoute.URL_GAME_RANDOM, name = "show")
+    public ModelAndView show(
+            ModelAndView mav
+    ) {
+        mav.setViewName("redirect:" + UrlRoute.URL_GAME + "/" + gameService.getRandom().getSlug());
+        return mav;
+    }
+
     @GetMapping(path = UrlRoute.URL_GAME + "/{slug}", name = "show")
     public ModelAndView show(
             @ModelAttribute("flashMessage") FlashMessage flashMessage,
@@ -60,6 +68,7 @@ public class GameController {
         Game game = gameService.findBySlug(slug);
         mav.addObject("flashMessage", flashMessage);
         mav.addObject("game", game);
+        mav.addObject("averageRating", gameService.getAverageRating(game));
         mav.addObject("reviews", reviewService.findByGame(game, pageable));
         mav.addObject("reviewDTO", new ReviewGameDTO());
         return mav;
