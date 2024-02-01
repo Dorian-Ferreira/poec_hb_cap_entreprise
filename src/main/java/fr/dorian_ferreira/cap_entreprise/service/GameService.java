@@ -73,6 +73,10 @@ public class GameService implements DAOServiceInterface<Game> {
         entity.setBusinessModel(dto.getBusinessModel());
         entity.setModerator(userService.getModeratorByName(principal.getName()));
 
+        if(entity.getImage() == null) {
+            entity.setImage("/resources/image/not_found.jpg");
+        }
+
         return repository.saveAndFlush(entity);
     }
 
