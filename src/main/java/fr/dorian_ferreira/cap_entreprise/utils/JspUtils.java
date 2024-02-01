@@ -40,7 +40,7 @@ public class JspUtils {
         for(Platform p : platformList) {
             if(!s.contains(p.getImage()))
             {
-                s += "<p class=\"mx-2\">" + p.getImage() + "</p>";
+                s += "<p class=\"mx-2 pt-2\">" + p.getImage() + "</p>";
             }
         }
         return s;

@@ -66,7 +66,7 @@
                     </select>
                 </security:authorize>
 
-                <span class="mt-auto mb-2 px-4">
+                <span class="mt-auto mb-2 ps-4">
                     <a href="${UrlRoute.URL_REVIEW}" class="btn-link" title="Réinitialiser les filtres">
                         <i class="fa-solid fa-filter-circle-xmark"></i>
                     </a>

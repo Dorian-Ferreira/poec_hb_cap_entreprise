@@ -5,10 +5,11 @@ public class UrlRoute {
     public final static String URL_LOGIN = "/login";
     public final static String URL_LOGOUT = "/logout";
     public final static String URL_REDIRECT = "/redirect";
-    public final static String URL_REGISTER = "/register";
+    public final static String URL_REGISTER = "/s-inscrire";
     public final static String URL_ADMIN = "/admin";
 
     public final static String URL_GAME = "/jeu";
+
     public final static String URL_REVIEW = "/avis";
     public final static String URL_EXPORT= "/telecharger-export-excel";
 

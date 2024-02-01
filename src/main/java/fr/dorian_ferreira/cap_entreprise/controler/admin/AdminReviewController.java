@@ -84,7 +84,7 @@ public class AdminReviewController {
         }
         redirectAttributes.addFlashAttribute("flashMessage", flashMessage);
 
-        mav.setViewName("redirect:" + UrlRoute.URL_REVIEW);
+        mav.setViewName("redirect:" + UrlRoute.URL_REVIEW + "?moderation=2");
 
         return mav;
     }
