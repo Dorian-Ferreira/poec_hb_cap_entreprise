@@ -110,7 +110,8 @@ public class AdminGameController {
             ModelAndView mav,
             RedirectAttributes redirectAttributes,
             @PathVariable Long id) {
-        String imagePath = imageUploadService.uploadImage("jeu/", file);
+        String slug = gameService.findById(id).getSlug();
+        String imagePath = imageUploadService.uploadImage("jeu", file, slug, ".jpg");
 
         gameService.addImage(id, imagePath);
 
@@ -119,7 +120,7 @@ public class AdminGameController {
                 new FlashMessage("success", "Votre image a bien été enregistré !")
         );
 
-        mav.setViewName("redirect:"+UrlRoute.URL_GAME + "/" + gameService.findById(id).getSlug());
+        mav.setViewName("redirect:"+UrlRoute.URL_GAME + "/" + slug);
         return mav;
     }
 

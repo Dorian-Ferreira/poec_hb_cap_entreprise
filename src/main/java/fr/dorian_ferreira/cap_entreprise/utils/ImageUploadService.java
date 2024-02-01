@@ -16,17 +16,17 @@ public class ImageUploadService {
     private static final String DIR_PATH = "src/main/webapp";
     private static final String PATH = "/resources/image/";
 
-    public String uploadImage(String path, MultipartFile file) {
+    public String uploadImage(String path, MultipartFile file, String slug, String format) {
         try {
             File dir = new File(DIR_PATH + PATH + path);
             if (!dir.exists()) {
                 dir.mkdirs();
             }
-            File serverFile = new File(dir.getAbsolutePath() + File.separator + file.getOriginalFilename());
+            File serverFile = new File(dir.getAbsolutePath() + File.separator + slug + format);
             BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
             stream.write(file.getBytes());
             stream.close();
-            return PATH + path + file.getOriginalFilename();
+            return PATH + path + File.separator + slug + format;
         } catch (IOException e) {
             System.out.println("Failed.");
             return "Error : Something goes wrong...";
