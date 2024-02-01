@@ -8,6 +8,7 @@ import fr.dorian_ferreira.cap_entreprise.repository.ReviewRepository;
 import fr.dorian_ferreira.cap_entreprise.service.interfaces.DAOServiceInterface;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 
@@ -36,16 +37,19 @@ public class ReviewService implements DAOServiceInterface<Review> {
             search1="";
             search2="";
         }
-        if (moderation == null || moderation.equals("1")) {
-            if(userService.isAdmin(principal)){
-                return repository.findAllForModerator(search1, search2, search2, page);
+        if(userService.isAdmin(principal)){
+            if (moderation == null || moderation.equals("1")) {
+
+                    return repository.findAllForModerator(search1, search2, search2, page);
             }
-            return repository.findAllByGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase
-                    (search1, search2, principal.getName(), search2, page);
-        }
-        if (moderation != null && moderation.equals("2") && userService.isAdmin(principal)) {
-            return repository.findAllByModeratorNullAndGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase
-                    (search1, search2, search2, page);
+            if (moderation.equals("2")) {
+                return repository.findAllByModeratorNullAndGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase
+                        (search1, search2, search2, page);
+            }
+            if (moderation.equals("3")) {
+                return repository.findAllByGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase
+                        (search1, search2, search2, page);
+            }
         }
 
         return repository.findAllByModeratorNotNullAndGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase

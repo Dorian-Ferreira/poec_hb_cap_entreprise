@@ -25,5 +25,6 @@ public class UrlRoute {
     public final static String URL_ADMIN_GAME_IMAGE = URL_ADMIN_GAME + "/image";
 
     public final static String URL_ADMIN_REVIEW = URL_ADMIN + URL_REVIEW;
+    public final static String URL_ADMIN_PUBLISHER_NEW = URL_ADMIN + "/editeur" + URL_NEW;
 
 }

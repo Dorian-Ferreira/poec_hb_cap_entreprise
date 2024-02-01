@@ -16,8 +16,8 @@ public interface ReviewRepository
 
     Page<Review> findAllByModeratorIsNotNullOrWriterOrderByModerator(Gamer writer, Pageable pageable);
 
-    @Query("Select r From Review r Join Game g on r.game = g join User u on r.writer = u where (r.moderator is not NULL or u.nickname like ?3) AND (g.name like %?1% or u.nickname like %?2% or g.slug like %?4%)")
-    Page<Review> findAllByGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase(String search1, String search2, String username, String search3, Pageable pageable);
+    @Query("Select r From Review r Join Game g on r.game = g join User u on r.writer = u where r.moderator is not NULL AND (g.name like %?1% or u.nickname like %?2% or g.slug like %?3%)")
+    Page<Review> findAllByGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase(String search1, String search2, String search3, Pageable pageable);
 
     @Query("Select r From Review r Join Game g on r.game = g join User u on r.writer = u where g.name like %?1% or u.nickname like %?2% or g.slug like %?3%")
     Page<Review> findAllForModerator(String search1, String search2, String search3, Pageable pageable);
@@ -28,6 +28,7 @@ public interface ReviewRepository
     @Query("Select r From Review r Join Game g on r.game = g join User u on r.writer = u where r.moderator is NULL AND (g.name like %?1% or u.nickname like %?2% or g.slug like %?3%)")
     Page<Review> findAllByModeratorNullAndGameNameContainingIgnoreCaseOrPlayerUsernameContainingIgnoreCase(String search1, String search2, String search3, Pageable pageable);
 
+    @Query("Select r from Review r where r.rating = 20 and r.moderator is not null order by rand() limit 6")
     List<Review> findTop6ByModeratorIsNotNullOrderByRatingDesc();
 
     List<Review> findAllByGameId(Long id);

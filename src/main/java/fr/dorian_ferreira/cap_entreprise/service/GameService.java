@@ -129,6 +129,10 @@ public class GameService implements DAOServiceInterface<Game> {
     }
 
     public String getAverageRating(Game game) {
-        return df.format(repository.findAverageRating(game));
+        Double d = repository.findAverageRating(game);
+        if(d == null) {
+            return "Pas de Note";
+        }
+        return df.format(d);
     }
 }

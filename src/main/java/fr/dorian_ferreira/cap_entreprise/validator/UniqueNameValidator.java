@@ -28,7 +28,7 @@ public class UniqueNameValidator implements ConstraintValidator<UniqueName, Stri
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
         JpaRepositoryFactory factory = new JpaRepositoryFactory(em);
         EntityNameRepository<?> repository = factory.getRepository(repositoryClass);
-        return repository.findByNickname(s).isEmpty();
+        return repository.findByName(s).isEmpty();
     }
 
 }
