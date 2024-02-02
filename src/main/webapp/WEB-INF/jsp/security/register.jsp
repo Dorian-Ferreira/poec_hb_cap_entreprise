@@ -28,7 +28,7 @@
       </div>
       <div class="row mt-4">
         <div class="d-flex justify-content-center">
-          <button class="btn btn-primary " type="submit">S'inscrire</button>
+          <button class="btn btn-success " type="submit">S'inscrire</button>
         </div>
       </div>
     </f:form>

@@ -14,7 +14,7 @@
         <input name="password" type="password" class="form-control mt-2" placeholder="Mot de passe"/>
         <p class="invalid-feedback">${error}</p>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <button class="btn btn-lg btn-primary btn-block mt-4" type="submit">Se Connecter</button>
+        <button class="btn btn-lg btn-success btn-block mt-4" type="submit">Se Connecter</button>
 <%--        <div class="mt-4">--%>
 <%--          <a class="link-if" data-toggle="tooltip" title="C'est 12345">Mot de passe oublié</a>--%>
 <%--        </div>--%>

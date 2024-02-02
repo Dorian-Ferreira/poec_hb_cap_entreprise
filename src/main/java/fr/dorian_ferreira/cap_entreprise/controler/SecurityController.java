@@ -61,7 +61,7 @@ public class SecurityController {
             return mav;
         }
         if (error != null) {
-            mav.addObject("error", "Your username or password is invalid.");
+            mav.addObject("error", "Votre nom d'utilisateur ou mot de passe est invalide.");
         }
         mav.setViewName("security/login");
         return mav;
